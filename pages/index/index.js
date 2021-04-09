@@ -1,6 +1,7 @@
 // pages/service/service.js
 const app = getApp()
-import {sendLogin} from '../../api/api.js'
+import {timestampToTime} from '../../utils/util'
+import {getBarch} from '../../api/api.js'
 Page({
 
   /**
@@ -15,7 +16,18 @@ Page({
     statusBarHeight: app.globalData.statusBarHeight,
     imgUrls: ['/icon/banner.png','/icon/banner.png','/icon/banner.png'],
     show: false,
-    image: app.globalData.image
+    image: app.globalData.image,
+
+    bannerList:[],
+    bannerList1: [],
+    recommend: [],
+    activity: [],
+    article: [],
+  },
+  toLoveList() {
+    wx.navigateTo({
+      url: '../lovelist/lovelist',
+    })
   },
   swiperChange(e) {
     let current = e.detail.current;
@@ -23,60 +35,6 @@ Page({
     let that = this;
     that.setData({
       swiperCurrent: current,
-    })
-  },
-  //点击客服预约
-  showbtn() {
-    this.setData({
-      show: !this.data.show
-    })
-  },
-  //点击搜索
-  search() {
-    wx.navigateTo({
-      url: '../indexSearch/indexSearch',
-    })
-  },
-  //留学攻略
-  strategy() {
-    wx.navigateTo({
-      url: '../strategy/strategy',
-    })
-  },
-  //资料下载
-  database() {
-    wx.getStorage({
-      key: 'userinfo',
-      success: res => {
-        wx.requestSubscribeMessage({
-          tmplIds: ['-k0OQ0cnU14zWrSWm9Nh3k34P--Xn6YBuwpT_QpMwpo'],
-          success(res) { }
-        })
-        wx.navigateTo({
-          url: '../database/database',
-        })
-      },
-      fail: res => {
-        wx.showModal({
-          title: '提示',
-          content: '是否授权登录体验完整小程序？',
-          showCancel: true,
-          success: res => {
-            if (res.confirm) {
-              wx.navigateTo({
-                url: '../wxlogin/wxlogin',
-              })
-            }
-          },
-        })
-      }
-    })
-
-  },
-  //目的国家
-  countrylist() {
-    wx.navigateTo({
-      url: '../countrylist/countrylist',
     })
   },
   //推荐有礼
@@ -119,7 +77,6 @@ Page({
   },
   //点击活动消息
   active() {
-    sendLogin({page:'1',size:"10",criCode:''}).then(res=>{console.log(res)})
     // wx.navigateTo({
     //   url: '../activity/activity?activity=' + 2,
     // })
@@ -135,7 +92,40 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-
+    // console.log(timestampToTime(1616132061))
+    getBarch({
+      'get_list':{},
+      'product.get_list': { withsku: 1, type: 4, pagesize:4},
+      'product.get_cates': { goods_count: 4,withsku:1 },
+      'article.get_list': {pagesize:3},
+      'advs': {
+          flag: 'banner'
+      },
+      'four_advs': {
+          call: 'advs',
+          flag: 'fourmenu'
+      },
+      'medium_advs': {
+          call: 'advs',
+          flag: 'midbanner'
+      }
+  }).then(res=>{
+    let article = res.data['article.get_list'].lists
+    article.forEach(item=>{
+      item.create_time = timestampToTime(item.create_time)
+    })
+      this.setData({
+        bannerList: res.data.advs,
+        bannerList1:res.data.medium_advs,
+        recommend: res.data.get_list,
+        activity: res.data.four_advs,
+        article,
+      })
+    }).catch(error=>{
+      wx.showToast({
+        title: '网络错误',
+      })
+    })
   },
 
   /**

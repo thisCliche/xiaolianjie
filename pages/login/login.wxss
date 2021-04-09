@@ -11,6 +11,7 @@
 }
 
 .btn {
+  line-height: 80rpx;
   width: 500rpx;
   height: 80rpx;
   background-image: linear-gradient(90deg,
@@ -30,12 +31,13 @@
 .btn-qx {
   width: 500rpx;
   height: 80rpx;
-  border-style: solid;
+  /* border-style: solid; */
   border-width: 2rpx;
+  line-height: 80rpx;
   border-image-source: linear-gradient(90deg,
       #ffb2c2 0%,
       #ffc39f 100%);
-  border-image-slice: 1;
+  /* border-image-slice: 1; */
   margin: 0 auto;
   font-size: 36rpx;
   font-weight: normal;

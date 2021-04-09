@@ -60,6 +60,7 @@
   border-radius: 10rpx;
   margin: 20rpx 0rpx 0rpx 25rpx;
   position: relative;
+  overflow: hidden;
 }
 
 .swiper-box swiper {
@@ -80,6 +81,7 @@
   border-radius: 10rpx;
   margin: 20rpx 0rpx 0rpx 25rpx;
   position: relative;
+  overflow: hidden;
 }
 
 .swiper-box1 swiper {
@@ -149,27 +151,41 @@ swiper image {
 .index-jghd-mk {
   width: 700rpx;
   margin: 0 auto;
+  
 }
 
 .index-jghd-mk view {
+  overflow: hidden;
   width: 220rpx;
   height: 270rpx;
-  background-image: linear-gradient(90deg,
-      #ffb2c2 0%,
-      #ffc39f 100%),
-    linear-gradient(#010101,
-      #010101);
   border-radius: 10rpx;
   text-align: center;
   font-size: 30rpx;
   color: #fff;
+  position: relative;
 }
 
 .index-jghd-mk text {
   display: inline-block;
-  margin-top: 220rpx;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  padding: 6rpx 0;
+  left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 0px);
 }
-
+.slide-image2{
+  width: 700rpx;
+	height: 200rpx;
+}
+.banner3{
+  border-radius: 10rpx;
+  overflow: hidden;
+  margin: 20rpx auto;
+  width: 700rpx;
+  height: 200rpx;
+}
 .index-jghd-mk-bottom {
   width: 700rpx;
   margin: 20rpx auto;
@@ -185,4 +201,34 @@ swiper image {
   font-size:36rpx;
   text-align: center;
   line-height: 200rpx;
+}
+.newList{
+  padding: 0 25rpx;
+}
+.newColumn{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom:30rpx;
+}
+.dec{
+  color: #797979;
+    font-size: 26rpx;
+    margin-bottom: 10rpx;
+    padding-top: 4rpx;
+}
+.title{
+  font-size: 30rpx;
+    line-height: 38rpx;
+    margin-bottom: 12rpx;
+    color: #414141!important;
+}
+.newColumnL{
+  width: 66%;
+}
+.newColumnLB{
+  display: flex;
+  justify-content: space-between;
+}
+.newColumnR{
+  width: 30%;
 }

@@ -24,7 +24,8 @@
     "pages/medata/medata",
     "pages/persdata/persdata",
     "pages/lovelist/lovelist",
-    "pages/message/message"
+    "pages/message/message",
+    "pages/vipuser/vipuser"
   ],
   "tabBar": {
     "borderStyle": "white",
@@ -39,8 +40,8 @@
         "selectedIconPath": "icon/tabbar/home1.png"
       },
       {
-        "pagePath": "pages/lovelist/lovelist",
-        "text": "婚恋",
+        "pagePath": "pages/vipuser/vipuser",
+        "text": "VIP",
         "iconPath": "icon/tabbar/home.png",
         "selectedIconPath": "icon/tabbar/home1.png"
       },

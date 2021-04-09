@@ -15,7 +15,7 @@ App({
   },
   globalData: {
     img: '',
-    image: '',
+    image: 'https://flxcx.ahxingdian.com',
     host: '',
     statusBarHeight:  wx.getSystemInfoSync()['statusBarHeight'],//自定义导航栏顶部高度
     userInfo: null,

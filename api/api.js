@@ -8,13 +8,14 @@ const request = (options) => {
       method: options.method,
       data:options.data,
       header:{
-        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'Content-Type': 'application/json',
       },
       success(request) {
         if (request.data) {
+          console.log(request)
           resolve(request.data)
         } else {
-          reject(request.data)
+          resolve(request.data)
         }
       },
       fail(error) {
@@ -28,6 +29,14 @@ export function sendLogin(data) {
   return request({
     url: 'auth/wxlogin',
     method: 'post',
+    data
+  })
+}
+
+export function getBarch(data){
+  return request({
+    url: 'common/batch',
+    method: "post",
     data
   })
 }

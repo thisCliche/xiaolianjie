@@ -1,6 +1,6 @@
 <!--pages/lovelist/lovelist.wxml-->
 <view>
-  <w-header title="恋爱婚姻" isBack="0" bind:childBackUp="backUp"></w-header>
+  <w-header title="恋爱婚姻" isBack="1" bind:childBackUp="backUp"></w-header>
   <view style="display:flex;justify-content: flex-end;">
     <view class="filter" bindtap="showFil">
       <image style="width:45rpx;height:53rpx;" src="../../icon/fluter.png"></image>
@@ -48,7 +48,7 @@
     </view>
     </view>
   </van-popup>
-  <van-popup show="{{district }}" position="bottom">
+  <van-popup round show="{{district }}" position="bottom">
     <van-area bind:confirm="onChangeDistrict" bind:cancel="onCloseDistrict" area-list="{{ areaList }}" columns-num="{{ 3 }}" title="地区选择" />
   </van-popup>
 </view>
