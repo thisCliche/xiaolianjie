@@ -1,0 +1,44 @@
+/* pages/login/login.wxss */
+.logo {
+  width: 195rpx;
+  height: 195rpx;
+  margin: 309rpx 0 0 278rpx;
+}
+.login-main-title {
+  font-size: 36rpx;
+  color: #000000;
+  text-align: center;
+}
+
+.btn {
+  width: 500rpx;
+  height: 80rpx;
+  background-image: linear-gradient(90deg,
+      #ffb2c2 0%,
+      #ffc39f 100%),
+    linear-gradient(#ffafc2,
+      #ffafc2);
+  background-blend-mode: normal,
+    normal;
+  font-size: 36rpx;
+  font-weight: normal;
+  color: #fff;
+  margin-top: 140rpx;
+  margin-bottom: 18rpx;
+}
+
+.btn-qx {
+  width: 500rpx;
+  height: 80rpx;
+  border-style: solid;
+  border-width: 2rpx;
+  border-image-source: linear-gradient(90deg,
+      #ffb2c2 0%,
+      #ffc39f 100%);
+  border-image-slice: 1;
+  margin: 0 auto;
+  font-size: 36rpx;
+  font-weight: normal;
+  background: #fff;
+  color: #ffb2c2;
+}

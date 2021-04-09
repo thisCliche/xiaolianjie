@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "w-header": "../../components/header/header",
+    "w-love": "../../components/love/love"
+  },
+  "navigationStyle": "custom"
+}

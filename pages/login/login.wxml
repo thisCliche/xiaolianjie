@@ -1,0 +1,7 @@
+<!--pages/login/login.wxml-->
+<view class="login-main">
+  <image src="/icon/logo.png" class="logo"></image>
+  <view class="login-main-title">恋爱婚姻</view>
+  <button class="btn" open-type="getUserInfo" bindgetuserinfo="getUserInfo" style="width:500rpx;" bindtap="getUserProfile">微信授权登陆</button>
+  <button class="btn-qx" style="width:500rpx;" bindtap="backUp">取消</button>
+</view>

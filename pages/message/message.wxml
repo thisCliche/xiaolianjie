@@ -1,0 +1,31 @@
+<!--pages/message/message.wxml-->
+<view>
+  <w-header title="我的留言" isBack="1" bind:childBackUp="backUp"></w-header>
+  <view class="messageModel">
+    <view class="messageModelTop">
+      <view class="messageModelLeft">
+        <image style="width:72rpx;height:72rpx;border-radius:50%;" src="https://img.xiaojiayun.top/wly.jpg"></image>
+        <view style="margin-left:20rpx;">
+          <view>昵称</view>
+          <view>2021.01.01</view>
+        </view>
+      </view>
+      <van-icon bindtap="showAction" name="ellipsis" />
+    </view>
+    <view class="content">
+      昵称昵称昵称昵称昵称昵称昵称昵称昵称昵称昵称昵称昵称昵称昵称昵称昵称昵称昵称昵称昵称昵称昵称昵称昵称昵称昵称昵称昵称昵称昵称昵称昵称昵称昵称
+    </view>
+    <view>
+      <input type="text" confirm-type="send" bindconfirm="sendMessage" placeholder="回复留言" style="background:#fff;padding:0 10rpx;"/>
+    </view>
+  </view>
+  
+  <van-action-sheet
+  show="{{ show }}"
+  actions="{{ actions }}"
+  bind:close="onClose"
+  bind:select="onSelect"
+  bind:cancel="onClose"
+  cancel-text="取消"
+/>
+</view>

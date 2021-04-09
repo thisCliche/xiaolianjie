@@ -1,0 +1,129 @@
+/**app.wxss**/
+@import '/utils/main.wxss';
+@import '/utils/icon.wxss';
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}
+page{
+  background-color: #fff;
+}
+
+/* 元素在主轴（页面）上左右两端或者上下两端开始排列 */
+.display_J_B {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* 每个元素两侧的间隔相等。所以，元素之间的间隔比元素与边框的间隔大一倍 */
+.display_J_A {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* 元素在主轴（页面）上由左或者上开始排列 */
+.display_J_S {
+  display: flex;
+  justify-content: flex-start;
+}
+/* 元素在主轴（页面）上由右或者下开始排列 */
+.display_J_E {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* 元素在主轴（页面）上居中排列 */
+.display_J_C {
+  display: flex;
+  justify-content: center;
+}
+
+/* 弹性盒子元素在该行的侧轴（纵轴）上居中放置。（居中对齐） */
+.display_A_C {
+  display: flex;
+  align-items: center;
+}
+
+/* 弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴结束边界。（靠下对齐） */
+.display_A_E {
+  display: flex;
+  align-items: flex-end;
+}
+
+/* 弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴起始边界（靠上对齐） */
+.display_A_S {
+  display: flex;
+  align-items: flex-start;
+}
+/* 自动换行*/
+.display_Z_H {
+  display: flex;
+  justify-content: start;
+  flex-wrap: wrap;
+}
+/* 一行溢出隐藏 '...' */
+.GStitleOne {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 两行溢出隐藏 '...' */
+.GStitleTwo {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* 三行溢出隐藏 '...' */
+.GStitleThree {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.height100{
+  height: 100rpx;
+}
+/* 字体颜色 */
+.fontcolor{
+  color:#0dd8fd;
+}
+.fontColors{
+  color:#eb304f;
+}
+/* 搜索不到内容 */
+.fail {
+  margin-top: 30rpx;
+  text-align: center;
+}
+
+.fail image {
+  width: 300rpx;
+  height: 400rpx;
+  margin: auto;
+  display: block;
+}
+
+.fail text {
+  font-size: 27rpx;
+  color: #ccc;
+  margin-top: 5rpx;
+  margin-left: 44rpx;
+}
+
+.fail text:last-child {
+  color: #666;
+}
+

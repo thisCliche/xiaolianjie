@@ -1,0 +1,86 @@
+<!--pages/medata/medata.wxml-->
+<scroll-view scroll-y style="height: 100vh;" bindscroll="scroll">
+  <view class="main">
+    <view class="index-top">
+      <view class="index-top-one" style="height:{{statusBarHeight}}px;position:fixed;top:0;left:0;z-index:111"></view>
+      <view style="height:{{statusBarHeight}}px"></view>
+      <view class="fixtop" style="position:fixed;top:{{statusBarHeight}}px;left:0;z-index:111">
+        <view class="index-top-title">
+          <van-icon style="margin-left:40rpx;" name="arrow-left" bindtap="backUp" />
+          <text style="margin-left:-60rpx;">我的资料</text>
+          <text> </text>
+        </view>
+      </view>
+      <view class="topBg" style="height:94rpx;"></view>
+    </view>
+    
+    <view class="fromWrapper">
+
+      <!-- <view class="toggle">
+      <text bindtap="currClick" data-name="1">基本资料</text>
+      <text bindtap="currClick" data-name="2">联系方式</text>
+    </view> -->
+
+      <view wx:if="curActive==1" class="from">
+        <van-radio-group value="{{ from.sex }}" bind:change="onChangeSex" direction="horizontal">
+          <van-cell style="width:100%;" title="性别" clickable data-name="1">
+            <view slot="right-icon" style="display:flex;">
+              <van-radio name="1" checked-color="#fe909d">男</van-radio>
+              <van-radio name="2" checked-color="#fe909d">女</van-radio>
+            </view>
+          </van-cell>
+        </van-radio-group>
+        <van-cell-group>
+          <van-cell center title="我的头像"  >
+          <image slot="right-icon" src="https://img.xiaojiayun.top/wly.jpg" style="width:65rpx;height:65rpx;"></image>
+        </van-cell>
+          <van-field input-class="input_class" label="我的姓名" model:value="{{ from.name }}" placeholder="请填写" border
+            is-link />
+            <!-- 我的生日 -->
+          <van-cell value-class="{{from.birthday==''? 'value_classnull':'value_class'}}" title="我的生日" is-link value="{{from.birthday==''? '请选择':from.birthday}}"
+            bind:click="showPopBirthday" />
+          <van-calendar show="{{ fromSelect.birthday }}" bind:close="onCloseBirthday"
+            bind:confirm="onConfirmBirthday" />
+            <!-- 身高 -->
+          <van-cell value-class="{{from.height==''? 'value_classnull':'value_class'}}" title="我的身高" is-link value="{{from.height==''? '请选择':from.height}}"
+            bind:click="showPopHeight" />
+          <van-popup show="{{ fromSelect.height }}" position="bottom">
+            <van-picker columns="{{ heightColumns }}" show-toolbar title="身高" bind:cancel="onCloseHeight"
+              bind:confirm="onChangeHeight" />
+          </van-popup>
+<!-- 体重 -->
+          <van-cell value-class="{{from.weight==''? 'value_classnull':'value_class'}}" title="我的体重" is-link value="{{from.weight==''? '请选择':from.weight}}"
+            bind:click="showPopWeight" />
+          <van-popup show="{{ fromSelect.weight }}" position="bottom">
+            <van-picker show-toolbar title="体重" bind:cancel="onCloseWeight" bind:confirm="onChangeWeight"
+              columns="{{ weightColumns }}" />
+          </van-popup>
+<!-- 地区 -->
+          <van-cell value-class="{{from.district==''? 'value_classnull':'value_class'}}" title="居住地区" is-link value="{{from.district==''? '请选择':from.district}}" bind:click="showPopDistrict" />
+          <van-popup show="{{ fromSelect.district }}" position="bottom">
+            <van-area bind:confirm="onChangeDistrict" bind:cancel="onCloseDistrict" area-list="{{ areaList }}" columns-num="{{ 3 }}" title="地区选择" />
+          </van-popup>
+
+          <van-cell value-class="{{from.educational==''? 'value_classnull':'value_class'}}" title="我的学历" is-link
+            value="{{from.educational==''? '请选择':from.educational}}" bind:click="showPopeDucational" />
+            <van-popup show="{{ fromSelect.educational }}" position="bottom">
+            <van-picker show-toolbar title="我的学历" bind:cancel="onCloseeDucational" bind:confirm="onChangeeDucational"
+              columns="{{ educationalColumns }}" />
+          </van-popup>
+
+          <van-cell value-class="{{from.marriage==''? 'value_classnull':'value_class'}}" title="婚姻情况" is-link value="{{from.marriage==''? '请选择':from.marriage}}" bind:click="showPopeMarriage" />
+          <van-popup show="{{ fromSelect.marriage }}" position="bottom">
+            <van-picker show-toolbar title="婚姻情况" bind:cancel="onCloseMarriage" bind:confirm="onChangeeMarriage"
+              columns="{{ marriageColumns }}" />
+          </van-popup>
+        </van-cell-group>
+        <view class="button">
+          <van-button custom-class="btn_class" color="linear-gradient(to right, #febac9, #ffc39f)">确认提交</van-button>
+        </view>
+      </view>
+      <view wx:else class="from1">
+        联系方式
+      </view>
+    </view>
+  </view>
+</scroll-view>

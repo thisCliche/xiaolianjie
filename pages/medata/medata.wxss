@@ -1,0 +1,46 @@
+/* pages/medata/medata.wxss */
+.index-top-one {
+  width: 750rpx;
+  background-image: linear-gradient(90deg, #ffb2c2 0%, #ffc39f 100%), linear-gradient(#febac9, #febac9);
+}
+.topBg{
+  background-image: linear-gradient(90deg, #ffb2c2 0%, #ffc39f 100%), linear-gradient(#febac9, #febac9);
+  
+}
+.index-top-title {
+  width: 750rpx;
+  height: 85rpx;
+  background-image: linear-gradient(90deg, #ffb2c2 0%, #ffc39f 100%), linear-gradient(#febac9, #febac9);
+  line-height: 85rpx;
+  font-size: 30rpx;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.fromWrapper{
+  background: #fff;
+  width: 100%;
+  border-radius: 20rpx 20rpx 0 0;
+  margin-top: -10rpx;
+  padding: 100rpx 70rpx;
+}
+/* .toggle{
+  display: flex;
+  justify-content: space-around;
+  padding: 0 40rpx 40rpx;
+} */
+.active{
+  color: #fe909d;
+}
+.input_class{text-align: right !important;}
+.value_classnull{color: #cccccc !important;}
+.value_class{color: #333 !important;}
+
+.button{
+  margin-top:76rpx;
+  text-align: center;
+}
+.btn_class{
+  width: 500rpx;
+}

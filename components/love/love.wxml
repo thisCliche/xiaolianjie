@@ -1,0 +1,15 @@
+<!--components/love/love.wxml-->
+<view class="loveColumn">
+  <view class="columnLeft">
+    <image class="img" style="width:170rpx;height:170rpx;border-radius:50%;" src="{{itemColumn.avatart}}"></image>
+    <view class="coumnLR">
+      <view style="font-size:26rpx;margin:12rpx 0;">{{itemColumn.nick}}</view>
+      <view class="tag">
+        <view class="tagAge">{{itemColumn.age}}岁</view>
+        <view class="tagLocation"><van-icon name="location-o" /><view style="width:6rpx;"></view><text>{{itemColumn.location}}</text></view>
+      </view>
+      <view style="color:#7f7f7f;margin-top:20rpx;">{{itemColumn.height}} · {{itemColumn.education}} · {{itemColumn.occupation}}</view>
+    </view>
+  </view>
+  <view class="btn" data-loveid="{{itemColumn.id}}" bindtap="toDetial">看她资料</view>
+</view>

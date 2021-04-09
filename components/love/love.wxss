@@ -1,0 +1,41 @@
+/* components/love/love.wxss */
+.loveColumn{
+  margin-top: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.columnLeft{
+  display: flex;
+  }
+.coumnLR{
+  margin-left: 34rpx;
+}
+.tag{
+  display: flex;
+}
+.tagAge{
+  background-image: linear-gradient(90deg, 
+		#ffb2c2 0%, 
+    #ffc39f 100%);
+    border-radius: 20px;
+    color: #fff;
+    font-size: 22rpx;
+    padding: 10rpx 18rpx;
+}
+.tagLocation{
+  display: flex;
+  align-items: center;
+  margin-left: 20rpx;
+  border-radius: 20px;
+    color: #fff;
+    font-size: 22rpx;
+    padding: 10rpx 18rpx;
+    background: #9fbbea;
+}
+.btn{
+  border: solid 1px #ffb7b8;
+  color: #ffb2c2;
+  padding: 12rpx 15rpx;
+  border-radius: 10rpx;
+}

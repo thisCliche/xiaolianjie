@@ -1,0 +1,82 @@
+/* pages/persdata/persdata.wxss */
+.index-top-one {
+  width: 750rpx;
+  background:transparent;
+}
+.topBg{
+  background:transparent;
+}
+.index-top-title {
+  width: 750rpx;
+  height: 85rpx;
+  background:transparent;
+  line-height: 85rpx;
+  font-size: 30rpx;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.topBg{
+  width: 100%;
+  height: 544rpx;
+  position: relative;
+}
+.topBg>image{
+  width: 100%;
+  height: 544rpx;
+}
+.avatar{
+    width: 302rpx;
+    height: 302rpx;
+    
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+.avatar image{
+  width: 100%;
+  height: 100%;
+  border: solid 5rpx #ffffff;
+  border-radius: 50%;
+  transform: translate(-50%,-60%);
+}
+.persTitle{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  top: 80%;
+  transform: translate(-50%,0%);
+}
+.sign{
+  margin-left:20rpx;
+  width: 90rpx;
+  height: 32rpx;
+  font-size: 20rpx;
+  text-align: center;
+  color: #fff;
+	border-radius: 5rpx;
+	border: solid 2rpx #ffffff;
+}
+.persDetail{
+  padding: 0rpx 26rpx 0;
+}
+.persmodel{
+  padding-top: 20rpx;
+}
+.tagList{
+  padding: 40rpx;
+  border-bottom: 2rpx solid #e5e5e5;
+}
+.tag{
+  margin: 0 20rpx 15rpx 0;
+  background: #ffe8e9;
+  border-radius: 5rpx;
+  height: 50rpx;
+  display: inline-block;
+  line-height: 50rpx;
+  font-size: 28rpx;
+  padding: 0 18rpx;
+	border: solid 2rpx #ffcccc;
+}

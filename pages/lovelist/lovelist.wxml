@@ -1,0 +1,54 @@
+<!--pages/lovelist/lovelist.wxml-->
+<view>
+  <w-header title="恋爱婚姻" isBack="0" bind:childBackUp="backUp"></w-header>
+  <view style="display:flex;justify-content: flex-end;">
+    <view class="filter" bindtap="showFil">
+      <image style="width:45rpx;height:53rpx;" src="../../icon/fluter.png"></image>
+    </view>
+  </view>
+  <view class="listColumn">
+    <w-love wx:key="id" bind:todetial="todetial" wx:for="{{listColumn}}" itemColumn="{{item}}"></w-love>
+  </view>
+  <van-popup show="{{ show }}" position="right" custom-style="width: 74%;height:100%;" bind:close="onClose">
+    <view class="popWrap">
+      <view style="padding-top:{{statusBarHeight*2 + 100}}rpx;">
+      <view style="padding: 20rpx 26rpx 0rpx">
+        <input value="{{form.search}}" bindinput='inputVal' type="text" style="background:#f8f8f8;padding-left:8rpx;" placeholder="搜索昵称/ID" />
+      </view>
+      <van-divider hairline />
+      <text class="title">性别</text>
+      <van-divider hairline />
+      <view class="content">
+        <view bindtap="sexSele" data-sex="{{item.name}}" class="contentItem {{item.active == 1 ?'activecontentItem':''}}" wx:key="index" wx:for="{{sex}}">{{item.name}}</view>
+      </view>
+      <van-divider hairline />
+      <text class="title">年龄</text>
+      <van-divider hairline />
+      <view class="content">
+        <view bindtap="ageSele" data-sex="{{item.name}}" class="agecontentItem {{item.active == 1 ?'activecontentItem':''}}" wx:key="index" wx:for="{{age}}">{{item.name}}</view>
+      </view>
+      <van-divider hairline />
+      <text class="title">学历</text>
+      <van-divider hairline />
+      <view class="content">
+        <view style="margin-bottom:16rpx;" bindtap="eduSele" data-sex="{{item.name}}" class="contentItem {{item.active == 1 ?'activecontentItem':''}}" wx:key="index" wx:for="{{edu}}">{{item.name}}</view>
+      </view>
+      <van-divider hairline />
+      <view style="display: flex;justify-content: space-between;">
+        <text class="title">居住地</text>
+        <view bindtap="showPopDistrict" style="display: flex;justify-content: space-between;align-items:center;">
+          <text>{{form.district == '' ? '请选择': form.district}}</text>
+          <van-icon style="margin-right:20rpx" name="arrow" />
+        </view>
+      </view>
+    </view>
+    <view class="btns">
+      <van-button round color="#ff8e92" size="small" bindtap="reset">重置</van-button>
+      <van-button round color="#ff8e92" size="small">确定</van-button>
+    </view>
+    </view>
+  </van-popup>
+  <van-popup show="{{district }}" position="bottom">
+    <van-area bind:confirm="onChangeDistrict" bind:cancel="onCloseDistrict" area-list="{{ areaList }}" columns-num="{{ 3 }}" title="地区选择" />
+  </van-popup>
+</view>

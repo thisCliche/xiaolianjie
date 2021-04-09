@@ -1,0 +1,80 @@
+<!--index.wxml-->
+<scroll-view scroll-y style="height: 100vh;" bindscroll="scroll">
+  <view class="main">
+    <view class="index-top">
+      <view class="index-top-one" style="height:{{statusBarHeight}}px;position:fixed;top:0;left:0;z-index:111"></view>
+      <view style="height:{{statusBarHeight}}px"></view>
+      <view class="index-top-two">
+        <view class="fixtop" style="position:fixed;top:{{statusBarHeight}}px;left:0;z-index:111">
+          <view class="index-top-title">
+            恋爱婚姻
+          </view>
+        </view>
+        <view style="height:85rpx;"></view>
+        <view class='index-top-swiper'>
+          <view class='swiper-box'>
+            <swiper indicator-dots="{{indicatorDots}}" autoplay="{{false}}" interval="{{interval}}"
+              duration="{{duration}}" bindchange="swiperChange">
+              <block wx:for="{{imgUrls}}" wx:key="index" data-item="{{item}}">
+                <swiper-item>
+                  <image src="{{image}}{{item}}" class="slide-image" data-item='{{item}}' />
+                </swiper-item>
+              </block>
+            </swiper>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='index-top-swiper1'>
+      <view class='swiper-box1'>
+        <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}"
+          duration="{{duration}}" bindchange="swiperChange">
+          <block wx:for="{{imgUrls}}" wx:key="index" data-item="{{item}}">
+            <swiper-item>
+              <image src="{{image}}{{item}}" class="slide-image1" data-item='{{item}}' />
+            </swiper-item>
+          </block>
+        </swiper>
+        <view class="dots">
+          <block wx:for="{{imgUrls}}" wx:key="unique">
+            <view class="dot{{index == swiperCurrent ? 'active' : ''}}"></view>
+          </block>
+        </view>
+      </view>
+    </view>
+    <view class="index-jghd">
+      <view class="display_J_B display_A_C" style="margin:50rpx 0 30rpx 0">
+        <view class="display_J_S display_A_C">
+          <view style="width: 11rpx;height: 11rpx;background-color: #d6697e;border-radius: 5rpx;margin:0 7rpx 0 34rpx">
+          </view>
+          <view style="font-size:24rpx;color:#000">为你推荐</view>
+        </view>
+        <view class="display_J_S  display_A_C index-mdd-gd" bindtap="active">
+          <view>全部</view>
+          <image src="/icon/jt.png"></image>
+        </view>
+      </view>
+      <view class="index-jghd-mk display_J_B display_A_C">
+        <view><text>妙妙 25岁</text></view>
+        <view><text>妙妙 25岁</text></view>
+        <view><text>妙妙 25岁</text></view>
+      </view>
+      <view class="index-jghd-mk-bottom">相亲活动报名</view>
+    </view>
+    <view class="index-jghd">
+      <view class="display_J_B display_A_C" style="margin:50rpx 0 30rpx 0">
+        <view class="display_J_S display_A_C">
+          <view style="width: 11rpx;height: 11rpx;background-color: #d6697e;border-radius: 5rpx;margin:0 7rpx 0 34rpx">
+          </view>
+          <view style="font-size:24rpx;color:#000">情感美文</view>
+        </view>
+        <view class="display_J_S  display_A_C index-mdd-gd" bindtap="active">
+          <view>全部</view>
+          <image src="/icon/jt.png"></image>
+        </view>
+      </view>
+      
+      <view class="index-jghd-mk-bottom">情感美文</view>
+    </view>
+  </view>
+</scroll-view>

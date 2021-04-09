@@ -1,0 +1,16 @@
+/* pages/message/message.wxss */
+.messageModel{
+  margin-top: 42rpx;
+  padding: 34rpx 25rpx;
+  background: #f7f7f9;
+}
+.messageModelTop{
+  display: flex;
+  justify-content: space-between;
+}
+.messageModelLeft{
+  display: flex;
+}
+.content{
+  padding: 20rpx;
+}

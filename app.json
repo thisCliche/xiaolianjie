@@ -1,0 +1,62 @@
+{
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-nav-bar": "@vant/weapp/nav-bar/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-radio": "@vant/weapp/radio/index",
+    "van-radio-group": "@vant/weapp/radio-group/index",
+    "van-picker": "@vant/weapp/picker/index",
+    "van-calendar": "@vant/weapp/calendar/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-area": "@vant/weapp/area/index",
+    "van-action-sheet": "@vant/weapp/action-sheet/index",
+    "van-divider": "@vant/weapp/divider/index"
+  },
+  "pages": [
+    "pages/index/index",
+    "pages/login/login",
+    "pages/list/list",
+    "pages/logs/logs",
+    "pages/me/me",
+    "pages/medata/medata",
+    "pages/persdata/persdata",
+    "pages/lovelist/lovelist",
+    "pages/message/message"
+  ],
+  "tabBar": {
+    "borderStyle": "white",
+    "position": "bottom",
+    "color": "#646566",
+    "selectedColor": "#d81e07",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "icon/tabbar/home.png",
+        "selectedIconPath": "icon/tabbar/home1.png"
+      },
+      {
+        "pagePath": "pages/lovelist/lovelist",
+        "text": "婚恋",
+        "iconPath": "icon/tabbar/home.png",
+        "selectedIconPath": "icon/tabbar/home1.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我的",
+        "iconPath": "icon/tabbar/personal.png",
+        "selectedIconPath": "icon/tabbar/personal1.png"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json"
+}
