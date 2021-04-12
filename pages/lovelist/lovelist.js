@@ -1,6 +1,7 @@
 // pages/lovelist/lovelist.js
 const app = getApp()
 import areaList from "../../utils/areaList";
+import {getUserList} from '../../api/api'
 let {areaList:areaListNew} = areaList
 Page({
 
@@ -26,26 +27,8 @@ Page({
     ,{active:0,name:'大专'},{active:0,name:'本科'},{active:0,name:'硕士'}
     ,{active:0,name:'博士'}
   ],
-    listColumn:[{
-      id: '1',
-      avatart: 'https://img.xiaojiayun.top/wly.jpg',
-      nick: '若即若离1',
-      age: 27,
-      location: '庐阳区',
-      height: '173cm',
-      education: '大专',
-      occupation: '职业经理人'
-    },{
-      id: '2',
-      avatart: 'https://img.xiaojiayun.top/wly.jpg',
-      nick: '若即若离',
-      age: 27,
-      location: '庐阳区',
-      height: '173cm',
-      education: '大专',
-      occupation: '职业经理人'
-    }
-  ]
+    listColumn:[],
+    total: '',
   },
   inputVal:function(e){
     this.setData({
@@ -131,6 +114,25 @@ Page({
   this.setData({sex,age,edu,form:{search: '',
   district: ''}})
   },
+  // 获取用户列表
+ async getUerList(data){
+  let res = await getUserList(data)
+  this.setData({
+    listColumn: res.data.list.data,
+    total: res.data.list.total
+  })
+  // {
+  //   id: '1',
+  //   avatart: 'https://img.xiaojiayun.top/wly.jpg',
+  //   nick: '若即若离1',
+  //   age: 27,
+  //   location: '庐阳区',
+  //   height: '173cm',
+  //   education: '大专',
+  //   occupation: '职业经理人'
+  // }
+  console.log(res)
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -149,6 +151,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.getUerList()
   },
 
   /**
@@ -177,6 +180,31 @@ Page({
    */
   onReachBottom: function () {
 
+    if(this.data.total_page <= this.data.queryInfo.page) {
+      return this.setData({
+          isNoMore: true
+      })
+  }
+  else{
+      wx.showNavigationBarLoading();
+      this.setData({
+          ["queryInfo.page"]:this.data.queryInfo.page+1
+      })
+      let that = this
+      getNewList(this.data.queryInfo).then(res=>{
+          res.data.lists.forEach(item=>{
+              item.create_time = timestampToTime(item.create_time)
+          })
+          let article = this.data.article
+          console.log(res.data.lists,1)
+          let newarticle = article.concat(res.data.lists)
+          that.setData({
+              article:newarticle,
+              total_page: res.data.total_page
+          })
+      })
+      wx.hideNavigationBarLoading();
+  }
   },
 
   /**

@@ -1,6 +1,6 @@
 // pages/service/service.js
 const app = getApp()
-import {timestampToTime} from '../../utils/util'
+import {timestampToTime, routerFiliter} from '../../utils/util'
 import {getBarch} from '../../api/api.js'
 Page({
 
@@ -25,9 +25,10 @@ Page({
     article: [],
   },
   toLoveList() {
-    wx.navigateTo({
-      url: '../lovelist/lovelist',
-    })
+    routerFiliter('../lovelist/lovelist')
+    // wx.navigateTo({
+    //   url: '../lovelist/lovelist',
+    // })
   },
   swiperChange(e) {
     let current = e.detail.current;
@@ -38,47 +39,11 @@ Page({
     })
   },
   //推荐有礼
-  service() {
-    wx.getStorage({
-      key: 'userinfo',
-      success: res => {
-        wx.navigateTo({
-          url: '../service/service',
-        })
-      },
-      fail: res => {
-        wx.showModal({
-          title: '提示',
-          content: '是否授权登录体验完整小程序？',
-          showCancel: true,
-          success: res => {
-            if (res.confirm) {
-              wx.navigateTo({
-                url: '../wxlogin/wxlogin',
-              })
-            }
-          },
-        })
-      }
-    })
-
-  },
-  //院校排行
-  grade() {
-    wx.navigateTo({
-      url: '../grade/grade',
-    })
-  },
-  //专业排行
-  gradezy() {
-    wx.navigateTo({
-      url: '../gradeSpecialty/gradeSpecialty',
-    })
-  },
-  //点击活动消息
-  active() {
+  
+  tonewList() {
+    routerFiliter('/pages/newlists/newlist/newlist')
     // wx.navigateTo({
-    //   url: '../activity/activity?activity=' + 2,
+    //   url: '/pages/newlists/newlist/newlist',
     // })
   },
 
@@ -86,7 +51,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-   
+    
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

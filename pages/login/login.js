@@ -19,6 +19,14 @@ Page({
     desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
     success: (res) => {
       console.log(res);
+      wx.setStorage({
+        data: res.userInfo.avatarUrl,
+        key: 'avatarUrl',
+      })
+      wx.setStorage({
+        data: res.userInfo.nickName,
+        key: 'nickName',
+      })
       wx.showLoading({
         title: '登录中...',
       })
@@ -44,13 +52,20 @@ Page({
                     }
                     const code = lres.code  
                     sendLogin(data).then(json=>{
-                      // self.isloging = false;
                       wx.hideLoading()
                       
                       if (json.data && json.data.token) {
-                          // self.loggin=true
-                          // self.setLogin(json.data)
-                          // self.processQueue()
+                        wx.setStorage({
+                          data: json.data.token,
+                          key: 'token',
+                        })
+                        wx.setStorage({
+                          data: json.data.member_id,
+                          key: 'member_id',
+                        })
+                        wx.switchTab({
+                          url: '/pages/index/index',
+                        })
                       } else {
                         wx.showToast({
                           title: json.msg || "获取登录信息失败",

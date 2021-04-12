@@ -3,5 +3,6 @@
     "w-header": "../../components/header/header",
     "w-love": "../../components/love/love"
   },
-  "navigationStyle": "custom"
+  "navigationStyle": "custom",
+  "onReachBottomDistance": 50
 }

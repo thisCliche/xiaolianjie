@@ -18,7 +18,7 @@
 
       <view class="toggle">
         <text bindtap="currClick" data-name="1" class="{{curActive == 1 ? 'active':''}}">基本资料</text>
-        <text bindtap="currClick" data-name="2" class="{{curActive == 2 ? 'active':''}}">联系方式</text>
+        <text bindtap="currClick" data-name="2" class="{{curActive == 2 ? 'active':''}}">择偶信息</text>
       </view>
 
       <view wx:if="{{curActive==1}}" class="form">
@@ -31,10 +31,10 @@
           </van-cell>
         </van-radio-group>
         <van-cell-group>
-          <van-cell center title="我的头像">
-            <image slot="right-icon" src="https://img.xiaojiayun.top/wly.jpg" style="width:65rpx;height:65rpx;"></image>
+          <van-cell center title="我的生活照" bind:click="uploadImage">
+            <image slot="right-icon" src="{{form.life_image ? form.life_image : 'https://img.yzcdn.cn/vant/custom-empty-image.png'}}" style="width:65rpx;height:65rpx;"></image>
           </van-cell>
-          <van-field input-class="input_class" label="我的姓名" model:value="{{ form.name }}" placeholder="请填写" border
+          <van-field label-class="leftStyle" bindinput='handleInputChange' data-model="name" input-class="input_class" label="我的姓名" model:value="{{ form.name }}" placeholder="请填写" border
             is-link />
           <!-- 我的生日 -->
           <van-cell value-class="{{form.birthday==''? 'value_classnull':'value_class'}}" title="我的生日" is-link
@@ -42,19 +42,14 @@
           <van-calendar show="{{ formSelect.birthday }}" bind:close="onCloseBirthday"
             bind:confirm="onConfirmBirthday" />
           <!-- 身高 -->
-          <van-cell value-class="{{form.height==''? 'value_classnull':'value_class'}}" title="我的身高" is-link
-            value="{{form.height==''? '请选择':form.height}}" bind:click="showPopHeight" />
-          <van-popup round show="{{ formSelect.height }}" position="bottom">
-            <van-picker columns="{{ heightColumns }}" show-toolbar title="身高" bind:cancel="onCloseHeight"
-              bind:confirm="onChangeHeight" />
-          </van-popup>
+          <van-field  label-class="leftStyle" bindinput='handleInputChange' data-model="height" input-class="input_class" label="我的身高CM" model:value="{{ form.height }}" placeholder="请填写" border
+            is-link />
+
+          
           <!-- 体重 -->
-          <van-cell value-class="{{form.weight==''? 'value_classnull':'value_class'}}" title="我的体重" is-link
-            value="{{form.weight==''? '请选择':form.weight}}" bind:click="showPopWeight" />
-          <van-popup round show="{{ formSelect.weight }}" position="bottom">
-            <van-picker show-toolbar title="体重" bind:cancel="onCloseWeight" bind:confirm="onChangeWeight"
-              columns="{{ weightColumns }}" />
-          </van-popup>
+          <van-field  label-class="leftStyle" bindinput='handleInputChange' data-model="weight" input-class="input_class" label="我的体重KG" model:value="{{ form.weight }}" placeholder="请填写" border
+            is-link />
+          
           <!-- 地区 -->
           <van-cell value-class="{{form.district==''? 'value_classnull':'value_class'}}" title="居住地区" is-link
             value="{{form.district==''? '请选择':form.district}}" bind:click="showPopDistrict" />
@@ -78,45 +73,53 @@
           </van-popup>
         </van-cell-group>
         <view class="button">
-          <van-button custom-class="btn_class" color="linear-gradient(to right, #febac9, #ffc39f)">确认提交</van-button>
+          <van-button bindtap="submedata" custom-class="btn_class" color="linear-gradient(to right, #febac9, #ffc39f)">确认提交</van-button>
         </view>
       </view>
       <view wx:else class="form1">
         <van-cell-group>
           <!-- 年龄范围 -->
-          <van-cell value-class="{{form1.agerange.lenght==0? 'value_classnull':'value_class'}}" title="年龄范围"
-            value="{{form1.agerange.length== 0?'-':form1.agerange[0]+'-'+form1.agerange[1]}}" is-link bindtap="showPop"
+          <van-cell value-class="{{form1.agerange==''? 'value_classnull':'value_class'}}" title="年龄范围"
+            value="{{form1.agerange==''? '请选择':form1.agerange}}" is-link bindtap="showPop"
             data-name="agerange" />
           <van-popup round show="{{ form1Select.agerange }}" position="bottom">
-            <van-picker columns="{{ agerangeColumn }}" bind:change="onChangeage" data-name="agerange" show-toolbar title="年龄范围" bind:cancel="oncancelRight"
+            <van-picker columns="{{ agerangeColumn }}" data-name="agerange" show-toolbar title="年龄范围" bind:cancel="oncancelRight"
               bind:confirm="onconfirmRight" />
           </van-popup>
           <!-- 身高范围 -->
-          <van-cell value-class="{{form1.heightrange.lenght==0? 'value_classnull':'value_class'}}" title="身高范围"
-            value="{{form1.heightrange.length== 0?'-':form1.heightrange[0]+'-'+form1.heightrange[1]}}" is-link bindtap="showPop"
+          <van-cell value-class="{{form1.heightrange==''? 'value_classnull':'value_class'}}" title="身高范围"
+            value="{{form1.heightrange==''? '请选择':form1.heightrange}}" is-link bindtap="showPop"
             data-name="heightrange" />
           <van-popup round show="{{ form1Select.heightrange }}" position="bottom">
-            <van-picker columns="{{ heightrangeColumn }}" bind:change="onChangeheight2" data-name="heightrange" show-toolbar title="身高范围" bind:cancel="oncancelRight" bind:confirm="onconfirmRight" />
+            <van-picker columns="{{ heightrangeColumn }}"  data-name="heightrange" show-toolbar title="身高范围" bind:cancel="oncancelRight" bind:confirm="onconfirmRight" />
           </van-popup>
-          <!-- 婚况要求 -->
-          <van-cell value-class="{{form1.marr==''? 'value_classnull':'value_class'}}" title="婚况要求" value="{{form1.marr==''? '请选择':form1.marr}}" is-link bindtap="showPop" data-name="marr" />
-          <van-popup round show="{{ form1Select.marr }}" position="bottom">
-            <van-picker data-name="marr" columns="{{ marrColumn }}" show-toolbar title="婚况要求" bind:cancel="oncancelRight"
+          <!-- 薪资要求 -->
+          <van-cell value-class="{{form1.salary==''? 'value_classnull':'value_class'}}" title="薪资要求" value="{{form1.salary==''? '请选择':form1.salary}}" is-link bindtap="showPop" data-name="salary" />
+          <van-popup round show="{{ form1Select.salary }}" position="bottom">
+            <van-picker data-name="salary" columns="{{ salaryColumn }}" show-toolbar title="薪资要求" bind:cancel="oncancelRight"
+              bind:confirm="onconfirmRight" />
+          </van-popup>
+          <!-- 学历要求 -->
+          <van-cell value-class="{{form1.edu==''? 'value_classnull':'value_class'}}" title="学历要求" value="{{form1.edu==''? '请选择':form1.edu}}" is-link bindtap="showPop" data-name="edu" />
+          <van-popup round show="{{ form1Select.edu }}" position="bottom">
+            <van-picker data-name="edu" columns="{{ edurangeColumn }}" show-toolbar title="学历要求" bind:cancel="oncancelRight"
               bind:confirm="onconfirmRight" />
           </van-popup>
           <!-- 婚况要求 -->
-          <van-cell value-class="{{form1.edu==''? 'value_classnull':'value_class'}}" title="婚况要求" value="{{form1.edu==''? '请选择':form1.edu}}" is-link bindtap="showPop" data-name="edu" />
-          <van-popup round show="{{ form1Select.edu }}" position="bottom">
-            <van-picker data-name="edu" columns="{{ eduColumn }}" show-toolbar title="婚况要求" bind:cancel="oncancelRight"
+          <van-cell value-class="{{form1.marrange==''? 'value_classnull':'value_class'}}" title="婚况要求" value="{{form1.marrange==''? '请选择':form1.marrange}}" is-link bindtap="showPop" data-name="marrange" />
+          <van-popup round show="{{ form1Select.marrange }}" position="bottom">
+            <van-picker data-name="marrange" columns="{{ marrangeColumn }}" show-toolbar title="婚况要求" bind:cancel="oncancelRight"
               bind:confirm="onconfirmRight" />
           </van-popup>
         </van-cell-group>
         <view class="button">
-          <van-button custom-class="btn_class" color="linear-gradient(to right, #febac9, #ffc39f)">确认提交</van-button>
+          <van-button bindtap="subMate" custom-class="btn_class" color="linear-gradient(to right, #febac9, #ffc39f)">确认提交</van-button>
         </view>
       </view>
     </view>
 
+    <!-- 图片上传 -->
+    <!-- <van-uploader  file-list="{{ fileList }}" max-size="5000" bind:oversize="overAfterRead" max-count="1" bind:after-read="afterRead" /> -->
     <!-- <van-picker columns="{{ heightrangeColumn }}" bind:change="onChange" /> -->
   </view>
 </scroll-view>

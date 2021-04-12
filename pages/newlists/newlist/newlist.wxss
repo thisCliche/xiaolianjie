@@ -1,0 +1,42 @@
+/* pages/newlists/newlist/newlist.wxss */
+.listWrapper{
+    padding: 20rpx 0 0 0;
+}
+.newList{
+    padding: 0 25rpx;
+  }
+  .newColumn{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom:30rpx;
+  }
+  .dec{
+    color: #797979;
+      font-size: 26rpx;
+      margin-bottom: 10rpx;
+      padding-top: 4rpx;
+  }
+  .title{
+    font-size: 30rpx;
+      line-height: 38rpx;
+      margin-bottom: 12rpx;
+      color: #414141!important;
+  }
+  .newColumnL{
+    width: 66%;
+  }
+  .newColumnLB{
+    display: flex;
+    justify-content: space-between;
+  }
+  .newColumnR{
+    width: 30%;
+  }
+  .nomore{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30rpx;
+    padding-bottom: 20rpx;
+  }
+ 

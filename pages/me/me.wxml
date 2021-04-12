@@ -1,11 +1,18 @@
 <!--pages/me/me.wxml-->
 <view>
   <view class="top">
-    <view class="avatar" bindtap="toLogin">
+
+    <view wx:if="{{!isLogin}}" class="avatar" bindtap="toLogin">
       <image style="width:154rpx;height:154rpx;" src="/icon/avatar.png" ></image>
       <view class="unlogin">未登录</view>
     </view>
-    <view class="username" bindtap="toLogin">请点击登录</view>
+    <view wx:else class="avatar" bindtap="outLogin">
+      <image style="width:154rpx;height:154rpx;border-radius:50%;" src="{{avatarUrl}}" ></image>
+    </view>
+
+    <view wx:if="{{!isLogin}}" class="username" bindtap="toLogin">请点击登录</view>
+    <view wx:else class="username" bindtap="outLogin">{{nickName}}</view>
+
     <view bindtap="toVisiting" class="visiting">单身名片</view>
   </view>
   <view class="appWrap">

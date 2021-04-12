@@ -9,6 +9,45 @@ const timestampToTime = (timestamp) =>{
   // return Y+M+D+h+m+s;
   return Y+M+D;
 }
+// 路由登录判断
+function routerFiliter(torouter) {
+  wx.getStorage({
+    key: 'token',
+    success: res => {
+      if(res.data == ''){
+        return wx.showModal({
+          title: '提示',
+          content: '是否授权登录体验完整小程序？',
+          showCancel: true,
+          success: res => {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: '/pages/login/login',
+              })
+            }
+          },
+        })
+      }
+      wx.navigateTo({
+        url: torouter,
+      })
+    },
+    fail: res => {
+      wx.showModal({
+        title: '提示',
+        content: '是否授权登录体验完整小程序？',
+        showCancel: true,
+        success: res => {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/pages/login/login',
+            })
+          }
+        },
+      })
+    }
+  })
+}
 
 const formatNumber = n => {
   n = n.toString()
@@ -16,5 +55,6 @@ const formatNumber = n => {
 }
 
 module.exports = {
-  timestampToTime
+  timestampToTime,
+  routerFiliter
 }

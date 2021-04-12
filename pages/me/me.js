@@ -1,37 +1,66 @@
 // pages/me/me.js
+import { routerFiliter} from '../../utils/util'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    isLogin: false,
+    nickName: '',
+    avatarUrl: '',
   },
   toVisiting() {
-    wx.navigateTo({
-      url: '../persdata/persdata',
-    })
+    routerFiliter('../persdata/persdata')
+    // wx.navigateTo({
+    //   url: ,
+    // })
   },
   toGeren() {
-    wx.navigateTo({
-      url: '../medata/medata',
-    })
+    routerFiliter('../medata/medata')
+    // wx.navigateTo({
+    //   url: '../medata/medata',
+    // })
   },
   toMessage() {
-    wx.navigateTo({
-      url: '../message/message',
-    })
+    routerFiliter('../message/message')
+    // wx.navigateTo({
+    //   url: '../message/message',
+    // })
   },
   toLogin() {
-    wx.navigateTo({
-      url: '../login/login',
+    routerFiliter('../login/login')
+    // wx.navigateTo({
+    //   url: '../login/login',
+    // })
+  },
+  outLogin(){
+    let that = this
+    wx.showModal({
+      title: '提示',
+      content: '确定退出登录吗？',
+      success (res) {
+        if (res.confirm) {
+          wx.setStorage({
+            data: '',
+            key: 'token',
+          })
+          that.setData({
+            isLogin:false
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
     })
+    
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
+    
   },
 
   /**
@@ -39,13 +68,52 @@ Page({
    */
   onReady: function () {
 
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    let that = this
+    wx.getStorage({
+      key: 'nickName',
+      success (res) {
+        if(res.data){
+          that.setData({
+            nickName: res.data,
+          })
+        }
+      },
+      fail(error) {
 
+      }
+    }) 
+    wx.getStorage({
+      key: 'avatarUrl',
+      success (res) {
+        if(res.data){
+          that.setData({
+            avatarUrl:res.data,
+          })
+        }
+      },
+      fail(error) {
+      }
+    }) 
+    wx.getStorage({
+      key: 'token',
+      success (res) {
+        if(res.data){
+          that.setData({
+            isLogin:true
+          })
+        }
+      },
+      fail(error) {
+      }
+    }) 
+ 
   },
 
   /**

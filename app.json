@@ -13,7 +13,8 @@
     "van-popup": "@vant/weapp/popup/index",
     "van-area": "@vant/weapp/area/index",
     "van-action-sheet": "@vant/weapp/action-sheet/index",
-    "van-divider": "@vant/weapp/divider/index"
+    "van-divider": "@vant/weapp/divider/index",
+    "van-uploader": "@vant/weapp/uploader/index"
   },
   "pages": [
     "pages/index/index",
@@ -25,7 +26,9 @@
     "pages/persdata/persdata",
     "pages/lovelist/lovelist",
     "pages/message/message",
-    "pages/vipuser/vipuser"
+    "pages/vipuser/vipuser",
+    "pages/newlists/newlist/newlist",
+    "pages/newlists/detail/detail"
   ],
   "tabBar": {
     "borderStyle": "white",
@@ -54,10 +57,10 @@
     ]
   },
   "window": {
-    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "backgroundTextStyle": "dark"
   },
   "sitemapLocation": "sitemap.json"
 }

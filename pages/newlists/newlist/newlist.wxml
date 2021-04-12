@@ -1,0 +1,31 @@
+<!--pages/newlists/newlist/newlist.wxml-->
+<!-- <w-header title="美文列表" isBack="1" bind:childBackUp="backUp"></w-header> -->
+<!-- <scroll-view scroll-y class="middle" refresher-enabled="{{true}}" refresher-threshold="{{100}}"
+    refresher-default-style="white" refresher-background="#feddf8" refresher-triggered="{{triggered}}"
+    bindrefresherrefresh="onRefresh"> -->
+ <view class="listWrapper">
+    <view class="newList">
+        <view class="newColumn" wx:for="{{article}}" wx:key="index">
+            <view class="newColumnR">
+                <image style="height:150rpx;border-radius:10rpx;" src="{{item.cover}}"></image>
+            </view>
+            <view class="newColumnL">
+                <view class="title GStitleOne">{{item.title}}</view>
+                <view class="dec GStitleOne">{{item.description}}</view>
+                <view class="newColumnLB">
+                    <view>
+                        <image style="width:24rpx;height:24rpx;margin-right:6rpx;" src="../../../icon/yanjing.png"></image>
+                        {{item.views}}
+                    </view>
+                    <view>
+                        <image style="width:24rpx;height:24rpx;margin-right:6rpx;" src="../../../icon/rili.png"></image>
+                        {{item.create_time}}
+                    </view>
+                </view>
+            </view>
+            <van-divider />
+        </view>
+    </view>
+</view>
+<view wx:if="{{isNoMore}}" class="nomore"><van-icon name="smile-o" /> 没有更多数据了</view>
+<!-- </scroll-view> -->

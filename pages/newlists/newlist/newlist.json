@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "w-header": "../../../components/header/header"
+  },
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 50,
+  "navigationBarTitleText": "情感美文",
+  "navigationBarBackgroundColor": "#ffb2c2",
+  "backgroundColor": "#eeeeee",
+  "navigationBarTextStyle": "white"
+}

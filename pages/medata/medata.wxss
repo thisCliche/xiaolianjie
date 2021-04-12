@@ -44,3 +44,6 @@
 .btn_class{
   width: 500rpx;
 }
+.leftStyle{
+  color: #333 !important;
+}
