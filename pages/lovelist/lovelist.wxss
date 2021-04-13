@@ -9,7 +9,7 @@
   
 }
 .listColumn{
-  padding: 0 25rpx;
+  padding: 25rpx;
 }
 .title{
   font-size: 30rpx;
@@ -48,4 +48,11 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+.nomore{
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30rpx;
+    padding-bottom: 20rpx;
 }

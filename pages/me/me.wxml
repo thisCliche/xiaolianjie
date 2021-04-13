@@ -26,7 +26,7 @@
           <view style="margin-left:20rpx;font-size:30rpx" class="van-cell-text">个人信息</view>
         </view>
       </van-cell>
-      <van-cell is-link>
+      <van-cell is-link bindtap="toVip">
         <view slot="title" style="display:flex;align-items: center;">
           <image style="width:38rpx;height:38rpx;" slot="right-icon" src="../../icon/kt.png"></image>
           <view style="margin-left:20rpx;font-size:30rpx" class="van-cell-text">开通VIP</view>

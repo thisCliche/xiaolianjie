@@ -1,6 +1,6 @@
 <!--pages/vipuser/vipuser.wxml-->
 <view>
-    <w-header title="VIP会员" isBack="0" bind:childBackUp="backUp"></w-header>
+    <w-header title="VIP会员" isBack="1" bind:childBackUp="backUp"></w-header>
     <view class="upload">
         
         <view style="text-align:center;color:#626566;font-size:30rpx;margin-bottom:30rpx">上传身份证可认证为VIP会员</view>

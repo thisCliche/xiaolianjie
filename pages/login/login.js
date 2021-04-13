@@ -63,8 +63,8 @@ Page({
                           data: json.data.member_id,
                           key: 'member_id',
                         })
-                        wx.switchTab({
-                          url: '/pages/index/index',
+                        wx.navigateBack({
+                          delta: 1,
                         })
                       } else {
                         wx.showToast({

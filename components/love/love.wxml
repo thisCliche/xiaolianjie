@@ -5,8 +5,8 @@
     <view class="coumnLR">
       <view style="font-size:26rpx;margin:12rpx 0;">{{itemColumn.nickname}}</view>
       <view class="tag">
-        <view class="tagAge">{{itemColumn.birth}}岁</view>
-        <view class="tagLocation"><van-icon name="location-o" /><view style="width:6rpx;"></view><text>{{itemColumn.location}}</text></view>
+        <view class="tagAge">{{itemColumn.birthday}}岁</view>
+        <view class="tagLocation"><van-icon name="location-o" /><view style="width:6rpx;"></view><text>{{itemColumn.mcouty}}</text></view>
       </view>
       <view style="color:#7f7f7f;margin-top:20rpx;">{{itemColumn.height}}cm · {{itemColumn.education}} </view>
     </view>

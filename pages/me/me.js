@@ -9,9 +9,10 @@ Page({
     isLogin: false,
     nickName: '',
     avatarUrl: '',
+    member_id: '',
   },
   toVisiting() {
-    routerFiliter('../persdata/persdata')
+    routerFiliter(`../persdata/persdata?id=${this.data.member_id}&fromme=yes`)
     // wx.navigateTo({
     //   url: ,
     // })
@@ -33,6 +34,9 @@ Page({
     // wx.navigateTo({
     //   url: '../login/login',
     // })
+  },
+  toVip(){
+    routerFiliter('../vipuser/vipuser')
   },
   outLogin(){
     let that = this
@@ -113,7 +117,18 @@ Page({
       fail(error) {
       }
     }) 
- 
+    wx.getStorage({
+      key: 'member_id',
+      success (res) {
+        if(res.data){
+          that.setData({
+            member_id:res.data
+          })
+        }
+      },
+      fail(error) {
+      }
+    }) 
   },
 
   /**

@@ -1,1 +1,49 @@
-/* pages/newlists/detail/detail.wxss */
+/* pages/news/detail.wxss */
+
+.title{
+    font-size:36rpx;
+    line-height:1.3em;
+    font-weight:bold;
+    margin-top:30rpx;
+    text-align: center;
+}
+.model-info{
+    font-size:24rpx;
+    color:#999;
+    margin:20rpx 0;
+    text-align: center;
+}
+.model-info text{margin:0 20rpx;}
+.description{
+    background:#f0f0f2;
+    margin:20rpx 40rpx;
+    padding:30rpx;
+    font-size:24rpx;
+    word-break: break-all;
+}
+.description text{font-weight:bold;}
+.detail-content{
+    padding: 0 20rpx;
+}
+
+.noMoment{
+    display: flex;
+    padding: 30rpx 25rpx;
+    align-items: center;
+    justify-content: flex-end;
+}
+.hasMomentColumn{
+    background: #f0f0f2;
+    margin: 30rpx 20rpx 0;
+    padding: 20rpx;
+}
+.nick{
+    margin-bottom: 10rpx;
+    color: #999;
+}
+.child{
+    padding-left: 50rpx;
+}
+.content{
+    font-size: 30rpx;
+}

@@ -80,3 +80,16 @@
   padding: 0 18rpx;
 	border: solid 2rpx #ffcccc;
 }
+.leavingMessage{
+  margin-top: 30rpx;
+  display: flex;
+  
+}
+
+.messageInput{
+  flex: 1;
+  padding: 20rpx 10rpx;
+  background: #eee;
+  box-sizing: content-box;
+  margin-right: 20rpx;
+}

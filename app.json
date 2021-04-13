@@ -43,12 +43,6 @@
         "selectedIconPath": "icon/tabbar/home1.png"
       },
       {
-        "pagePath": "pages/vipuser/vipuser",
-        "text": "VIP",
-        "iconPath": "icon/tabbar/home.png",
-        "selectedIconPath": "icon/tabbar/home1.png"
-      },
-      {
         "pagePath": "pages/me/me",
         "text": "我的",
         "iconPath": "icon/tabbar/personal.png",

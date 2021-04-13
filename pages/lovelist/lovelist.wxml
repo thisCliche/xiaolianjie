@@ -1,14 +1,15 @@
 <!--pages/lovelist/lovelist.wxml-->
 <view>
   <w-header title="恋爱婚姻" isBack="1" bind:childBackUp="backUp"></w-header>
-  <view style="display:flex;justify-content: flex-end;">
-    <view class="filter" bindtap="showFil">
+  <view style="position:fixed;right:20rpx;">
+    <view class="filter" bindtap="showFil" >
       <image style="width:45rpx;height:53rpx;" src="../../icon/fluter.png"></image>
     </view>
   </view>
   <view class="listColumn">
-    <w-love wx:key="id" bind:todetial="todetial" wx:for="{{listColumn}}" itemColumn="{{item}}"></w-love>
+    <w-love wx:key="id" bind:todetial="todetial" wx:for="{{listColumn}}" itemColumn="{{item}}" data-id="{{item.member_id}}" bindtap="toDetail"></w-love>
   </view>
+  <view wx:if="{{isNoMore}}" class="nomore"><van-icon name="smile-o" /> 没有更多数据了</view>
   <van-popup show="{{ show }}" position="right" custom-style="width: 74%;height:100%;" bind:close="onClose">
     <view class="popWrap">
       <view style="padding-top:{{statusBarHeight*2 + 100}}rpx;">
@@ -19,19 +20,19 @@
       <text class="title">性别</text>
       <van-divider hairline />
       <view class="content">
-        <view bindtap="sexSele" data-sex="{{item.name}}" class="contentItem {{item.active == 1 ?'activecontentItem':''}}" wx:key="index" wx:for="{{sex}}">{{item.name}}</view>
+        <view bindtap="sexSele" data-idx="{{index+1}}" data-sex="{{item.name}}" class="contentItem {{item.active == 1 ?'activecontentItem':''}}" wx:key="index" wx:for="{{sex}}">{{item.name}}</view>
       </view>
       <van-divider hairline />
       <text class="title">年龄</text>
       <van-divider hairline />
       <view class="content">
-        <view bindtap="ageSele" data-sex="{{item.name}}" class="agecontentItem {{item.active == 1 ?'activecontentItem':''}}" wx:key="index" wx:for="{{age}}">{{item.name}}</view>
+        <view bindtap="ageSele" data-idx="{{index}}" data-sex="{{item.name}}" class="agecontentItem {{item.active == 1 ?'activecontentItem':''}}" wx:key="index" wx:for="{{age}}">{{item.name}}</view>
       </view>
       <van-divider hairline />
       <text class="title">学历</text>
       <van-divider hairline />
       <view class="content">
-        <view style="margin-bottom:16rpx;" bindtap="eduSele" data-sex="{{item.name}}" class="contentItem {{item.active == 1 ?'activecontentItem':''}}" wx:key="index" wx:for="{{edu}}">{{item.name}}</view>
+        <view style="margin-bottom:16rpx;" data-idx="{{index}}" bindtap="eduSele" data-sex="{{item.name}}" class="contentItem {{item.active == 1 ?'activecontentItem':''}}" wx:key="index" wx:for="{{edu}}">{{item.name}}</view>
       </view>
       <van-divider hairline />
       <view style="display: flex;justify-content: space-between;">
@@ -44,7 +45,7 @@
     </view>
     <view class="btns">
       <van-button round color="#ff8e92" size="small" bindtap="reset">重置</van-button>
-      <van-button round color="#ff8e92" size="small">确定</van-button>
+      <van-button round color="#ff8e92" size="small" bindtap="classification">确定</van-button>
     </view>
     </view>
   </van-popup>

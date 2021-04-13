@@ -14,3 +14,7 @@
 .content{
   padding: 20rpx;
 }
+.repece{
+  display: flex;
+  justify-content: space-around;
+}

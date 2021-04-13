@@ -24,11 +24,19 @@ Page({
     activity: [],
     article: [],
   },
+  gotoDetail(e){
+    let id = e.currentTarget.dataset.id
+    let url = '/pages/newlists/detail/detail?id=' + id
+    routerFiliter(url)
+  },
+  toDetial(e){
+    let id = e.currentTarget.dataset.id
+    let url = '/pages/persdata/persdata?id=' + id
+    routerFiliter(url)
+     
+  },
   toLoveList() {
     routerFiliter('../lovelist/lovelist')
-    // wx.navigateTo({
-    //   url: '../lovelist/lovelist',
-    // })
   },
   swiperChange(e) {
     let current = e.detail.current;

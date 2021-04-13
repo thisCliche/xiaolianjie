@@ -1,16 +1,9 @@
 const devBaseUrl = 'https://flxcx.ahxingdian.com/index.php/api/';
 const probaseUrl = '';
 
-let token = '';
-wx.getStorage({
-  key: 'token',
-  success (res) {
-    if(res.data){
-      token =  res.data
-    }
-  }
-}) 
+
 const request = (options) => {
+  var token = wx.getStorageSync('token');
   return new Promise((resolve,reject)=>{
     wx.request({
       url: `${devBaseUrl}${options.url}`,
@@ -18,7 +11,7 @@ const request = (options) => {
       data:options.data,
       header:{
         'Content-Type': 'application/json',
-        'token':token
+        'token': token
       },
       success(request) {
         if(request.data.code == 103) {
@@ -107,6 +100,60 @@ export function getMeDate(data){
 export function getUserList(data){
   return request({
     url: 'member/get_list',
+    method: 'post',
+    data
+  })
+}
+// 获取文章详情
+export function getNewDetail(data){
+  return request({
+    url: 'article/view',
+    method: 'post',
+    data
+  })
+}
+// 获取个人资料详情
+export function getMemberDetail(data){
+  return request({
+    url: 'member/member_detail',
+    method: 'post',
+    data
+  })
+}
+// 获取评论
+export function getComments(data){
+  return request({
+    url: `article/comments?id=${data}`,
+    method: 'get',
+  })
+}
+// 发送评论
+export function sendComments(data){
+  return request({
+    url: 'article/do_comment',
+    method: 'post',
+    data
+  })
+}
+// 用户留言
+export function leaveMessageapi(data){
+  return request({
+    url: 'member/user_leave_message',
+    method: 'post',
+    data
+  })
+}
+//获取我的留言
+export function getmessageList(){
+  return request({
+    url: 'member/messageList',
+    method: 'post',
+  })
+}
+// 删除留言
+export function deleteMessage(data){
+  return request({
+    url: 'member/learn_message',
     method: 'post',
     data
   })

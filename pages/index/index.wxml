@@ -56,9 +56,9 @@
       </view>
       <view class="index-jghd-mk display_J_B display_A_C">
 
-        <view wx:for="{{recommend}}" wx:key="index">
+        <view wx:for="{{recommend}}" wx:key="index" data-id="{{item.id}}" bindtap="toDetial">
           <image mode="aspectFill" style="width:100%;height:100%;" src="{{item.life_image}}"></image>
-          <text>{{item.nickname}} 25岁</text>
+          <text>{{item.nickname}} {{item.birthday}}岁</text>
         </view>
 
       </view>
@@ -89,7 +89,7 @@
       </view>
       
       <view class="newList">
-        <view class="newColumn" wx:for="{{article}}" wx:key="index">
+        <view class="newColumn" wx:for="{{article}}" wx:key="index" data-id="{{item.id}}" bindtap="gotoDetail">
           <view class="newColumnR">
             <image style="height:150rpx;border-radius:10rpx;" src="{{item.cover}}"></image>
           </view>

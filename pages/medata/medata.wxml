@@ -18,7 +18,7 @@
 
       <view class="toggle">
         <text bindtap="currClick" data-name="1" class="{{curActive == 1 ? 'active':''}}">基本资料</text>
-        <text bindtap="currClick" data-name="2" class="{{curActive == 2 ? 'active':''}}">择偶信息</text>
+        <text bindtap="currClick" data-name="2" class="{{curActive == 2 ? 'active':''}}">择偶要求                                                                                                                                                                                                                                     </text>
       </view>
 
       <view wx:if="{{curActive==1}}" class="form">

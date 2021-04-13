@@ -1,38 +1,47 @@
 // pages/lovelist/lovelist.js
 const app = getApp()
 import areaList from "../../utils/areaList";
-import {getUserList} from '../../api/api'
-let {areaList:areaListNew} = areaList
+import {
+  getUserList,getRange
+} from '../../api/api'
+let {
+  areaList: areaListNew
+} = areaList
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    form:{
-      search: '',
-      district: ''
+    form: {
+      name: '',
+      address_pro: '',
+      gender: '',
+      age: '',
+      edu: '',
+      page: 1,
+      pagesize: 7
     },
+    isNoMore: false,
     district: false,
-    areaList:areaListNew,
+    areaList: areaListNew,
     statusBarHeight: app.globalData.statusBarHeight,
     show: false,
-    sex:[{active:1,name:'男'},{active:0,name:'女'}],
-    age:[{active:1,name:'不限'},{active:0,name:'18-22岁'},{active:0,name:'23-25岁'}
-    ,{active:0,name:'26-30岁'},{active:0,name:'31-35岁'},{active:0,name:'36-40岁'}
-    ,{active:0,name:'41-45岁'},{active:0,name:'45-50岁'},{active:0,name:'51-60岁'}
-    ,{active:0,name:'60岁以上'}
-  ],
-  edu:[{active:1,name:'不限'},{active:0,name:'初中'},{active:0,name:'高中'}
-    ,{active:0,name:'大专'},{active:0,name:'本科'},{active:0,name:'硕士'}
-    ,{active:0,name:'博士'}
-  ],
-    listColumn:[],
+    sex: [ {
+      active: 1,
+      name: '女'
+    },{
+      active: 0,
+      name: '男'
+    }],
+    age: [],
+    edu: [],
+    listColumn: [],
     total: '',
   },
-  inputVal:function(e){
+  inputVal: function (e) {
     this.setData({
-      ["form.search"]:e.detail.value
+      ["form.name"]: e.detail.value
     })
   },
   backUp() {
@@ -49,89 +58,119 @@ Page({
     })
   },
   showFil() {
-    this.setData({show: true})
+    this.setData({
+      show: true
+    })
   },
   sexSele(e) {
     let sex = this.data.sex
-    sex.forEach(item=>{
+    sex.forEach(item => {
       item.active = 0
-      if(item.name == e.currentTarget.dataset.sex) {
+      if (item.name == e.currentTarget.dataset.sex) {
         item.active = 1
       }
     })
     this.setData({
-      sex
+      sex,
+      ['form.gender']: e.currentTarget.dataset.idx
     })
   },
-  ageSele(e){
+  ageSele(e) {
+    console.log(e)
     let age = this.data.age
-    age.forEach(item=>{
+    age.forEach(item => {
       item.active = 0
-      if(item.name == e.currentTarget.dataset.sex) {
+      if (item.name == e.currentTarget.dataset.sex) {
         item.active = 1
       }
     })
     this.setData({
-      age
+      age,
+      ['form.age']: e.currentTarget.dataset.idx
     })
   },
-  eduSele(e){
+  eduSele(e) {
     let edu = this.data.edu
-    edu.forEach(item=>{
+    edu.forEach(item => {
       item.active = 0
-      if(item.name == e.currentTarget.dataset.sex) {
+      if (item.name == e.currentTarget.dataset.sex) {
         item.active = 1
       }
     })
     this.setData({
-      edu
+      edu,
+      ['form.edu']: e.currentTarget.dataset.idx
     })
   },
   showPopDistrict() {
-    this.setData({ district: true });
+    this.setData({
+      district: true
+    });
   },
   onCloseDistrict() {
-    this.setData({ district: false });
+    this.setData({
+      district: false
+    });
   },
-  onChangeDistrict(e){
+  onChangeDistrict(e) {
     console.log(e)
+    let district = `${e.detail.values[0].name},${e.detail.values[1].name},${e.detail.values[2].name}`
     this.setData({
       district: false,
-      ["form.district"]: e.detail.values[2].name,
+      ["form.address_pro"]: district,
     });
   },
   reset() {
-    let sex=[{active:1,name:'男'},{active:0,name:'女'}]
-    let age=[{active:1,name:'不限'},{active:0,name:'18-22岁'},{active:0,name:'23-25岁'}
-    ,{active:0,name:'26-30岁'},{active:0,name:'31-35岁'},{active:0,name:'36-40岁'}
-    ,{active:0,name:'41-45岁'},{active:0,name:'45-50岁'},{active:0,name:'51-60岁'}
-    ,{active:0,name:'60岁以上'}
-  ]
-  let edu=[{active:1,name:'不限'},{active:0,name:'初中'},{active:0,name:'高中'}
-    ,{active:0,name:'大专'},{active:0,name:'本科'},{active:0,name:'硕士'}
-    ,{active:0,name:'博士'}
-  ]
-  this.setData({sex,age,edu,form:{search: '',
-  district: ''}})
+    let sex = [{
+      active: 1,
+      name: '男'
+    }, {
+      active: 0,
+      name: '女'
+    }]
+    let age = this.data.age,edu = this.data.edu;
+    age.forEach(item=>{
+      item.active = 0
+    })
+    edu.forEach(item=>{
+      item.active = 0
+    })
+    age[0].active = 1
+    edu[0].active = 1
+    
+    this.setData({
+      sex,
+      age,
+      edu,
+      form: {
+        name: '',
+        address_pro: '',
+        gender: '',
+        age: '',
+        edu: ''
+      }
+    })
   },
   // 获取用户列表
- async getUerList(data){
-  let res = await getUserList(data)
-  this.setData({
-    listColumn: res.data.list.data,
-    total: res.data.list.total
-  })
-  // {
-  //   id: '1',
-  //   avatart: 'https://img.xiaojiayun.top/wly.jpg',
-  //   nick: '若即若离1',
-  //   age: 27,
-  //   location: '庐阳区',
-  //   height: '173cm',
-  //   education: '大专',
-  //   occupation: '职业经理人'
-  // }
-  console.log(res)
+  async getUerList(data) {
+    let res = await getUserList(data)
+    this.setData({
+      listColumn: res.data.list,
+      total: res.data.total
+    })
+  },
+  classification() {
+    this.setData({
+      show: false,
+      ['form.page']: 1
+    })
+    this.getUerList(this.data.form)
+  },
+  toDetail(e) {
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/persdata/persdata?id=' + id,
+    })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -144,14 +183,50 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    this.getUerList(this.data.form);
+    getRange().then(res=>{
+      let newAge = []
+      let newEdu = []
+      res.data.age.forEach((item,idx)=>{
+        if(idx == 0) {
+          item = {
+            name: item,
+            active: 1
+          }
+        }else{
+          item = {
+            name: item,
+            active: 0
+          }
+        }
+        newAge.push(item)
+      })
+      res.data.edu.forEach((item,idx)=>{
+        if(idx == 0) {
+          item = {
+            name: item,
+            active: 1
+          }
+        }else{
+          item = {
+            name: item,
+            active: 0
+          }
+        }
+        newEdu.push(item)
+      })
+      this.setData({
+        edu: newEdu,
+        age: newAge
+      })
+    })
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getUerList()
+    
   },
 
   /**
@@ -179,32 +254,26 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
-    if(this.data.total_page <= this.data.queryInfo.page) {
+    if (this.data.total <= this.data.listColumn.length) {
       return this.setData({
-          isNoMore: true
+        isNoMore: true
       })
-  }
-  else{
+    } else {
       wx.showNavigationBarLoading();
       this.setData({
-          ["queryInfo.page"]:this.data.queryInfo.page+1
+        ["form.page"]: this.data.form.page + 1
       })
       let that = this
-      getNewList(this.data.queryInfo).then(res=>{
-          res.data.lists.forEach(item=>{
-              item.create_time = timestampToTime(item.create_time)
-          })
-          let article = this.data.article
-          console.log(res.data.lists,1)
-          let newarticle = article.concat(res.data.lists)
-          that.setData({
-              article:newarticle,
-              total_page: res.data.total_page
-          })
+      getUserList(this.data.form).then(res => {
+        let listColumn = this.data.listColumn
+        let newlistColumn = listColumn.concat(res.data.list)
+        that.setData({
+          listColumn: newlistColumn,
+          total: res.data.total
+        })
       })
       wx.hideNavigationBarLoading();
-  }
+    }
   },
 
   /**
