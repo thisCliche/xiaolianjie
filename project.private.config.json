@@ -25,14 +25,8 @@
                     "scene": null
                 },
                 {
-                    "name": "pages/newlists/newlist/newlist",
-                    "pathName": "pages/newlists/newlist/newlist",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "pages/lovelist/lovelist",
-                    "pathName": "pages/lovelist/lovelist",
+                    "name": "pages/littlegame/randomLove/random",
+                    "pathName": "pages/littlegame/randomLove/random",
                     "query": "",
                     "scene": null
                 }

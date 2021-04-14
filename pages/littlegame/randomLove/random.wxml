@@ -1,0 +1,25 @@
+<!--pages/littlegame/randomLove/random.wxml-->
+<view class="randomWrap">
+    <w-header title="寻爱之旅" isBack="1" bind:childBackUp="backUp"></w-header>
+    <view class="btn" bindtap="onClickShow">
+        <image src="../../../icon/selectBtn.png"></image>
+        点击选择男（女）朋友
+    </view>
+    <van-overlay show="{{ show }}" bind:click="onClickHide" >
+        <view class="selectWrap">
+            <view class="selectTitle">
+                <image src="../../../icon/selecttbg.png"></image>
+                <view>您还有3次选择机会</view>
+            </view>
+            <view class="content">
+                <view class="model">1</view>
+                <view class="model">1</view>
+                <view class="model">1</view>
+                <view class="model">1</view>
+            </view>
+        </view>
+        <view class="closeSelect">
+            <image src="../../../icon/close.png"></image>
+        </view>
+    </van-overlay>
+</view>

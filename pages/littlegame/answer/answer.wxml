@@ -1,0 +1,43 @@
+<!--pages/me/me.wxml-->
+<view>
+    <w-header title="答题活动" isBack="1" bind:childBackUp="backUp"></w-header>
+  <view class="top">
+   <view style="font-size:34rpx;color:#fff;">答对{{correct}}题</view>
+  </view>
+  <view class="appWrap">
+    <view class="orderNum">
+        第{{curren}}/{{total}}题
+    </view>
+    <view class="app">
+        <view class="question">
+            {{currenList.title}}
+        </view>
+        <view class="answer">
+            <view class="{{currenList.currenAn == 'A'? 'answerColumn active': 'answerColumn'}}" bindtap="confirmAn" data-order="A" data-id="{{currenList.id}}" data-curren="{{curren-1}}">
+                <view class="order">A</view>
+                <view class="answerCotent">{{currenList.option_a}}</view>
+            </view>
+            <view class="{{currenList.currenAn == 'B'? 'answerColumn active': 'answerColumn'}}" bindtap="confirmAn" data-order="B" data-id="{{currenList.id}}" data-curren="{{curren-1}}">
+                <view class="order">B</view>
+                <view class="answerCotent">{{currenList.option_b}}</view>
+            </view>
+            <view class="{{currenList.currenAn == 'C'? 'answerColumn active': 'answerColumn'}}" bindtap="confirmAn" data-order="C" data-id="{{currenList.id}}" data-curren="{{curren-1}}">
+                <view class="order">C</view>
+                <view class="answerCotent">{{currenList.option_c}}</view>
+            </view>
+            <view class="{{currenList.currenAn == 'D'? 'answerColumn active': 'answerColumn'}}" bindtap="confirmAn" data-order="D" data-id="{{currenList.id}}" data-curren="{{curren-1}}">
+                <view class="order">D</view>
+                <view class="answerCotent">{{currenList.option_d}}</view>
+            </view>
+            <view class="rightKey" wx:if="{{currenList.currenAn}}">
+                正确答案： {{currenList.correct_answer}}
+            </view>
+            <view class="bts">
+                <van-button wx:if="{{curren!=1}}" bind:click="upan" custom-class="btn_class" size="small" color="linear-gradient(to right, #febac9, #ffc39f)">上一题</van-button>
+                <van-button  wx:if="{{total != curren}}" bind:click="nextan" custom-class="btn_class" size="small" color="linear-gradient(to right, #febac9, #ffc39f)">下一题</van-button>
+                <van-button wx:if="{{total == curren}}" bind:click="suban" custom-class="btn_class" size="small" color="linear-gradient(to right, #febac9, #ffc39f)">提交</van-button>
+            </view>
+        </view>
+    </view>
+  </view>
+</view>

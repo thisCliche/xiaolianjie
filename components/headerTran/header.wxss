@@ -1,0 +1,17 @@
+/* components/header.wxss */
+.index-top-one {
+  width: 750rpx;
+}
+.topBg{
+  
+}
+.index-top-title {
+  width: 750rpx;
+  height: 85rpx;
+  line-height: 85rpx;
+  font-size: 30rpx;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

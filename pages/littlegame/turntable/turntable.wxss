@@ -1,0 +1,37 @@
+/* pages/littlegame/turntable/turntable.wxss */
+.turntableWrapp{
+    height: 100vh;
+    background: url(https://anhuixingdian.oss-cn-hangzhou.aliyuncs.com/miniapp/zhuanpbg.png) 100% 100% no-repeat;
+}
+.turntable{
+    position: relative;
+    width: 600rpx;
+    height: 600rpx;
+    margin: 20rpx auto;
+}
+.panding{
+    position: absolute;
+    width: 600rpx;
+    height: 600rpx;
+}
+.goBtn{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 152rpx;
+    height: 187rpx;
+}
+.opportunity{
+    text-align: center;
+    color: #fff;
+    margin-top: 60rpx;
+}
+.opportunity text{
+    color: #ed565f;
+}
+.rule{
+    width: 600rpx;
+    margin: auto;
+    color: #fff;
+}

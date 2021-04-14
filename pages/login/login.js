@@ -1,20 +1,43 @@
 // pages/login/login.js
 const app = getApp()
-import {sendLogin} from '../../api/api.js'
+import {sendLogin,getPhoneNum} from '../../api/api.js'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    userinfo: {}
+    userinfo: {},
+    userPhone: '',
+    isLogin: true
   },
   backUp() {
     wx.navigateBack({
       delta: 1,
     })
   },
+  getPhoneNumber(e){
+    let data = {
+      appid: app.globalData.wxid,
+      iv: e.detail.iv,
+      encryptedData:e.detail.encryptedData
+    }
+    if(e.detail.errMsg == "getPhoneNumber:ok"){
+     wx.showLoading({
+       title: '获取中...',
+     })
+      getPhoneNum(data).then(res=>{
+        if(res.msg == "绑定成功"){
+          wx.hideLoading()
+          wx.navigateBack({
+            delta: 1,
+          })
+        }
+      })
+    }
+  },
   getUserProfile() {
+    let that = this
   wx.getUserProfile({
     desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
     success: (res) => {
@@ -63,9 +86,15 @@ Page({
                           data: json.data.member_id,
                           key: 'member_id',
                         })
-                        wx.navigateBack({
+                        if(json.data.mobile_bind == 0) {
+                          that.setData({
+                            isLogin: false
+                          })
+                        }else{
+                          wx.navigateBack({
                           delta: 1,
                         })
+                        }                        
                       } else {
                         wx.showToast({
                           title: json.msg || "获取登录信息失败",

@@ -65,7 +65,13 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    // console.log(timestampToTime(1616132061))
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function() {
     getBarch({
       'get_list':{},
       'product.get_list': { withsku: 1, type: 4, pagesize:4},
@@ -99,13 +105,6 @@ Page({
         title: '网络错误',
       })
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
   },
 
   /**

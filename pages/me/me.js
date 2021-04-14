@@ -30,10 +30,10 @@ Page({
     // })
   },
   toLogin() {
-    routerFiliter('../login/login')
-    // wx.navigateTo({
-    //   url: '../login/login',
-    // })
+    // routerFiliter('../login/login')
+    wx.navigateTo({
+      url: '../login/login',
+    })
   },
   toVip(){
     routerFiliter('../vipuser/vipuser')

@@ -1,0 +1,73 @@
+/* pages/littlegame/randomLove/random.wxss */
+.randomWrap{
+    height: 100vh;
+    background: url(https://anhuixingdian.oss-cn-hangzhou.aliyuncs.com/miniapp/selectBg.png) no-repeat top center;
+    background-size: 100% 1029rpx;
+}
+.btn{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 126rpx;
+    left: 50%;
+    align-items: center;
+    margin-left: -140rpx;
+}
+.btn image{
+    width: 158rpx;
+    height: 158rpx;
+    
+}
+.selectWrap{
+    width: 637rpx;
+    height: 740rpx;
+    background: #ffe270;
+    border-radius: 20rpx;
+    margin: 294rpx auto 0;
+}
+.selectTitle{
+    width: 565rpx;
+    height: 102rpx;
+    position: relative;
+    margin: auto;
+    padding-top: 36rpx;
+    box-sizing: content-box;
+}
+.selectTitle image{
+    width: 100%;
+    height: 100%;
+}
+.selectTitle view{
+    position: absolute;
+    color: #fff;
+    font-size: 30rpx;
+    left: 50%;
+    top: 70rpx;
+    transform: translate(-50%, 0);
+}
+.content{
+    background: #fff;
+    width: 604rpx;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border-radius: 20rpx;
+    margin: -20rpx auto 0;
+    padding: 22rpx 42rpx 32rpx;
+}
+.model{
+    width: 250rpx;
+    height: 250rpx;
+    background:#eee;
+    margin-top: 22rpx;
+    border-radius: 10rpx;
+}
+.closeSelect{
+    width: 70rpx;
+    height: 70rpx;
+    margin: 70rpx auto 0;
+}
+.closeSelect image{
+    width: 100%;
+    height: 100%;
+}

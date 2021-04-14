@@ -158,3 +158,41 @@ export function deleteMessage(data){
     data
   })
 }
+// 获取手机号
+export function getPhoneNum(data){
+  return request({
+    url: 'auth/b_mobile',
+    method: 'post',
+    data
+  })
+}
+// 获取答题活动
+export function getAnswerList(){
+  return request({
+    url: 'activity/get_question_all',
+    method: 'post'
+  })
+}
+// 提交答题
+export function sendAnswerRecord(data){
+  return request({
+    url: 'activity/user_answer_record',
+    method: 'post',
+    data
+  })
+}
+// 获取转盘
+export function getTurntablList(){
+  return request({
+    url: 'activity/activity_turntable',
+    method: 'post'
+  })
+}
+// 提交中奖
+export function sendTurntablList(data){
+  return request({
+    url: 'activity/user_join_activity',
+    method: 'post',
+    data
+  })
+}
