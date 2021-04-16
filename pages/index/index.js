@@ -33,7 +33,15 @@ Page({
     let id = e.currentTarget.dataset.id
     let url = '/pages/persdata/persdata?id=' + id
     routerFiliter(url)
-     
+  },
+  togame(){
+    routerFiliter('../littlegame/list/list')
+  },
+  tomall() {
+    routerFiliter('../mall/mallList/mall')
+  },
+  toTieZi(){
+    routerFiliter('../blog/blogList/list')
   },
   toLoveList() {
     routerFiliter('../lovelist/lovelist')

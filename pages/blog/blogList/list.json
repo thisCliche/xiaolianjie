@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "van-card": "../../../components/card/card"
+  },
+  "navigationStyle": "custom",
+  "onReachBottomDistance": 50
+}

@@ -13,8 +13,8 @@
         "miniprogram": {
             "list": [
                 {
-                    "name": "pages/login/login",
-                    "pathName": "pages/login/login",
+                    "name": "pages/me/me",
+                    "pathName": "pages/me/me",
                     "query": "",
                     "scene": null
                 },
@@ -25,8 +25,8 @@
                     "scene": null
                 },
                 {
-                    "name": "pages/littlegame/randomLove/random",
-                    "pathName": "pages/littlegame/randomLove/random",
+                    "name": "pages/mall/mallList/mall",
+                    "pathName": "pages/mall/mallList/mall",
                     "query": "",
                     "scene": null
                 }

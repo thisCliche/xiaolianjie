@@ -1,0 +1,24 @@
+<w-header title="帖子详情" isBack="1" bind:childBackUp="backUp"></w-header>
+
+<view class="wrapper">
+    <view class="title">{{title}}</view>
+    <view class="des">{{detail}}</view>
+
+    <view class="imageWrapper">
+  <van-image
+wx:for="{{images}}" wx:for-index="idx" wx:for-item="item"
+data-index="{{idx}}"
+wx:key="idx"
+  width="160rpx"
+  height="160rpx"
+  fit="cover"
+  src="{{item}}"
+  use-error-slot
+  use-loading-slot
+  bindtap='clickImg'
+>
+<van-loading slot="loading" type="spinner" size="20" vertical />
+<text slot="error">加载失败</text>
+</van-image>
+</view>
+</view>

@@ -1,0 +1,24 @@
+<template name="productItem">
+<view wx:if="{{item.id}}" data-id="{{item.id}}" bindtap="gotoProduct">
+    <view class='imgitem'>
+        <view wx:if="{{item.image}}" class='imgbox'>
+            <image class='sm-picture' src="{{item.image}}" mode='aspectFill'></image>
+        </view>
+        <view class='ttlbox'>
+            <text class='infotitle'>{{item.title}}</text>
+        </view>
+        <view class='pricebox'>
+            <block wx:if="{{item.type == 4}}">
+                <text wx:if="{{item.market_price>0}}"  class='rightinfo'>￥{{item.market_price}}</text>
+                <text wx:else class='comminfo'>-</text>
+            </block>
+            <block wx:else>
+                <text wx:if="{{item.commission_amount>0}}" class='comminfo'>赚: ￥{{item.commission_amount}}</text>
+                <text wx:else class='comminfo'>-</text>
+            </block>
+            
+            <text class='price'>￥{{item.min_price}}</text>
+        </view>
+    </view>
+</view>
+</template>

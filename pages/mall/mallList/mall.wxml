@@ -1,0 +1,40 @@
+<!--pages/mall/mallList/mall.wxml-->
+<import src="/pages/mall/tpl/product-item.wxml" />
+<view class="wapper">
+    <w-header title="积分商城" isBack="1" bind:childBackUp="backUp"></w-header>
+    <van-dropdown-menu>
+            <van-dropdown-item bind:change="cateChage" value="{{ cate }}" options="{{ option1 }}" />
+            <van-dropdown-item bind:change="priceChage" value="{{ price }}" options="{{ option2 }}" />
+            <van-dropdown-item bind:change="saleChage" value="{{ sale }}" options="{{ option2 }}" />
+        </van-dropdown-menu>
+        <scroll-view
+    bindscrolltolower="onReachBottom"
+  scroll-y class="middle"
+  style="top: {{securyheight}}rpx;"
+  refresher-enabled="{{true}}"
+  refresher-threshold="{{100}}"
+  refresher-default-style="white"
+  refresher-background="#fe909d"
+  refresher-triggered="{{triggered}}"  
+  bindrefresherrefresh="onRefresh"
+>
+    <view class='block goods-block'>
+        <view wx:if="{{lists && lists.length}}" class="block-inner">
+            <view class='block-content'>
+                <view class="grid col-2" >
+                    <block wx:for="{{lists}}" wx:key="key">
+                        <template is="productItem" data="{{item:item}}" />
+                    </block>
+                </view>
+            </view>
+        </view>
+    </view>
+    <van-empty
+    wx:if="{{lists.length == 0}}"
+  class="custom-image"
+  image="https://img.yzcdn.cn/vant/custom-empty-image.png"
+  description="暂无商品"
+/>
+    <view wx:if="{{nomore}}" class="nomore"><van-icon name="smile-o" /> 没有更多数据了</view>
+</scroll-view>
+</view>

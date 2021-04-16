@@ -1,0 +1,13 @@
+<!--pages/card/card.wxml-->
+<view class="van-card">
+    <view class="top">
+      <view class="left">{{note.nickname}} 
+        <van-icon class="van-icon" name="photo-o" wx:if="{{note.image !== ''}}"/>
+      </view>
+      <view class="rig">{{note.create_time}}</view>
+    </view>
+     <!--  -->
+    <view class="descri van-multi-ellipsis--l3">
+      <text>{{note.content}}</text>
+    </view>
+  </view>

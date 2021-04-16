@@ -3,7 +3,7 @@
     <w-header title="转盘活动" isBack="1" bind:childBackUp="backUp"></w-header>
     <view style="padding-top:166rpx;text-align:center;"><image src="../../../icon/title.png" style="width:498rpx;height:248rpx;"></image></view>
     <view class="turntable">
-        <image style='transform:rotate({{ -change_angle}}deg)' class="panding" src="../../../icon/zhuanp.png"></image>
+        <image style='transform:rotate({{ -change_angle}}deg)' class="panding" src="https://anhuixingdian.oss-cn-hangzhou.aliyuncs.com/miniapp/zhuanp.png"></image>
         <image class="goBtn" bindtap="luckDrawStart" src="https://anhuixingdian.oss-cn-hangzhou.aliyuncs.com/miniapp/go.png"></image>
     </view>
     <view class="opportunity">您还有 <text> {{available_num}} </text> 次抽奖机会</view>

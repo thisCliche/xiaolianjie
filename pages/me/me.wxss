@@ -57,5 +57,5 @@
 }
 
 .van-cell{
-  padding: 40rpx 0 !important;
+  padding: 24rpx 0 !important;
 }

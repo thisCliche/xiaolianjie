@@ -12,6 +12,10 @@ Page({
    * 页面的初始数据
    */
   data: {
+
+    minDate: new Date(1980, 0, 1).getTime(),
+    maxDate: new Date().getTime(),
+    currentDate: new Date().getTime(),
     token: '',
     member_id: '',
     curActive: 1,
@@ -84,7 +88,7 @@ Page({
      success: (res) => {
       var tempFilesSize = res.tempFiles[0].size;  //获取图片的大小，单位B
       console.log(tempFilesSize)
-      if(tempFilesSize <= 5000000){   //图片小于或者等于2M时 可以执行获取图片
+      if(tempFilesSize <= 2000000){   //图片小于或者等于2M时 可以执行获取图片
         const { errMsg, tempFilePaths, tempFiles } = res;
         tempFilePaths.forEach((filePath, index) => {
           if (errMsg === 'chooseImage:ok') {
@@ -94,7 +98,7 @@ Page({
         });
       }else{    
           wx.showToast({
-              title:'图片不大于5M!', 
+              title:'图片不大于2M!', 
           })
       }
      },
@@ -284,7 +288,7 @@ uploadFile(filePath){
   },
   formatDate(date) {
     date = new Date(date);
-    return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
+    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
   },
   async submedata() {
     let {form} = this.data
@@ -381,7 +385,7 @@ uploadFile(filePath){
         ["form.birthday"]: res.data.detail.birth,
         ["form.height"]: res.data.detail.details.height,
         ["form.weight"]: res.data.detail.weigh,
-        ["form.district"]: res.data.detail.county,
+        ["form.district"]: `${res.data.detail.province},${res.data.detail.city},${res.data.detail.county}`,
         ["form.educational"]: res.data.detail.education,
         ["form.marriage"]: res.data.detail.marriage,
         ["form.sex"]: res.data.detail.gender+'',

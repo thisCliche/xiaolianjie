@@ -232,3 +232,19 @@ swiper image {
 .newColumnR{
   width: 30%;
 }
+.menu{
+  margin: 50rpx 0;
+  display: flex;
+  justify-content: space-around;
+}
+.column{
+  text-align: center;
+}
+.column image{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 8rpx;
+}
+.column view{
+  line-height: 50rpx;
+}

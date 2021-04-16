@@ -15,13 +15,19 @@
         "van-action-sheet": "@vant/weapp/action-sheet/index",
         "van-divider": "@vant/weapp/divider/index",
         "van-uploader": "@vant/weapp/uploader/index",
-        "van-overlay": "@vant/weapp/overlay/index"
+        "van-overlay": "@vant/weapp/overlay/index",
+        "van-datetime-picker": "@vant/weapp/datetime-picker/index",
+        "van-checkbox": "@vant/weapp/checkbox/index",
+        "van-notify": "@vant/weapp/notify/index",
+        "van-image": "@vant/weapp/image/index",
+        "w-header": "./components/header/header",
+        "van-dropdown-menu": "@vant/weapp/dropdown-menu/index",
+        "van-dropdown-item": "@vant/weapp/dropdown-item/index",
+        "van-empty": "@vant/weapp/empty/index"
     },
     "pages": [
         "pages/index/index",
         "pages/login/login",
-        "pages/list/list",
-        "pages/logs/logs",
         "pages/me/me",
         "pages/medata/medata",
         "pages/persdata/persdata",
@@ -32,7 +38,17 @@
         "pages/newlists/detail/detail",
         "pages/littlegame/answer/answer",
         "pages/littlegame/turntable/turntable",
-        "pages/littlegame/randomLove/random"
+        "pages/littlegame/randomLove/random",
+        "pages/mall/location/location",
+        "pages/mall/locationAdd/locationAdd",
+        "pages/blog/sendBlog/send",
+        "pages/blog/blogList/list",
+        "pages/blog/blogDetail/detial",
+        "pages/me/winCheck/wincheck",
+        "pages/littlegame/list/list",
+        "pages/mall/mallList/mall",
+        "pages/mall/order/order",
+        "pages/mall/orderDetail/orderdetail"
     ],
     "tabBar": {
         "borderStyle": "white",

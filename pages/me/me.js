@@ -13,27 +13,29 @@ Page({
   },
   toVisiting() {
     routerFiliter(`../persdata/persdata?id=${this.data.member_id}&fromme=yes`)
-    // wx.navigateTo({
-    //   url: ,
-    // })
   },
   toGeren() {
     routerFiliter('../medata/medata')
-    // wx.navigateTo({
-    //   url: '../medata/medata',
-    // })
   },
   toMessage() {
     routerFiliter('../message/message')
-    // wx.navigateTo({
-    //   url: '../message/message',
-    // })
-  },
+     },
   toLogin() {
-    // routerFiliter('../login/login')
     wx.navigateTo({
       url: '../login/login',
     })
+  },
+  towinCheck() {
+    routerFiliter('./winCheck/wincheck')
+  },
+  toOrder(){
+    routerFiliter('../mall/order/order')
+  },
+  toLocation() {
+    routerFiliter('../mall/location/location')
+  },
+  toBlog(){
+    routerFiliter(`../blog/blogList/list?from=me`)
   },
   toVip(){
     routerFiliter('../vipuser/vipuser')

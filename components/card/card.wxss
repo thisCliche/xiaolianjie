@@ -1,0 +1,25 @@
+/* pages/card/card.wxss */
+.van-card{
+  margin: 24rpx 24rpx 0;
+  padding: 24rpx;
+  border-radius: 8rpx;
+  background: #fff;
+  overflow: hidden;
+  color: #303133;
+  transition: .3s;
+  box-shadow: 0 1rpx 1rpx rgba(0, 0, 0, 0.15);
+}
+.top{display: flex;justify-content: space-between; color: #888;font-size: 28rpx;}
+.left{
+  display: flex;
+  align-items: center;
+}
+.van-icon{margin-left: 12rpx;}
+  .descri{margin-top: 24rpx;
+  font-size: 28rpx;
+  line-height: 48rpx;
+  letter-spacing: 2rpx;}
+  .van-multi-ellipsis--l3{-webkit-line-clamp: 3;display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;}

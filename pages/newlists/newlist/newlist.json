@@ -1,6 +1,5 @@
 {
   "usingComponents": {
-    "w-header": "../../../components/header/header"
   },
   "enablePullDownRefresh": true,
   "onReachBottomDistance": 50,

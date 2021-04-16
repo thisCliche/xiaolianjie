@@ -58,9 +58,22 @@
 .model{
     width: 250rpx;
     height: 250rpx;
-    background:#eee;
     margin-top: 22rpx;
     border-radius: 10rpx;
+    background: rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+.model view{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    text-align: center;
+    line-height: 250rpx;
 }
 .closeSelect{
     width: 70rpx;

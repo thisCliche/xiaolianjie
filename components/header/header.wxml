@@ -1,8 +1,8 @@
 <!--components/header.wxml-->
 <view class="index-top">
-      <view class="index-top-one" style="height:{{statusBarHeight}}px;position:fixed;top:0;left:0;z-index:111"></view>
+      <view class="index-top-one" style="height:{{statusBarHeight}}px;position:fixed;top:0;left:0;z-index:99"></view>
       <view style="height:{{statusBarHeight}}px"></view>
-      <view class="fixtop" style="position:fixed;top:{{statusBarHeight}}px;left:0;z-index:111">
+      <view class="fixtop" style="position:fixed;top:{{statusBarHeight}}px;left:0;z-index:99">
         <view class="index-top-title">
             <van-icon wx:if="{{isBack == 1}}" style="margin-left:40rpx;" name="arrow-left" bindtap="backUp" />
             <text wx:else> </text>

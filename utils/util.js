@@ -49,12 +49,120 @@ function routerFiliter(torouter) {
   })
 }
 
-const formatNumber = n => {
-  n = n.toString()
-  return n[1] ? n : `0${n}`
+const tip = (msg) => {
+  wx.showToast({
+      icon: 'none',
+      title: msg,
+  })
 }
-
+const success = (msg) => {
+  wx.showToast({
+      title: msg,
+      icon: 'success'
+  });
+}
+const error = (msg) => {
+  if (!msg) msg = '系统错误'
+  if (msg.length > 7) {
+      wx.showToast({
+          icon: 'none',
+          title: msg,
+      })
+  } else {
+      wx.showToast({
+          image: '/icons/error.png',
+          title: msg,
+      })
+  }
+}
+const alert = (msg, callback = null) => {
+  var config = {
+      title: "系统提示",
+      content: msg,
+      showCancel: false,
+      success: function (res) {
+          if (typeof callback == 'function') {
+              callback(res)
+          }
+      }
+  }
+  if (typeof msg == 'object') {
+      config = {
+          ...config,
+          ...msg
+      }
+  }
+  wx.showModal(config)
+}
+function confirm (msg, confirm = null, cancel = null, callback = null) {
+  var config = {
+      title: "系统提示",
+      content: msg,
+      showCancel: true,
+      success: function (res) {
+          if (res.confirm) {
+              if (typeof confirm == 'function') {
+                  confirm(res)
+              }
+          } else if (res.cancel) {
+              if (typeof cancel == 'function') {
+                  cancel(res)
+              }
+          }
+          if (typeof callback == 'function') {
+              callback(res)
+          }
+      }
+  }
+  if (typeof msg == 'object') {
+      config = { ...config, ...msg }
+  }
+  wx.showModal(config);
+}
+const checkMobile = (mobile) => {
+  var mobilePatter = '^1[3-9][0-9]{9}$'
+  var mobileReg = new RegExp(mobilePatter)
+  return mobileReg.test(mobile)
+}
+function utf16toEntities(str) {
+  var patt = /[\ud800-\udbff][\udc00-\udfff]/g; // 检测utf16字符正则
+  str = str.replace(patt, function (char) {
+    var H, L, code;
+    if (char.length === 2) {
+      H = char.charCodeAt(0); // 取出高位
+      L = char.charCodeAt(1); // 取出低位
+      code = (H - 0xD800) * 0x400 + 0x10000 + L - 0xDC00; // 转换算法
+      return "&#" + code + ";";
+    } else {
+      return char;
+    }
+  });
+  return str;
+}
+function entitiestoUtf16(str){
+  var reg = /\&#.*?;/g;
+  var result = str.replace(reg, function (char) {
+    var H, L, code;
+    if (char.length == 9) {
+      code = parseInt(char.match(/[0-9]+/g));
+      H = Math.floor((code - 0x10000) / 0x400) + 0xD800;
+      L = (code - 0x10000) % 0x400 + 0xDC00;
+      return unescape("%u" + H.toString(16) + "%u" + L.toString(16));
+    } else {
+      return char;
+    }
+  });
+  return result;
+}
 module.exports = {
   timestampToTime,
-  routerFiliter
+  routerFiliter,
+  tip,
+  success,
+  error,
+  alert,
+  confirm,
+  checkMobile,
+  utf16toEntities,
+  entitiestoUtf16
 }

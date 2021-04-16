@@ -39,8 +39,18 @@
           <!-- 我的生日 -->
           <van-cell value-class="{{form.birthday==''? 'value_classnull':'value_class'}}" title="我的生日" is-link
             value="{{form.birthday==''? '请选择':form.birthday}}" bind:click="showPopBirthday" />
-          <van-calendar show="{{ formSelect.birthday }}" bind:close="onCloseBirthday"
-            bind:confirm="onConfirmBirthday" />
+          <van-popup show="{{ formSelect.birthday }}" round position="bottom">
+            <van-datetime-picker
+                type="date"
+                value="{{ currentDate }}"
+                min-date="{{ minDate }}"
+                max-date="{{ maxDate }}"
+                bind:confirm="onConfirmBirthday"
+                bind:cancel="onCloseBirthday"
+              />
+          </van-popup>
+          <!-- <van-calendar show="{{ formSelect.birthday }}" min-date="{{ minDate }}" max-date="{{ maxDate }}" bind:close="onCloseBirthday"
+            bind:confirm="onConfirmBirthday" /> -->
           <!-- 身高 -->
           <van-field  label-class="leftStyle" bindinput='handleInputChange' data-model="height" input-class="input_class" label="我的身高CM" model:value="{{ form.height }}" placeholder="请填写" border
             is-link />
@@ -60,7 +70,7 @@
 
           <van-cell value-class="{{form.educational==''? 'value_classnull':'value_class'}}" title="我的学历" is-link
             value="{{form.educational==''? '请选择':form.educational}}" bind:click="showPopeDucational" />
-          <van-popup round show="{{ formSelect.educational }}" position="bottom">
+          <van-popup  show="{{ formSelect.educational }}" round position="bottom">
             <van-picker show-toolbar title="我的学历" bind:cancel="onCloseeDucational" bind:confirm="onChangeeDucational"
               columns="{{ educationalColumns }}" />
           </van-popup>

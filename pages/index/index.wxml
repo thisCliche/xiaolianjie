@@ -25,6 +25,20 @@
         </view>
       </view>
     </view>
+    <view class="menu">
+      <view class="column" bindtap="togame">
+        <image src="../../icon/game.png"></image>
+        <view>小游戏</view>
+      </view>
+      <view class="column" bindtap="toTieZi">
+        <image src="../../icon/dongtai.png"></image>
+        <view>发帖子</view>
+      </view>
+      <view class="column" bindtap="tomall">
+        <image src="../../icon/mall.png"></image>
+        <view>积分兑换</view>
+      </view>
+    </view>
     <view class='index-top-swiper1'>
       <view class='swiper-box1'>
         <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}"
@@ -42,7 +56,8 @@
         </view>
       </view>
     </view>
-    <view class="index-jghd">
+    
+    <view class="index-jghd" wx:if="{{recommend.length != 0}}">
       <view class="display_J_B display_A_C" style="margin:50rpx 0 30rpx 0">
         <view class="display_J_S display_A_C">
           <view style="width: 11rpx;height: 11rpx;background-color: #d6697e;border-radius: 5rpx;margin:0 7rpx 0 34rpx">

@@ -32,10 +32,16 @@
           <view style="margin-left:20rpx;font-size:30rpx" class="van-cell-text">开通VIP</view>
         </view>
       </van-cell>
-      <van-cell is-link>
+      <van-cell is-link bindtap="toBlog">
         <view slot="title" style="display:flex;align-items: center;">
           <image style="width:38rpx;height:38rpx;" slot="right-icon" src="../../icon/wode.png"></image>
           <view style="margin-left:20rpx;font-size:30rpx" class="van-cell-text">我的帖子</view>
+        </view>
+      </van-cell>
+      <van-cell is-link bindtap="towinCheck">
+        <view slot="title" style="display:flex;align-items: center;">
+          <image style="width:38rpx;height:38rpx;" slot="right-icon" src="../../icon/wincheck.png"></image>
+          <view style="margin-left:20rpx;font-size:30rpx" class="van-cell-text">中奖记录</view>
         </view>
       </van-cell>
       <van-cell is-link bindtap="toMessage">
@@ -48,6 +54,18 @@
         <view slot="title" style="display:flex;align-items: center;">
           <image style="width:38rpx;height:38rpx;" slot="right-icon" src="../../icon/kefu.png"></image>
           <view style="margin-left:20rpx;font-size:30rpx" class="van-cell-text">客服中心</view>
+        </view>
+      </van-cell>
+      <van-cell is-link bindtap="toLocation">
+        <view slot="title" style="display:flex;align-items: center;">
+          <image style="width:38rpx;height:38rpx;" slot="right-icon" src="../../icon/location.png"></image>
+          <view style="margin-left:20rpx;font-size:30rpx" class="van-cell-text">收货地址</view>
+        </view>
+      </van-cell>
+      <van-cell is-link bindtap="toOrder">
+        <view slot="title" style="display:flex;align-items: center;">
+          <image style="width:38rpx;height:38rpx;" slot="right-icon" src="../../icon/dingdan.png"></image>
+          <view style="margin-left:20rpx;font-size:30rpx" class="van-cell-text">我的订单</view>
         </view>
       </van-cell>
     </van-cell-group>

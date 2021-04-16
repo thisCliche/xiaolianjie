@@ -1,7 +1,6 @@
 const devBaseUrl = 'https://flxcx.ahxingdian.com/index.php/api/';
 const probaseUrl = '';
 
-
 const request = (options) => {
   var token = wx.getStorageSync('token');
   return new Promise((resolve,reject)=>{
@@ -48,7 +47,6 @@ export function sendLogin(data) {
     data
   })
 }
-
 export function getBarch(data){
   return request({
     url: 'common/batch',
@@ -56,7 +54,6 @@ export function getBarch(data){
     data
   })
 }
-
 // 获取情感美文列表
 export function getNewList(data){
   return request({
@@ -192,6 +189,123 @@ export function getTurntablList(){
 export function sendTurntablList(data){
   return request({
     url: 'activity/user_join_activity',
+    method: 'post',
+    data
+  })
+}
+// 配对活动详情
+export function getSelectActivity(){
+  return request({
+    url: 'activity/select_activity',
+    method: 'post'
+  })
+}
+// 记录选人
+export function listJoinMember(data){
+  return request({
+    url: 'activity/list_join_member',
+    method: 'post',
+    data
+  })
+}
+// 获取收货地址
+export function getAddress(){
+  return request({
+    url: 'member.address/index',
+    method: 'post',
+  })
+}
+// 获取收货地址详情
+export function getAddressView(data){
+  return request({
+    url: 'member.address/view',
+    method: 'post',
+    data
+  })
+}
+// 设置默认地址
+export function addressSetDefau(data){
+  return request({
+    url: 'member.address/set_default',
+    method: 'post',
+    data
+  })
+}
+// 删除地址
+export function addressDelete(data){
+  return request({
+    url: 'member.address/delete',
+    method: 'post',
+    data
+  })
+}
+// 保存地址
+export function addressSave(data){
+  return request({
+    url: 'member.address/save',
+    method: 'post',
+    data
+  })
+}
+// 发帖子
+export function addArticle(data){
+  return request({
+    url: 'article/add_article',
+    method: 'post',
+    data
+  })
+}
+// 帖子列表
+export function articleList(data){
+  return request({
+    url: 'article/article_list',
+    method: 'post',
+    data
+  })
+}
+// 帖子详情
+export function viewArticle(data){
+  return request({
+    url: 'article/view_article',
+    method: 'post',
+    data
+  })
+}
+// 中奖记录
+export function winCheck(data){
+  return request({
+    url: 'activity/turn_award_record',
+    method: 'post',
+    data
+  })
+}
+// 商城分类
+export function getAllCates(){
+  return request({
+    url: 'product/get_cates',
+    method: 'post',
+  })
+}
+// 获取商品
+export function getMallList(data){
+  return request({
+    url: 'product/get_list',
+    method: 'post',
+    data
+  })
+}
+// 订单管理
+export function orderMange(data){
+  return request({
+    url: 'member.order/index',
+    method: 'post',
+    data
+  })
+}
+// 订单详情
+export function orderDetail(data){
+  return request({
+    url: 'member.order/view',
     method: 'post',
     data
   })

@@ -1,0 +1,2 @@
+/* pages/add/add.wxss */
+.van-uploader{margin: 30rpx 15rpx;}

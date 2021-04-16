@@ -13,6 +13,7 @@
 }
 page{
   background-color: #fff;
+  scroll-behavior:smooth
 }
 
 /* 元素在主轴（页面）上左右两端或者上下两端开始排列 */
@@ -126,4 +127,73 @@ page{
 .fail text:last-child {
   color: #666;
 }
+/**app.wxss**/
+
+
+.block .block-inner{
+    margin: 30rpx;
+    background: #fff;
+    border-radius:20rpx;
+    padding:20rpx 0;
+    box-shadow: 0 2rpx 10rpx rgba(0,0,0,.05)
+}
+
+.block-ttl {
+    padding: 15rpx 20rpx;
+    font-size: 32rpx;
+    font-weight: bold;
+    color:#333;
+}
+.block-inner .block-ttl {
+    padding: 5rpx 20rpx;
+    margin-bottom:30rpx;
+}
+.block-ttl .fr{
+    font-weight:normal;
+    color:#999;
+}
+
+.block-content {
+    padding: 20rpx;
+}
+.block-content .cu-list.grid.no-border{
+    padding:0;
+}
+.goods-block .block-content {
+    padding: 0 0 0 30rpx;
+}
+.goods-block .imgitem{
+    margin-right:30rpx;
+    margin-bottom:30rpx;
+    width:calc(33.33%-20rpx);
+}
+.goods-block .ttlbox {
+    height:2.6em;
+    line-height:1.2em;
+    padding-top:.3em;
+    overflow: hidden;
+}
+
+.goods-block .price{
+    font-weight:bold;
+    color:#d00;
+    display:block;
+}
+.goods-block .price::first-letter{
+    font-size:20rpx;
+    font-weight:normal;
+}
+.goods-block .rightinfo{
+    float:right;
+    font-size:22rpx;
+    color: #999;
+    text-decoration: line-through;
+}
+
+.goods-block .comminfo{
+    float:right;
+    font-size:22rpx;
+    color: #999;
+}
+
 

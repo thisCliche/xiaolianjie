@@ -1,0 +1,17 @@
+/* pages/mall/mallList/mall.wxss */
+.middle{
+    position: absolute;
+    background: #eaedf1;
+    left: 0;
+    right: 0;
+    bottom: 1rpx;
+    overflow: auto;
+    z-index: 0;
+  }
+  .nomore{
+    display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30rpx;
+      padding-bottom: 20rpx;
+  }
