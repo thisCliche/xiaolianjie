@@ -1,7 +1,7 @@
 // pages/member/order-detail.js
 const trail = require("../../../utils/trail.js");
-const app = getApp()
-import {error,success} from '../../../utils/util'
+import {error,success,timestampToTime} from '../../../utils/util'
+import {orderDetail} from '../../../api/api'
 
 Page({
 
@@ -77,14 +77,14 @@ Page({
         wx.showLoading({
             title: '',
         })
-        app.httpPost('member.order/view', { id: this.data.id }, json => {
+        orderDetail({ id: this.data.id }).then(json => {
             wx.hideLoading()
             if(json.code==1){
                 let order = json.data
-                order.create_date = util.formatTime(util.timestamp2date(order.create_time))
-                order.pay_date = util.formatTime(util.timestamp2date(order.pay_time))
-                order.deliver_date = util.formatTime(util.timestamp2date(order.deliver_time))
-                order.confirm_date = util.formatTime(util.timestamp2date(order.confirm_time))
+                order.create_date = timestampToTime(order.create_time)
+                order.pay_date = timestampToTime(order.pay_time)
+                order.deliver_date = timestampToTime(order.deliver_time)
+                order.confirm_date = timestampToTime(order.confirm_time)
                 if(order.products){
                     order.products = trail.fixListImage(order.products, 'product_image')
                 }

@@ -89,6 +89,15 @@ Page({
         this.setData({sale: e.detail})
         this.getMallList(data)
     },
+    gotoProduct(e){
+        this.gotoDetail(e)
+    },
+    gotoDetail (e) {
+        var id = e.currentTarget.dataset.id
+        wx.navigateTo({
+            url: '../mallDetail/malldetail?id=' + id,
+        })
+    },
     /**
      * 生命周期函数--监听页面加载
      */

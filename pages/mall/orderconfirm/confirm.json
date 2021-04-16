@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "number-input": "/components/number-input/number-input"
+  },
+  "navigationStyle": "custom"
+}

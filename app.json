@@ -48,7 +48,10 @@
         "pages/littlegame/list/list",
         "pages/mall/mallList/mall",
         "pages/mall/order/order",
-        "pages/mall/orderDetail/orderdetail"
+        "pages/mall/orderDetail/orderdetail",
+        "pages/mall/mallDetail/malldetail",
+        "pages/mall/orderconfirm/confirm",
+        "pages/me/jifen/jifen"
     ],
     "tabBar": {
         "borderStyle": "white",

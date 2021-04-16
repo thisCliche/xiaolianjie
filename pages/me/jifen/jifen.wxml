@@ -1,0 +1,17 @@
+<!--pages/me/winCheck/wincheck.wxml-->
+<view class="wincheck">
+<w-header title="积分记录" isBack="1" bind:childBackUp="backUp"></w-header>
+<view class="wrapper">
+    <view class="card" wx:for="{{list}}">
+        
+        <view class="name">
+            <!-- <view>{{item.source_type}}</view> -->
+            <view>{{item.desc}}</view>
+        </view>
+        <view>{{item.value}}</view>
+        <view class="time">
+            <view>{{item.create_time}}</view>
+        </view>
+    </view>
+</view>
+</view>

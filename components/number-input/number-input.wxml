@@ -1,0 +1,6 @@
+<!--components/number-input/number-input.wxml-->
+<view class="input-group{{size?(' '+size):''}}" bindtap='numberGrow'>
+    <view class="input-group-addon minus" data-type="minus"  ></view>
+    <input class="ig-input" type="number" confirm-type="done" value='{{number}}' bindinput='onInput' bindblur='onInput'></input>
+    <view class="input-group-addon plus"  data-type="plus"  ></view>
+</view>

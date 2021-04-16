@@ -124,7 +124,7 @@ Page({
         
         let id = data.id
         wx.navigateTo({
-            url: 'order-detail?id=' + id
+            url: '../orderDetail/orderdetail?id=' + id
         })
     },
     orderAction(e){

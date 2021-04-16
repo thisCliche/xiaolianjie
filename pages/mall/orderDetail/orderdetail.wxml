@@ -4,7 +4,7 @@
 
 <scroll-view scroll-y="true">
     <w-header title="订单详情" isBack="1" bind:childBackUp="backUp"></w-header>
-    <view class="order-status bg-gradual-blue">
+    <view class="order-status" style="background-image: linear-gradient(90deg, #ffb2c2 0%, #ffc39f 100%);">
         <text wx:if="{{order.status<0}}" class="text-white">订单已失效</text>
         <text wx:elif="{{order.status<1}}" class="text-white">待付款</text>
         <text wx:elif="{{order.status<2}}" class="text-white">买家已付款</text>
@@ -13,7 +13,7 @@
     </view>
 
     <view class="cu-list menu margin-tb shadow">
-        <view class="cu-item" bindtap="gotoExpress">
+        <!-- <view class="cu-item" bindtap="gotoExpress">
             <view class="action">
                 <text class="cuIcon-deliver text-lg text-blue"></text>
             </view>
@@ -25,7 +25,7 @@
             <view class="action">
                 <text class="cuIcon-right"></text>
             </view>
-        </view>
+        </view> -->
         <view class="cu-item">
             <view class="action">
                 <text class="cuIcon-location text-lg text-orange"></text>
@@ -41,8 +41,8 @@
         </view>
     </view>
 
-    <view class="cu-card bg-white margin-tb shadow">
-        <view class="card-header">
+    <view class="cu-card bg-white margin-tb shadow"  style="padding: 10rpx 25rpx;">
+        <view class="card-header"  style="margin:10rpx 0">
             <view>产品信息</view>
         </view>
         <view class="card-content bg-white">
@@ -71,8 +71,8 @@
         </view>
     </view>
 
-    <view class="cu-card bg-white margin-tb shadow">
-        <view class="card-header">
+    <view class="cu-card bg-white margin-tb shadow" style="padding:20rpx 25rpx">
+        <view class="card-header" style="margin:10rpx 0">
             <view>订单信息</view>
         </view>
         <view class="card-content bg-white">

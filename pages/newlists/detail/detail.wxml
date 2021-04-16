@@ -35,4 +35,11 @@
             </view>
         </view>
     </view>
+    <view class="xuanfu" wx:if="{{second!=0}}">
+        阅读 {{second}}秒
+        +{{points}}积分
+    </view>
+    <view class="xuanfu" wx:else>
+        完成任务 <br/> +{{points}}积分
+    </view>
 </view>

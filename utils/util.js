@@ -9,6 +9,18 @@ const timestampToTime = (timestamp) =>{
   // return Y+M+D+h+m+s;
   return Y+M+D;
 }
+const parseScene = (scene)=>{
+  scene = decodeURIComponent(scene)
+  let sceneArr = scene.split('&')
+  let query={}
+  for (let i = 0; i < sceneArr.length; i++) {
+      let eqindex = sceneArr[i].indexOf('=')
+      if (eqindex > 0) {
+          query[sceneArr[i].substr(0, eqindex)] = sceneArr[i].substr(eqindex + 1)
+      }
+  }
+  return query
+}
 // 路由登录判断
 function routerFiliter(torouter) {
   wx.getStorage({
@@ -154,6 +166,25 @@ function entitiestoUtf16(str){
   });
   return result;
 }
+const timestamp2date = timestamp => {
+  return (timestamp) ? new Date(timestamp * 1000) : new Date()
+}
+const countObject = obj => {
+  var i = 0
+  for (var o in obj) {
+      i++
+  }
+  return i
+}
+const force_number = (number)=>{
+  if(typeof number === typeof 'a'){
+      number = parseFloat(number)
+  }
+  if (typeof number !== typeof 0.1 && typeof number !== typeof 1){
+      return 0
+  }
+  return isNaN(number)?0:number
+}
 module.exports = {
   timestampToTime,
   routerFiliter,
@@ -164,5 +195,9 @@ module.exports = {
   confirm,
   checkMobile,
   utf16toEntities,
-  entitiestoUtf16
+  entitiestoUtf16,
+  timestamp2date,
+  parseScene,
+  countObject,
+  force_number
 }

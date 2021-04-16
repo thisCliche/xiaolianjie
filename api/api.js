@@ -310,3 +310,82 @@ export function orderDetail(data){
     data
   })
 }
+// 订单删除
+export function deleteorder(data){
+  return request({
+    url: 'member.order/delete',
+    method: 'post',
+    data
+  })
+}
+// 订单取消
+export function cancelorder(data){
+  return request({
+    url: 'member.order/cancel',
+    method: 'post',
+    data
+  })
+}
+// 订单确认
+export function confirmorder(data){
+  return request({
+    url: 'member.order/confirm',
+    method: 'post',
+    data
+  })
+}
+// 移除收藏
+export function delfavourite(data){
+  return request({
+    url: 'member/del_favourite',
+    method: 'post',
+    data
+  })
+}
+// 添加收藏
+export function addfavourite(data){
+  return request({
+    url: 'member/add_favourite',
+    method: 'post',
+    data
+  })
+}
+
+// 商品详情
+export function productView(data){
+  return request({
+    url: 'product/view',
+    method: 'post',
+    data
+  })
+}
+export function profilemember(data){
+  return request({
+    url: 'member/profile',
+    method: 'post',
+    data
+  })
+}
+
+export function orderprepare(data){
+  return request({
+    url: 'order/prepare',
+    method: 'post',
+    data
+  })
+}
+// 积分明细
+export function pointdetail(){
+  return request({
+    url: 'points/get_member_point_detail',
+    method: 'post',
+  })
+}
+// 增加减少积分
+export function getallPoint(data){
+  return request({
+    url: 'points/get_all_point',
+    method: 'post',
+    data
+  })
+}

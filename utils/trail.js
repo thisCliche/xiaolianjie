@@ -1,83 +1,62 @@
-const util = require("util.js");
-
+import{} from './util'
+import {deleteorder,cancelorder} from '../api/api'
 const app = getApp()
 
-const default_image = '/images/image.png'
-
 var cart_count = -1
-const getCartCount = (callback, force) => {
-    if (force || cart_count < 0) {
-        app.checkLogin( ()=> {
-            app.httpPost('cart/getcount', json => {
-                if (json.code == 1) {
-                    cart_count = parseInt(json.data) || 0;
-                    let pages = getCurrentPages()
+
+
+// 支付接口
+// const makeOrder = (api, data, success, error) => {
+//     wx.showLoading({
+//         title: '正在提交',
+//     })
+//     app.httpPost(api,
+//         data,
+//         (json) => {
+//             wx.hideLoading()
+//             if (json.code == 1) {
+//                 if (json.data && json.data.payment) {
+//                     if (json.data.payment.timeStamp){
+//                         doPay(json.data.payment, res=>{
+//                             success(json.data.order_id)
+//                         }, res=>{
+//                             app.alert('支付失败', res => {
+//                                 error(json.data.order_id)
+//                             })
+//                         })
+//                     }else{
+//                         app.alert('发起支付失败', res => {
+//                             error(json.data.order_id)
+//                         })
+//                     }
+//                 } else {
+//                     payOrder(json.data.order_id, success, error)
                     
-                    if (pages.length>0 && pages[0].route == 'pages/index/index'){
-                        pages[0].setCartCount(cart_count)
-                    }
+//                 }
 
-                    callback(cart_count)
-                }
-            })
-        })
-    } else {
-        callback(cart_count)
-    }
-}
+//             } else {
+//                 error(0,json.msg)
+//             }
+//         })
+// }
 
-
-const makeOrder = (api, data, success, error) => {
-    wx.showLoading({
-        title: '正在提交',
-    })
-    app.httpPost(api,
-        data,
-        (json) => {
-            wx.hideLoading()
-            if (json.code == 1) {
-                if (json.data && json.data.payment) {
-                    if (json.data.payment.timeStamp){
-                        doPay(json.data.payment, res=>{
-                            success(json.data.order_id)
-                        }, res=>{
-                            app.alert('支付失败', res => {
-                                error(json.data.order_id)
-                            })
-                        })
-                    }else{
-                        app.alert('发起支付失败', res => {
-                            error(json.data.order_id)
-                        })
-                    }
-                } else {
-                    payOrder(json.data.order_id, success, error)
-                    
-                }
-
-            } else {
-                error(0,json.msg)
-            }
-        })
-}
-
-const payOrder = (orderid, success, error)=>{
-    app.httpPost('order/wechatpay', { order_id: orderid, payid : app.globalData.wxid}, json => {
-        if (json.data.payment && json.data.payment.timeStamp) {
-            doPay(json.data.payment, res => {
-                success(orderid)
-            }, res => {
-                app.alert('支付失败', res => {
-                    error(orderid)
-                })
-            })
-        } else {
-            app.alert(json.msg||'发起支付失败', res => {
-                error(orderid)
-            })
-        }
-    })
-}
+// const payOrder = (orderid, success, error)=>{
+//     app.httpPost('order/wechatpay', { order_id: orderid, payid : app.globalData.wxid}, json => {
+//         if (json.data.payment && json.data.payment.timeStamp) {
+//             doPay(json.data.payment, res => {
+//                 success(orderid)
+//             }, res => {
+//                 app.alert('支付失败', res => {
+//                     error(orderid)
+//                 })
+//             })
+//         } else {
+//             app.alert(json.msg||'发起支付失败', res => {
+//                 error(orderid)
+//             })
+//         }
+//     })
+// }
 
 const doPay = (payment, success, error)=>{
     payment.timeStamp = payment.timeStamp.toString()
@@ -460,7 +439,7 @@ const orderAction=(action, id, status, success)=>{
                 content: '删除订单后所有数据不可恢复！',
                 success(res) {
                     if (res.confirm) {
-                        app.httpPost('member.order/delete', { id: id }, json => {
+                        deleteorder({ id: id }).then(json => {
                             if(json.code==1){
                                 app.success(json.msg)
                                 success && success()
@@ -478,7 +457,7 @@ const orderAction=(action, id, status, success)=>{
                 success: (res) => {
                     let reason = reasons[res.tapIndex]
                     if (reason) {
-                        app.httpPost('member.order/cancel', { id: id, reason: reason }, json => {
+                        cancelorder({ id: id, reason: reason }).then(json => {
                             if (json.code == 1) {
                                 app.success(json.msg)
                                 success && success()
@@ -515,7 +494,7 @@ const orderAction=(action, id, status, success)=>{
                 content: '请确认已收到货并且货品完整！',
                 success: (res) => {
                     if (res.confirm) {
-                        app.httpPost('member.order/confirm', { id: id }, json => {
+                        confirmorder({ id: id }).then(json => {
                             if (json.code == 1) {
                                 app.success(json.msg)
                                 success && success()
@@ -531,9 +510,8 @@ const orderAction=(action, id, status, success)=>{
 }
 
 module.exports = {
-    makeOrder: makeOrder,
-    payOrder: payOrder,
-    getCartCount: getCartCount,
+    // makeOrder: makeOrder,
+    // payOrder: payOrder,
     uploadFile: uploadFile,
     fixListDate: fixListDate,
     fixDate: fixDate,

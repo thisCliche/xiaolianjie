@@ -31,6 +31,9 @@ Page({
   toOrder(){
     routerFiliter('../mall/order/order')
   },
+  tojifen() {
+    routerFiliter('./jifen/jifen')
+  },
   toLocation() {
     routerFiliter('../mall/location/location')
   },

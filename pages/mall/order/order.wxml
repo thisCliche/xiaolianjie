@@ -35,7 +35,7 @@
                         </view>
                     </view>
                 </view>
-                <view class="card-content bg-white">
+                <view class="card-content bg-white" style="padding-bottom:10rpx;">
                     <view class="cu-list menu-avatar">
                         <view wx:for="{{order.products}}" wx:for-item="product" wx:key="id" class="flex ">
                             <view class="cu-avatar radius lg" style="background-image:url({{product.product_image}});"></view>

@@ -68,6 +68,12 @@
           <view style="margin-left:20rpx;font-size:30rpx" class="van-cell-text">我的订单</view>
         </view>
       </van-cell>
+      <van-cell is-link bindtap="tojifen">
+        <view slot="title" style="display:flex;align-items: center;">
+          <image style="width:38rpx;height:38rpx;" slot="right-icon" src="../../icon/jifen.png"></image>
+          <view style="margin-left:20rpx;font-size:30rpx" class="van-cell-text">积分明细</view>
+        </view>
+      </van-cell>
     </van-cell-group>
     </view>
   </view>

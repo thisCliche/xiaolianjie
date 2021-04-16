@@ -1,5 +1,5 @@
 // pages/newlists/detail/detail.js
-import {getNewDetail,getComments,sendComments} from '../../../api/api'
+import {getNewDetail,getComments,sendComments,getallPoint} from '../../../api/api'
 const trail = require("../../../utils/trail.js");
 const html = require("../../../utils/HtmlToNodes.js");
 import {timestampToTime} from '../../../utils/util'
@@ -16,6 +16,12 @@ Page({
         moment: [],
         inputCon: '',
         reply: '',
+        timer: null,
+        desc: '',
+        point_second: null,
+        points: '',
+        second: 0,
+        source_type: ''
     },
     activeReply(e){
         this.setData({
@@ -85,6 +91,7 @@ Page({
             }
         })
         getNewDetail({ id: this.data.id}).then(json=>{
+            let that = this
             if (json.code == 1) {
                 let data=json.data.article
                 data.create_time = timestampToTime(data.create_time,false)
@@ -94,7 +101,12 @@ Page({
                 this.setData({
                     model: data,
                     images: json.data.images,
-                    digged: json.data.digged
+                    digged: json.data.digged,
+                    desc: json.data.desc,
+                    point_second: json.data.point_second,
+                    points: json.data.points,
+                    second: json.data.second,
+                    source_type: json.data.source_type
                 })
                 wx.setNavigationBarTitle({
                     title: data.title,
@@ -105,6 +117,22 @@ Page({
                 })
             }
             wx.hideLoading()
+            if(this.data.point_second){
+                let second = parseInt(that.data.second)
+                let inter = setInterval(() => {
+                    second--
+                    that.setData({
+                        second: second
+                    })
+                    if(second<=0){
+                        clearInterval(inter)
+                        console.log('定时结束了')
+                        getallPoint({type:1,value:that.data.points,source_type:that.data.source_type,desc:that.data.desc}).then(res=>{
+                            console.log(res)
+                        })
+                    }
+                }, 1000);
+            }
         })
         
     },
@@ -113,7 +141,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        
     },
 
     /**

@@ -47,3 +47,16 @@
 .content{
     font-size: 30rpx;
 }
+.xuanfu{
+    height: 140rpx;
+    width: 140rpx;
+    padding-top: 32rpx;
+    text-align: center;
+    border-radius: 50%;
+    position: fixed;
+    right: 0;
+    bottom: 250rpx;
+    background: #febac9;
+    color: #fff;
+    box-shadow: 3px 3px 3px #c5c5c5;
+}

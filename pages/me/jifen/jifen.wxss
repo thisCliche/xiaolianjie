@@ -1,0 +1,26 @@
+/* pages/me/winCheck/wincheck.wxss */
+.wincheck{
+    background-color: #eaedf1;
+    height: 100vh;
+}
+.wrapper{
+    padding: 25rpx;
+}
+.card{
+    background: #fff;
+    border-radius: 20rpx;
+    margin-top: 40rpx;
+    display: flex;
+    padding: 25rpx;
+    justify-content: space-between;
+    box-shadow: 4px 6px 6px 0px #ccc;
+    align-items: center;
+}
+.card image{
+    flex-shrink: 0;
+    width: 120rpx;
+    height: 80rpx;
+}
+.time{
+    flex-shrink: 0;
+}
