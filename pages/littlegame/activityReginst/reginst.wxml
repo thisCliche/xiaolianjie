@@ -1,0 +1,32 @@
+<!--pages/littlegame/activityReginst/reginst.wxml-->
+<view style="height:100%;">
+  <!-- <w-header title="活动报名" isBack="1" bind:childBackUp="backUp"></w-header> -->
+
+  <view class="wrapper" style="background:url({{detail.background_image}}) center center;">
+    <view class="explain">
+      <view style="margin-top:30rpx;"></view>
+      <text style="font-size:36rpx;">活动说明：</text>
+      <view style="padding:20rpx;">
+        <rich-text nodes="{{detail.content}}"></rich-text>
+      </view>
+      <text style="font-size:36rpx;">活动时间：</text>
+      <view style="padding:20rpx;">
+        {{detail.start_time}} — {{detail.end_time}}
+      </view>
+    </view>
+    <view style="margin-top:30rpx;"></view>
+    <text style="font-size:36rpx;" wx:if="{{detail.join_list.length!=0}}">已报名：</text>
+    <view class="people" wx:if="{{detail.join_list.length!=0}}">
+      <view class="wrapperP">
+        <view class="item" wx:for="{{detail.join_list}}" wx:key="index">
+          <view>{{item.nickname}}</view>
+          <view>{{item.mobile}}</view>
+        </view>
+      </view>
+    </view>
+    <view style="text-align: center;margin-top:200rpx;">
+      <van-button wx:if="{{detail.is_my_join != 1}}" bindtap="toSign" data-id="{{detail.id}}" custom-class="btn" style="width:300rpx;" color="linear-gradient(to right, #febac9, #ffc39f)">立即报名</van-button>
+      <van-button wx:else data-id="{{detail.id}}" custom-class="btn" style="width:300rpx;" color="linear-gradient(to right, #febac9, #ffc39f)">已报名</van-button>
+    </view>
+  </view>
+</view>

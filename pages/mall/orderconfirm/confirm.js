@@ -2,7 +2,7 @@
 const util = require("../../../utils/util.js");
 const trail = require("../../../utils/trail.js");
 const app = getApp()
-import {orderprepare} from '../../../api/api'
+import {orderprepare,confirmorder,wechatpay} from '../../../api/api'
 Page({
 
     /**
@@ -37,14 +37,13 @@ Page({
         wx.showLoading({
             title: '',
         })
-        app.getProfile(profile => {
-            this.setData({
-                profile: profile
-            })
-            this.loadData()
-        })
-        
-
+        // app.getProfile(profile => {
+        //     this.setData({
+        //         profile: profile
+        //     })
+            
+        // })
+        // this.loadData()
         if (options.data) {
             this.data.delay_timing = setTimeout(() => {
                 this.errorBack()
@@ -66,6 +65,7 @@ Page({
                 }
             }
         }else{
+            
             this.errorBack()
         }
     },
@@ -110,7 +110,7 @@ Page({
                 })
             })
 
-            if(this.data.address && this.data.address.address_id)data.address= this.data.address
+            if(this.data.address && this.data.address.address_id) data.address= this.data.address
             orderprepare(data).then(json => {
                 wx.hideLoading()
                 if (json.code == 1) {
@@ -125,6 +125,7 @@ Page({
                         this.calcolation()
                     })
                 } else {
+                    console.log(1)
                     this.errorBack()
                 }
             })
@@ -161,7 +162,7 @@ Page({
     pickAddress: function (e) {
         var id = e.currentTarget.dataset.addressid
         wx.navigateTo({
-            url: '../common/pick-address?id=' + id + '&callback=setAddress',
+            url: '../pickAddress/pickaddress?id=' + id + '&callback=setAddress',
         })
     },
     setAddress: function (address) {
@@ -339,15 +340,49 @@ Page({
         })
         const param = {
             address_id: this.data.address.address_id,
-            form_id: e.detail.formId,
+            // moneys: this.data.totalPrice,
             products: products,
             remark: this.data.memo,
             total_postage: this.data.total_postage,
             total_price: this.data.total_price, //用于价格比较
-            from: this.data.buy_from
+            from: this.data.buy_from,
+            pay_type: 'moneys'
         }
         this.data.ordering = true
-        console.log('开始下单')
+       
+        confirmorder(param).then(res=>{
+            wechatpay({order_id:res.data.order_id,trade_type:'JSAPI',payid:app.globalData.wxid}).then(res=>{
+                wx.requestPayment({
+                    timeStamp: res.data.payment.timeStamp+'',
+                    nonceStr: res.data.payment.nonceStr,
+                    package: res.data.payment.package,
+                    signType: 'MD5',
+                    paySign: res.data.payment.paySign,
+                    success (res) { 
+                      console.log('成功')
+                    },
+                    fail (res) { 
+                      wx.showToast({
+                        title: '支付失败',
+                        icon: 'error'
+                      })
+                      console.log('失败',res)
+                    }
+                  })
+            })
+            
+            // if(res.code == 1) {
+            //     wx.showToast({
+            //     title: '下单成功',
+            //     })
+
+            //       setTimeout(_=>{
+            //         wx.navigateBack({
+            //             delta: 1,
+            //           })
+            //       },500)
+            // }
+        })
         // trail.makeOrder('order/confirm', param, order_id => {
 
         //     wx.redirectTo({
@@ -371,6 +406,11 @@ Page({
 	/**
 	 * 留言
 	 */
+    backUp() {
+        wx.navigateBack({
+          delta: 1,
+        })
+      },
     memoHandle(e) {
         var idx = e.currentTarget.dataset.idx
         let memo = e.detail.value

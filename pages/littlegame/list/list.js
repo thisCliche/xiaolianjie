@@ -1,15 +1,21 @@
 // pages/littlegame/list/list.js
+import {gameList} from '../../../api/api'
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-
+      list: []
     },
     backUp() {
         wx.navigateBack({
           delta: 1,
+        })
+      },
+      toContent(e){
+        wx.navigateTo({
+          url: '/'+e.currentTarget.dataset.router,
         })
       },
     /**
@@ -23,7 +29,11 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-
+      gameList().then(res=>{
+        this.setData({
+          list: res.data
+        })
+      })
     },
 
     /**

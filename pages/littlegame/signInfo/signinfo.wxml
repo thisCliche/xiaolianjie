@@ -1,0 +1,68 @@
+<!--pages/littlegame/signInfo/signinfo.wxml-->
+<view>
+  <w-header title="信息收集" isBack="1" bind:childBackUp="backUp"></w-header>
+  <view style="padding:40rpx 25rpx;">
+    <view style="font-size:50rpx;margin:20rpx 0">{{title}}</view>
+    <view style="font-size:28rpx;color:#999;">本表仅用于活动登记报名和邀请通知使用，请放心填写</view>
+    <view class="form">
+      <van-cell-group>
+        <view class="title">姓名（请填写真实姓名）</view>
+        <van-field required model:value="{{ name }}" placeholder="请输入内容" />
+        <view class="title">性别</view>
+        <van-radio-group value="{{ gender }}" bind:change="onChange1">
+          <van-radio custom-class="radioStyle" name="{{1}}">女</van-radio>
+          <van-radio custom-class="radioStyle" name="{{2}}">男</van-radio>
+        </van-radio-group>
+        <view class="title">年龄（周岁）</view>
+        <van-field required model:value="{{ age }}" placeholder="请输入内容" />
+        <view class="title">学历（最高学历）</view>
+        <van-radio-group value="{{ edu }}" bind:change="onChange2">
+          <van-radio custom-class="radioStyle" name="{{1}}">高中、中专及以下</van-radio>
+          <van-radio custom-class="radioStyle" name="{{2}}">大专</van-radio>
+          <van-radio custom-class="radioStyle" name="{{3}}">本科</van-radio>
+          <van-radio custom-class="radioStyle" name="{{4}}">研究生及以上</van-radio>
+        </van-radio-group>
+        <view class="title">就职单位（全称）</view>
+        <van-field required model:value="{{ address }}" placeholder="请输入内容" />
+        <view class="title">职位</view>
+        <van-field required model:value="{{ position }}" placeholder="请输入内容" />
+        <view class="title">月收入</view>
+        <van-radio-group value="{{ salar }}" bind:change="onChange3">
+          <van-radio custom-class="radioStyle" name="{{1}}">5000以下</van-radio>
+          <van-radio custom-class="radioStyle" name="{{2}}">5000-8000</van-radio>
+          <van-radio custom-class="radioStyle" name="{{3}}">8000-10000</van-radio>
+          <van-radio custom-class="radioStyle" name="{{4}}">10000-15000</van-radio>
+          <van-radio custom-class="radioStyle" name="{{5}}">15000以上</van-radio>
+        </van-radio-group>
+        <view class="title">身份证号</view>
+        <van-field required model:value="{{ card_no }}" placeholder="请输入内容" />
+        <view class="title">个人手机号（请填写可接通手机号）</view>
+        <van-field required model:value="{{ mobile }}" placeholder="请输入内容" />
+        <view class="title">个人微信号（请填写可添加的微信号）</view>
+        <van-field required model:value="{{ weixin_no }}" placeholder="请输入内容" />
+        <view class="title">请上传个人身份证信息面照片（供核验使用）</view>
+        <van-uploader multiple="{{false}}" file-list="{{ fileList }}" max-count="1" deletable="{{ false }}" bind:after-read="afterRead" />
+        <view class="title">婚姻状态</view>
+        <van-radio-group value="{{ marstatus }}" bind:change="onChange4">
+          <van-radio custom-class="radioStyle" name="{{1}}">未婚</van-radio>
+          <van-radio custom-class="radioStyle" name="{{2}}">离异</van-radio>
+          <van-radio custom-class="radioStyle" name="{{3}}">丧偶</van-radio>
+        </van-radio-group>
+        <view class="title">身高（裸身高）（cm）</view>
+        <van-field required model:value="{{ height }}" placeholder="请输入内容" />
+        <view class="title">对TA的期待</view>
+        <van-field required model:value="{{ desc }}" placeholder="请输入内容" />
+        <view class="title">个人生活照</view>
+        <van-uploader multiple="{{false}}" file-list="{{ fileList1 }}" max-count="1" deletable="{{ false }}" bind:after-read="afterRead1" />
+        <view class="title">本人承诺：所提供的个人信息真实准确，对因提供有关信息、证件不实或违反有关规定造成的后果，责任自负。</view>
+        <van-radio-group value="{{ promise }}" bind:change="onChange5">
+          <van-radio custom-class="radioStyle" name="{{0}}">同意</van-radio>
+          <van-radio custom-class="radioStyle" name="{{1}}">不同意</van-radio>
+        </van-radio-group>
+      </van-cell-group>
+      <view style="text-align: center;margin-top:150rpx;">
+        <van-button bindtap="sumb" custom-class="btn" style="width:300rpx;" color="linear-gradient(to right, #febac9, #ffc39f)">提交</van-button>
+      </view>
+    </view>
+  </view>
+</view>

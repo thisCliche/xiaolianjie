@@ -59,3 +59,12 @@
 .van-cell{
   padding: 24rpx 0 !important;
 }
+.kefuUrl{
+  /* margin: 0 auto; */
+  text-align:center;
+}
+.kefuUrl image{
+  width:360rpx;
+  height: 360rpx;
+  margin:  auto;
+}

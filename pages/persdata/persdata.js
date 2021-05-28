@@ -1,7 +1,7 @@
 // pages/persdata/persdata.js
 const app = getApp()
 import {
-  getMemberDetail,leaveMessageapi
+  getMemberDetail,leaveMessageapi,is_show
 } from '../../api/api'
 Page({
 
@@ -17,7 +17,9 @@ Page({
     bg: 'https://img.xiaojiayun.top/bg1.png',
     avatar: 'https://img.xiaojiayun.top/avatar1.png',
     leaveMessage: '',
-    isme: false
+    isme: false,
+    isVip: false,
+    isShow: 1,
   },
 
   backUp() {
@@ -57,8 +59,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
-
     if (options.id) {
       this.setData({
         id: parseInt(options.id)
@@ -85,6 +85,7 @@ Page({
         demand = [],
         nick = "",
         bg = '',
+        source_auth=false,
         avatar = "";
       if (res.data.detail.gender) perdata[0] = res.data.detail.gender == 1 ? '男' : '女'
       if (res.data.detail.birthday) perdata[1] = res.data.detail.birthday + '岁'
@@ -102,12 +103,14 @@ Page({
       if (res.data.detail.details.avatar) avatar = res.data.detail.details.avatar
       if (res.data.detail.details.life_image) bg = res.data.detail.details.life_image
       if (res.data.detail.details.nickname) nick = res.data.detail.details.nickname
+      if (res.data.detail.details.source_auth == 1) source_auth = true
       this.setData({
         perdata,
         demand,
         avatar,
         bg,
-        nick
+        nick,
+        isVip: source_auth
       })
     })
   },
@@ -116,7 +119,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    is_show().then(res=>{
+      this.setData({
+        isShow: res.data.show
+      })
+    })
   },
 
   /**

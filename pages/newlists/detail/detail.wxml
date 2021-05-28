@@ -11,12 +11,12 @@
     <view class='detail-content'>
         <rich-text nodes="{{model.content}}"></rich-text>
     </view>
-    <view class="noMoment">
+    <view class="noMoment" wx:if="{{isReply}}">
         <input type="text" placeholder="快来一发评论吧~" bindinput="activeInput" style="width:80%;background:#eee;padding:8rpx 10rpx;margin-right:10rpx;box-sizing: content-box;line-height: 30px;" /> 
         <van-button size="small" round bind:click="sendComent">评论</van-button>
     </view>
     <view class="hasMoment" wx:if="{{moment.length != 0}}">
-        <view class="hasMomentColumn" wx:for="{{moment}}" wx:key="{{index}}">
+        <view class="hasMomentColumn" wx:for="{{moment}}" wx:key="{{index}}" wx:key="index">
             <view style="display:flex;justify-content: space-between;">
                 <view class="nick">{{item.nickname}}</view>
                 <view style="color:#999">{{item.create_time}}</view>
@@ -29,7 +29,7 @@
                     <view class="content">{{pro.content}}</view>
                 </view>
             </view>
-            <view style="margin-top:20rpx;display:flex;align-items: center;justify-content: flex-end;">
+            <view style="margin-top:20rpx;display:flex;align-items: center;justify-content: flex-end;" wx:if="{{isReply}}">
                 <input type="text" placeholder="回复此条评论~" bindinput="activeReply" style="width:50%;background:#fff;padding:0 10rpx;margin-right:10rpx;" /> 
                 <van-button size="small" round bind:click="sendReply" data-id="{{item.id}}">回复</van-button>
             </view>

@@ -1,8 +1,8 @@
 <!--pages/lovelist/lovelist.wxml-->
 <view>
-  <w-header title="恋爱婚姻" isBack="1" bind:childBackUp="backUp"></w-header>
+  <w-header title="用户列表" isBack="1" bind:childBackUp="backUp"></w-header>
   <view style="position:fixed;right:20rpx;">
-    <view class="filter" bindtap="showFil" >
+    <view class="filter" bindtap="showFil" wx:if="{{isShow!=0}}" >
       <image style="width:45rpx;height:53rpx;" src="../../icon/fluter.png"></image>
     </view>
   </view>

@@ -1,6 +1,6 @@
 <!--pages/order/confirm.wxml-->
 <form bindsubmit='submitOrder' report-submit="true">
-    <view class="container">
+    <view class="wrapper">
         <w-header title="确认订单" isBack="1" bind:childBackUp="backUp"></w-header>
         <view class="scroll-box">
             <view class='block address-box bg-white' data-addressid="{{address.address_id}}" bindtap='pickAddress'>
@@ -30,7 +30,7 @@
                         </view>
                         <view class='pro-price'>
                             <text class='fr' wx:if="{{buy_from=='cart'}}">x {{product.count}}</text>
-                            <text class='price p-price'>￥{{product.product_price}}</text>
+                            <text class='price p-price'>￥{{product.product_price}} + 积分：{{product.points}}</text>
                         </view>
                         <view wx:if="{{product.deprecated}}" class="text-red margin-top-sm text-sm">暂不支持配送到{{address.city}}</view>
                     </view>

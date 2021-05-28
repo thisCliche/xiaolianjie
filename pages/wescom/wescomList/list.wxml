@@ -1,0 +1,28 @@
+<!--pages/home/home.wxml-->
+<w-header title="帖子列表" isBack="1" bind:childBackUp="backUp"></w-header>
+
+<view class="note">
+  <van-nav-bar
+  right-text="发帖子"
+  bind:click-right="onClickRight"
+  safe-area-inset-top="{{false}}"
+/>
+    <scroll-view
+    wx:if="{{noteList.length!=0}}"
+    bindscrolltolower="bottoOut"
+  scroll-y class="middle"
+  style="top: {{securyheight}}rpx;"
+  refresher-enabled="{{true}}"
+  refresher-threshold="{{100}}"
+  refresher-default-style="white"
+  refresher-background="#fe909d"
+  refresher-triggered="{{triggered}}"  
+  bindrefresherrefresh="onRefresh"
+>
+    <view class="content">
+      <van-card wx:for="{{noteList}}" wx:for-index="idx" wx:for-item="itemName" wx:key="idx" note="{{itemName}}" data-id="{{itemName.id}}" bindtap="todetail"></van-card>
+    </view>
+    <view wx:if="{{nomore}}" class="nomore"><van-icon name="smile-o" /> 没有更多数据了</view>
+  </scroll-view>
+  <van-empty wx:else description="暂无帖子" />
+</view>

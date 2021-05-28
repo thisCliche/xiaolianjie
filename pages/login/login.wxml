@@ -1,8 +1,8 @@
 <!--pages/login/login.wxml-->
 <view class="login-main">
   <image src="/icon/logo.png" class="logo"></image>
-  <view class="login-main-title">恋爱婚姻</view>
-  <button class="btn" wx:if="{{isLogin}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" style="width:500rpx;" bindtap="getUserProfile">微信授权登陆</button>
+  <!-- <view class="login-main-title">恋爱婚姻</view> -->
+  <button class="btn" wx:if="{{isLogin}}" style="width:500rpx;" bindtap="getUserProfile">微信授权登陆</button>
   <button class="btn" wx:else open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" style="width:500rpx;">授权获取手机号</button>
   <button class="btn-qx" style="width:500rpx;" bindtap="backUp">取消</button>
 </view>

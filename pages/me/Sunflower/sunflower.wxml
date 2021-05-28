@@ -1,0 +1,30 @@
+<!--pages/littlegame/randomLove/random.wxml-->
+<view style="background: url({{background}}) no-repeat top center;" class="randomWrap" >
+    <w-header title="寻爱之旅" isBack="1" bind:childBackUp="backUp"></w-header>
+    <view class="btn" bindtap="onClickShow">
+        <image src="../../../icon/selectBtn.png"></image>
+        点击选择小伙伴
+    </view>
+    <van-overlay show="{{ show }}"  >
+        <view class="selectWrap">
+            <view class="selectTitle">
+                <image src="../../../icon/selecttbg.png"></image>
+                <view>您还有 {{join_num}} 次选择机会</view>
+            </view>
+            <view class="content">
+                <block wx:if="{{selectList.length!=0}}">
+                    <view class="model" wx:for="{{selectList}}" wx:key="index" data-id="{{item.member_id}}" bindtap="toDetail">
+                    <image style="width:100%;height:100%;" src="{{item.avatar}}"></image>
+                    <view>{{item.nickname}}</view>
+                </view>
+                </block>
+                <view wx:else style="margin-top:300rpx;text-aligin:center;margin-left: 120rpx;">
+                    匹配失败，请重试！
+                </view>
+            </view>
+        </view>
+        <view class="closeSelect" bindtap="onClickHide">
+            <image src="../../../icon/close.png"></image>
+        </view>
+    </van-overlay>
+</view>

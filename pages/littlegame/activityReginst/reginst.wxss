@@ -1,0 +1,23 @@
+/* pages/littlegame/activityReginst/reginst.wxss */
+page{
+  height: 100%;
+}
+.wrapper{
+  padding: 25rpx 20rpx;
+  height: 100%;
+  background-size: 100% 100% !important;
+}
+.people{
+  height: 300rpx;
+  overflow: auto;
+  border:1rpx solid #eee;
+  margin-top: 20rpx;
+}
+.item{
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 25rpx;
+}
+.btn{
+  width: 400rpx;
+}

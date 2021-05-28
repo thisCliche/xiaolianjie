@@ -3,7 +3,7 @@
   },
   "enablePullDownRefresh": true,
   "onReachBottomDistance": 50,
-  "navigationBarTitleText": "情感美文",
+  "navigationBarTitleText": "文章",
   "navigationBarBackgroundColor": "#ffb2c2",
   "backgroundColor": "#eeeeee",
   "navigationBarTextStyle": "white"

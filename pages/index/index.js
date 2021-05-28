@@ -1,16 +1,17 @@
 // pages/service/service.js
 const app = getApp()
 import {timestampToTime, routerFiliter} from '../../utils/util'
-import {getBarch} from '../../api/api.js'
+import {getBarch,is_show} from '../../api/api.js'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    isShow: 0,
     indicatorDots: false,
     autoplay: true,
-    interval: 4000,
+    interval: 3000,
     duration: 800,
     swiperCurrent: 0,
     statusBarHeight: app.globalData.statusBarHeight,
@@ -29,6 +30,22 @@ Page({
     let url = '/pages/newlists/detail/detail?id=' + id
     routerFiliter(url)
   },
+  toActivity(e){
+    wx.switchTab({
+      url: '/pages/littlegame/activityList/activityList',
+    })
+    // routerFiliter('/pages/littlegame/activityList/activityList')
+  },
+  tomeiwen(){
+    wx.switchTab({
+      url: '/pages/newlists/newlist/newlist',
+    })
+  },
+  tohuigu() {
+    wx.switchTab({
+      url: '/pages/littlegame/activityList/activityList',
+    })
+  },
   toDetial(e){
     let id = e.currentTarget.dataset.id
     let url = '/pages/persdata/persdata?id=' + id
@@ -41,7 +58,7 @@ Page({
     routerFiliter('../mall/mallList/mall')
   },
   toTieZi(){
-    routerFiliter('../blog/blogList/list')
+    routerFiliter('../wescom/wescomList/list')
   },
   toLoveList() {
     routerFiliter('../lovelist/lovelist')
@@ -55,32 +72,8 @@ Page({
     })
   },
   //推荐有礼
-  
-  tonewList() {
-    routerFiliter('/pages/newlists/newlist/newlist')
-    // wx.navigateTo({
-    //   url: '/pages/newlists/newlist/newlist',
-    // })
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function(options) {
-    
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-    getBarch({
+  async getHomeInof(){
+    let res = await getBarch({
       'get_list':{},
       'product.get_list': { withsku: 1, type: 4, pagesize:4},
       'product.get_cates': { goods_count: 4,withsku:1 },
@@ -96,7 +89,7 @@ Page({
           call: 'advs',
           flag: 'midbanner'
       }
-  }).then(res=>{
+  })
     let article = res.data['article.get_list'].lists
     article.forEach(item=>{
       item.create_time = timestampToTime(item.create_time)
@@ -108,11 +101,44 @@ Page({
         activity: res.data.four_advs,
         article,
       })
-    }).catch(error=>{
-      wx.showToast({
-        title: '网络错误',
-      })
+      console.log(2)
+    
+  },
+  tonewList() {
+    wx.switchTab({
+      url: '/pages/newlists/newlist/newlist',
     })
+    // routerFiliter('')
+    // wx.navigateTo({
+    //   url: '/pages/newlists/newlist/newlist',
+    // })
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function(options) {
+    
+  },
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function() {
+    setTimeout(_=>{
+      this.getHomeInof()
+    },300)
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+    onShow:  async function() {
+      let res = await is_show()
+      this.setData({
+        isShow: res.data.show
+      })
+      // this.getHomeInof()
+      console.log(1)
   },
 
   /**

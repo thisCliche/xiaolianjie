@@ -1,7 +1,8 @@
 <!--pages/message/message.wxml-->
 <view>
   <w-header title="我的留言" isBack="1" bind:childBackUp="backUp"></w-header>
-  <view class="messageModel" wx:for="{{messageList}}" wx:key="index">
+  <block wx:if="{{messageList.length!=0}}">
+    <view class="messageModel" wx:for="{{messageList}}" wx:key="index">
     <view class="messageModelTop">
       <view class="messageModelLeft">
         <image style="width:72rpx;height:72rpx;border-radius:50%;" src="{{item.avatar}}"></image>
@@ -20,7 +21,8 @@
       <van-button size="mini" bind:click="replyMessage" data-id="{{item.id}}" data-member_id="{{item.member_id}}">回复</van-button>
     </view>
   </view>
-  
+  </block>
+  <van-empty wx:else description="暂无留言" />
   <van-action-sheet
   show="{{ show }}"
   actions="{{ actions }}"

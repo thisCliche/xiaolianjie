@@ -8,12 +8,56 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+    const updateManager = wx.getUpdateManager();
+
+updateManager.onCheckForUpdate(function (res) {
+  // 请求完新版本信息的回调
+  console.log(res.hasUpdate);
+});
+
+updateManager.onUpdateReady(function (res) {
+  wx.showModal({
+    title: '更新提示',
+    content: '新版本已经准备好，是否重启应用？',
+    success(res) {
+      if (res.confirm) {
+        // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+        updateManager.applyUpdate();
       }
-    })
+    }
+  });
+
+});
+
+updateManager.onUpdateFailed(function (res) {
+  // 新的版本下载失败
+});
+
+    // 登录
+    try{
+        const res = wx.getSystemInfoSync();
+        this.globalData.systemInfo = res
+        // this.addDebug(res)
+
+        // //基础库版本提示
+        // if (util.compareVersion(res.SDKVersion, '2.4.4') < 0) {
+        //     wx.showModal({
+        //         title: '提示',
+        //         content: '当前微信版本过低，部分功能可能无法使用。'
+        //     })
+        // }
+
+        // this.addDebug('statusBarHeight:'+res.statusBarHeight)
+        // this.globalData.StatusBar = res.statusBarHeight;
+
+        // if (custom.right < 1) custom.right = res.windowWidth - (custom.top - res.statusBarHeight)*2
+        // if (custom.left < 1) custom.left =custom.right-custom.width
+    }catch(e){
+        this.addDebug('getSystemInfo:'+e.message)
+
+        // if (custom.left < 1) custom.left = defaultCustom.left
+        // if (custom.right < 1) custom.right = custom.left + custom.width
+    }
     
   },
   tip: function (msg) {
@@ -29,15 +73,14 @@ success: function (msg) {
     });
 },
 getProfile(callback = null, force = false) {
-    let that = this
     if (!this.profileRequest) {
-        profilemember({agent:this.globalData.agent}).then(profile => {
+        this.profileRequest = new TSRequest('member/profile',{agent:this.globalData.agent}, profile => {
             profile.avatar = this.fixImageUrl(profile.avatar)
-            profile.cardno = util.timestampToTime(profile.id, 8)
+            profile.cardno = util.formatNumber(profile.id, 8)
             profile.money_formated = (profile.money*.01).toFixed(2)
             profile.credit_formated = (profile.credit*.01).toFixed(2)
             profile.reward_formated = (profile.reward * .01).toFixed(2)
-            that.profileRequest = profile
+            return profile
         })
     }
     if(force || !this.globalData.profile){
@@ -145,5 +188,6 @@ confirm: function (msg, confirm = null, cancel = null, callback = null) {
     userInfo: null,
     wxid: 'PFrUYFh',
     scene:0,
+    systemInfo: ''
   }
 })

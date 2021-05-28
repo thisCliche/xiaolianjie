@@ -1,0 +1,159 @@
+<!--pages/product/detail.wxml-->
+<view class='wrapper'>
+  <w-header title="商品详情" isBack="1" bind:childBackUp="backUp"></w-header>
+    <block wx:if="{{albums && albums.length}}">
+        <swiper bindchange="bannerChange" indicator-dots="{{indicatorDots}}" indicator-active-color="#fff" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="height:{{screenWidth}}px">
+            <block wx:for="{{albums}}" wx:key="index">
+                <swiper-item>
+                    <image src="{{item}}" mode="aspectFill" class="slide-image" />
+                </swiper-item>
+            </block>
+        </swiper>
+        <view class='imageDirector'>
+            <view>{{currentIndex}}/{{albums.length}}</view>
+        </view>
+    </block>
+    <view class="prod-info">
+        
+        <view class='prod-title'>{{model.title}}</view>
+        <view class="price-box">
+            <text style="color:#b00;">积分 {{points}}</text>
+            <view class="text-desc">
+                <text class="cu-tag radius sm margin-left-sm" wx:if="{{price_desc}}"> {{price_desc}}</text>
+            </view>
+        </view>
+        <view class="expinfos">
+            <view class="market-price">市场价：
+                <text class="text-linethrough" wx:if="{{market_price>0}}">￥{{market_price}}</text>
+                <text wx:else>无</text>
+            </view>
+            <view class='express'>快递：{{postage}}</view>
+            <view class='sales'>销量 {{model.sale}}</view>
+        </view>
+    </view>
+    <view class="cu-list menu">
+        <view class='cu-item specs' wx:if="{{model.spec_data}}" bindtap="openModal" data-title="选择规格" data-for="spec">
+            <view class="content">
+                <text class='title'>规格</text>
+                <text class='text-sm text-gray desc'> {{specstext}}</text>
+            </view>
+            <view class="action">
+                <text class="cuIcon-right"></text>
+            </view>
+        </view>
+        <view class='cu-item proprow' wx:if="{{hasProp}}" bindtap="openModal" data-title="产品参数" data-for="attr">
+            <view class="content">
+                <text class='title'>参数</text>
+                <text class='text-sm text-gray desc'> {{proptext}}</text>
+            </view>
+            <view class="action">
+                <text class="cuIcon-right"></text>
+            </view>
+        </view>
+    </view>
+
+    <view class='image-content margin-top-sm'>
+        <rich-text nodes="{{model.content}}"></rich-text>
+    </view>
+    <view class='cu-tabbar-height'></view>
+
+    <view class="cu-bar bg-white tabbar border foot shop">
+        <!-- <button class="action" open-type="contact">
+            <view class="cuIcon-service text-green">
+                <view class="cu-tag badge"></view>
+            </view>
+            客服
+        </button>
+        <view class="action" bindtap="gotocart">
+            <view class="cuIcon-cart">
+                <view class="cu-tag badge" wx:if="{{cart_count>0}}">{{cart_count}}</view>
+            </view>
+            购物车
+        </view>
+        <view class="bg-orange submit" bindtap="addtocart" data-for="spec" data-title="添加购物车">加入购物车</view> -->
+        <view class="bg-red submit" bindtap="buynow" data-for="spec" data-title="选择规格">立即兑换</view>
+    </view>
+    <view class="cu-modal {{showshare?'show':''}}" bindtap="hideShare">
+        <view class="cu-dialog" catchtap="emptyEvent">
+            <view class="bg-img" style="background-image: url('{{shareimg}}');background-color:#eee;padding-bottom:{{shareheight}}rpx;">
+                <view class="cu-bar justify-end text-white">
+                    <view class="action reposition" bindtap="hideShare">
+                        <text class="cuIcon-close text-shadow shadow-black"></text>
+                    </view>
+                </view>
+            </view>
+            <view class="cu-bar bg-white">
+                <view class="action text-green margin-0 flex-sub  solid-left" bindtap="saveShare">保存图片</view>
+                <button class="not-button action text-orange margin-0 flex-sub  solid-left" open-type="share">分享链接</button>
+            </view>
+        </view>
+    </view>
+    <view class="cu-modal bottom-modal {{ismask?'show':''}}">
+        <view class="cu-dialog">
+            <view wx:if='{{maskfor=="attr"}}' class="cu-bar bg-white">
+                <view class="action text-green" bindtap="confirmModal"></view>
+                <view wx:if="{{modal_title}}">{{modal_title}}</view>
+                <view class="action text-blue" bindtap="hideModal"></view>
+            </view>
+            <view wx:else class="cu-bar transheader"></view>
+            <view class="cu-dialog-content padding-sm">
+                <view wx:if="{{maskfor=='spec'}}" class='panel'>
+                    <view class='prod-view-info'>
+                        <view class="action-close" bindtap="hideModal">
+                            <text class="cuIcon-roundclose text-xl"></text>
+                        </view>
+                        <view class='vimgbox'>
+                            <image src="{{sku.image?sku.image:model.image}}" class='picture'></image>
+                        </view>
+                        <view class='infobox text-left' wx:if="{{sku}}">
+                            <text class='price text-red text-xl'>￥{{sku.price}}</text>
+                            <text class='storage'>{{sku.storage>0?("库存"+sku.storage+"件"):"暂时缺货"}}</text>
+                            <text class='specinfo'>{{selected}}</text>
+                        </view>
+                        <view class='infobox text-left' wx:else>
+                            <text class='price text-red text-xl'>￥{{price}}</text>
+                            <text class='storage'>库存{{allstorage}}件</text>
+                            <text class='specinfo'>{{selected}}</text>
+                        </view>
+                    </view>
+                    <view class='pcontent'>
+                        <view class='plist speclist'>
+                            <view class='specrow' wx:for="{{model.spec_data}}" wx:key="title" wx:for-index="key">
+                                <view class='specname'>{{item.title}}</view>
+                                <view class='optionlist'>
+                                    <view class='option{{optsku[key] && optsku[key][opt]?"":" disabled"}}{{options[key]==opt?" checked":""}}' wx:for="{{item.data}}" wx:key="this" bindtap="selectOption" wx:for-item="opt" data-spec_id="{{key}}" data-value="{{opt}}">{{opt}}</view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class='plist countbox'>
+                            <text class="text-left">购买数量</text>
+                            <number-input value="{{good_count}}" mintip="最少购买 {number} 件" maxtip="最多购买 {number} 件" bind:change="setCount" />
+                        </view>
+                    </view>
+                    <view class='buttons'>
+                        <button wx:if="{{product.max_buy==0}}" type='gray' class='btn-large buynow_nostorage' bindtap='sellouthandle'>限量销售</button>
+                        <button wx:elif="{{sku && sku.storage<1}}" type='gray' class='btn-large'>暂时缺货</button>
+                        <button wx:else class='cu-btn lg bg-orange orderbtn' catch:tap="sureBuy" disabled='{{good_count<1}}'>立即兑换</button>
+                        
+                    </view>
+                </view>
+                <view wx:elif="{{maskfor=='attr'}}" class='panel'>
+                    <view class='cu-list margin-bottom menu attrlist' wx:if="{{hasProp}}">
+                        <view class='cu-item attritem' wx:for="{{model.prop_data}}" wx:key="this" wx:for-index="key">
+                            <view class='content text-left'>
+                                <text>{{key}}</text>
+                            </view>
+                            <view class='action'>
+                                <text>{{item}}</text>
+                            </view>
+                        </view>
+                    </view>
+                    <view wx:else class="emptytip">暂无更多参数</view>
+                    <view class='buttons'>
+                        <button class='cu-btn lg bg-orange' catch:tap="hideModal">完成</button>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

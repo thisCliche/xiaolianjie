@@ -233,7 +233,12 @@ swiper image {
   width: 30%;
 }
 .menu{
-  margin: 50rpx 0;
+  margin: 50rpx 0 25rpx;
+  display: flex;
+  justify-content: space-around;
+}
+.menu1{
+  margin: 0rpx 0 50rpx;
   display: flex;
   justify-content: space-around;
 }
@@ -241,8 +246,8 @@ swiper image {
   text-align: center;
 }
 .column image{
-  width: 80rpx;
-  height: 80rpx;
+  width: 220rpx;
+  height: 85rpx;
   border-radius: 8rpx;
 }
 .column view{

@@ -1,5 +1,5 @@
 // pages/newlists/detail/detail.js
-import {getNewDetail,getComments,sendComments,getallPoint} from '../../../api/api'
+import {getNewDetail,getComments,sendComments,getallPoint,memberDetail} from '../../../api/api'
 const trail = require("../../../utils/trail.js");
 const html = require("../../../utils/HtmlToNodes.js");
 import {timestampToTime} from '../../../utils/util'
@@ -21,7 +21,9 @@ Page({
         point_second: null,
         points: '',
         second: 0,
-        source_type: ''
+        source_type: '',
+        isReply: false,
+        inter: null
     },
     activeReply(e){
         this.setData({
@@ -96,8 +98,10 @@ Page({
                 let data=json.data.article
                 data.create_time = timestampToTime(data.create_time,false)
                 data.cover = trail.fixImageUrl(data.cover)
-                data.content = html.HtmlToNodes(data.content, trail.fixTag)
-                json.data.images = trail.fixListImage(json.data.images,'image')
+                let contentold = data.content
+                data.content = contentold.replace(/\<img/gi, '<img style="width: 100%;height:auto"');
+                // data.content = html.HtmlToNodes(data.content, trail.fixTag)
+                // json.data.images = trail.fixListImage(json.data.images,'image')
                 this.setData({
                     model: data,
                     images: json.data.images,
@@ -119,19 +123,21 @@ Page({
             wx.hideLoading()
             if(this.data.point_second){
                 let second = parseInt(that.data.second)
-                let inter = setInterval(() => {
-                    second--
-                    that.setData({
-                        second: second
-                    })
-                    if(second<=0){
-                        clearInterval(inter)
-                        console.log('定时结束了')
-                        getallPoint({type:1,value:that.data.points,source_type:that.data.source_type,desc:that.data.desc}).then(res=>{
-                            console.log(res)
+                this.setData({
+                    inter:setInterval(() => {
+                        second--
+                        that.setData({
+                            second: second
                         })
-                    }
-                }, 1000);
+                        if(second<=0){
+                            clearInterval(this.data.inter)
+                            console.log('定时结束了')
+                            getallPoint({type:1,value:that.data.points,source_type:that.data.source_type,desc:that.data.desc}).then(res=>{
+                                console.log(res)
+                            })
+                        }
+                    }, 1000)
+                })
             }
         })
         
@@ -141,7 +147,13 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        
+        memberDetail().then(res=>{
+            if(res.data.auth == 1) {
+                this.setData({
+                    isReply: true
+                })
+              }
+        })
     },
 
     /**
@@ -155,7 +167,7 @@ Page({
      * 生命周期函数--监听页面卸载
      */
     onUnload: function () {
-
+        clearInterval(this.data.inter)
     },
 
     /**

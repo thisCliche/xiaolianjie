@@ -2,7 +2,8 @@
 <view class="wincheck">
 <w-header title="积分记录" isBack="1" bind:childBackUp="backUp"></w-header>
 <view class="wrapper">
-    <view class="card" wx:for="{{list}}">
+    <block wx:if="{{list.length!=0}}">
+        <view class="card" wx:for="{{list}}">
         
         <view class="name">
             <!-- <view>{{item.source_type}}</view> -->
@@ -13,5 +14,7 @@
             <view>{{item.create_time}}</view>
         </view>
     </view>
+    </block>
+    <van-empty wx:else description="暂无积分记录" />
 </view>
 </view>

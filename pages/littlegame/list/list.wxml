@@ -1,6 +1,6 @@
-<w-header title="小游戏" isBack="1" bind:childBackUp="backUp"></w-header>
-<van-cell-group>
-  <van-cell title="转盘" value="内容" clickable url="/pages/littlegame/turntable/turntable" />
-  <van-cell title="答题" value="内容" label="描述信息" border="{{ false }}" clickable url="/pages/littlegame/answer/answer" />
-  <van-cell title="配对" value="内容" label="描述信息" border="{{ false }}" clickable url="/pages/littlegame/randomLove/random" />
-</van-cell-group>
+<view>
+  <w-header title="小游戏" isBack="1" bind:childBackUp="backUp"></w-header>
+  <view style="text-align: center;">
+    <image style="width:90%;height:200rpx;margin:20rpx auto;border-radius:10rpx;" wx:for="{{list}}" wx:key="index" src="{{item.image}}" data-router="{{item.url}}" bindtap="toContent"></image>
+  </view>
+</view>

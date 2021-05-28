@@ -2,10 +2,13 @@
 <view class="wincheck">
 <w-header title="中奖记录" isBack="1" bind:childBackUp="backUp"></w-header>
 <view class="wrapper">
-    <view class="card" wx:for="{{list}}">
+    <block wx:if="{{list.length!=0}}">
+        <view class="card" wx:for="{{list}}">
         <image src="{{item.image}}"></image>
         <view class="name">{{item.award_name}}</view>
         <view class="time">{{item.create_time}}</view>
     </view>
+    </block>
+    <van-empty wx:else description="暂无中奖记录" />
 </view>
 </view>

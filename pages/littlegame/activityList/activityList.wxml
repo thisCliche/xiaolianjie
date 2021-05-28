@@ -1,0 +1,27 @@
+<!--pages/littlegame/activityList/activityList.wxml-->
+<view class="activity">
+  <w-header title="活动" isBack="0" bind:childBackUp="backUp"></w-header>
+  <view class="wrapper">
+    <view class="conduct" wx:if="{{ing_arr.length!=0}}">
+      <view style="font-size:36rpx;margin-bottom:20rpx;">活动预告</view>
+      <view wx:if="{{ing_arr.length!=0}}" data-id="{{ing_arr[0].id}}" bindtap="todetail" style="border-radius:20rpx;overflow:hidden;background: #fff;box-shadow: 1px 3px 3px 2px #ddd;">
+        <image style="width:100%;" src="{{ing_arr[0].cover}}"></image>
+        <view class="content">
+          <view class="">
+            <view class="title van-ellipsis">{{ing_arr[0].title}}</view>
+            <view class="time">{{ing_arr[0].start_time}}</view>
+          </view>
+          <view style="font-size:28rpx;color:red;flex: none;">报名中</view>
+        </view>
+      </view>
+      <van-empty wx:else description="描述文字" />
+    </view>
+    <view style="margin-top:30rpx;" wx:if="{{ed_arr.length!=0}}">
+      <view style="font-size:36rpx;margin-bottom:20rpx;">往期活动</view>
+      <view class="past" wx:for="{{ed_arr}}" wx:key="index">
+        <view class="title van-ellipsis">{{item.title}}</view>
+        <view class="time">{{item.start_time}}</view>
+      </view>
+    </view>
+  </view>
+</view>

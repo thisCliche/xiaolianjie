@@ -1,0 +1,46 @@
+<!--pages/user/user.wxml-->
+<view>
+    <w-header title="成为会员" isBack="1" bind:childBackUp="backUp"></w-header>
+    <view class="upload">
+        
+        <view style="text-align:center;color:#626566;font-size:30rpx;margin-bottom:30rpx">上传身份证可认证为会员</view>
+        <view class="btnWrapp">
+            <view class="uploadBtns" bindtap="uploadImage" data-distinguish="shenfen_zheng_img" style="{{shenfen_zheng_img==''?'background-image: linear-gradient(90deg,#ffb2c2, #ffc39f);':'background:#00bcd4;'}}">
+            <view class="uploadBtn">
+                <image style="width:36rpx;height:44rpx;" src="../../icon/avatar2.png"></image>
+                <view style="font-size:31rpx;color:#fff;">身份证照</view>
+                <view style="font-size:31rpx;color:#fff;">人像照</view>
+                <view class="canmer"><image style="width:38rpx;height:35rpx;" src="../../icon/camer.png"></image></view>
+            </view>
+        </view>
+        <view class="uploadBtns" bindtap="uploadImage" data-distinguish="shenfen_fan_img" style="{{shenfen_fan_img==''?'background-image: linear-gradient(90deg,#ffb2c2, #ffc39f);':'background:#00bcd4;'}}">
+            <view class="uploadBtn">
+                <image style="width:36rpx;height:44rpx;" src="../../icon/user.png"></image>
+                <view style="font-size:31rpx;color:#fff;">身份证照</view>
+                <view style="font-size:31rpx;color:#fff;">国徽照</view>
+                <view class="canmer"><image style="width:38rpx;height:35rpx;" src="../../icon/camer.png"></image></view>
+            </view>
+        </view>
+        </view>
+        <view class="total">
+            <view style="font-size:30rpx;font-weight:700;">成为</view>
+            <view style="color:#fe909d;font-size:30rpx;ont-weight:700;font-weight:700;">会员</view>
+        </view>
+        <view style="margin-top:10rpx;" wx:if="{{isrepeat}}">请重新上传身份证：{{season}}</view>
+    </view>
+    <view style="font-size:30rpx;font-weight:700;margin:18rpx 0 44rpx 50rpx;">会员特权</view>
+    <view class="privilege">
+        <view class="privilegeL">每日<br/>推荐</view>
+        <view class="privilegeR">每日推荐额外增加2个名额</view>
+    </view>
+    <view class="privilege">
+        <view class="privilegeL">每日<br/>推荐</view>
+        <view class="privilegeR">每日推荐额外增加2个名额</view>
+    </view>
+    <view wx:if="{{isrepeat}}" style="text-align:center;margin-top:80rpx;">
+        <van-button bindtap="authentication" custom-class="vanbtn" round color="linear-gradient(to right,#ffb2c2, #ffc39f)">重新认证</van-button>
+    </view>
+    <view wx:else style="text-align:center;margin-top:80rpx;">
+        <van-button bindtap="toPay" custom-class="vanbtn" round color="linear-gradient(to right,#ffb2c2, #ffc39f)">立即认证</van-button>
+    </view>
+</view>

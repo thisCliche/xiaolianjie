@@ -5,11 +5,11 @@
     <view class="coumnLR">
       <view style="font-size:26rpx;margin:12rpx 0;">{{itemColumn.nickname}}</view>
       <view class="tag">
-        <view class="tagAge">{{itemColumn.birthday}}岁</view>
-        <view class="tagLocation"><van-icon name="location-o" /><view style="width:6rpx;"></view><text>{{itemColumn.mcouty}}</text></view>
+        <view class="tagAge" wx:if="{{itemColumn.birthday!=''}}">{{itemColumn.birthday}}岁</view>
+        <view class="tagLocation" wx:if="{{itemColumn.mcouty!=null}}"><van-icon name="location-o" /><view style="width:6rpx;"></view><text>{{itemColumn.mcouty}}</text></view>
       </view>
-      <view style="color:#7f7f7f;margin-top:20rpx;">{{itemColumn.height}}cm · {{itemColumn.education}} </view>
+      <view style="color:#7f7f7f;margin-top:20rpx;">{{itemColumn.height}}cm · {{itemColumn.education==null?'':itemColumn.education}} </view>
     </view>
   </view>
-  <view class="btn" data-loveid="{{itemColumn.id}}" bindtap="toDetial">看她资料</view>
+  <view class="btn" data-loveid="{{itemColumn.id}}" bindtap="toDetial">看TA资料</view>
 </view>

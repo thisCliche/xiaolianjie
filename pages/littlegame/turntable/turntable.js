@@ -13,6 +13,7 @@ import {getTurntablList, sendTurntablList} from '../../../api/api'
         activityId: '',  // 活动id
         prizeId: '',
         prizeIdx: '', // 中奖下标
+        background_image:'',
 
       is_play: false,// 是否在运动中，避免重复启动bug
       start_angle: 0,// 转动开始时初始角度=0位置指向正上方，按顺时针设置，可自定义设置
@@ -228,7 +229,8 @@ import {getTurntablList, sendTurntablList} from '../../../api/api'
             content,
             activityId,
             prizeIdx,
-            prizeId
+            prizeId,
+            background_image: res.data[0].background_image
         })
     },
     onReady(){

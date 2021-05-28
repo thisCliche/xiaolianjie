@@ -1,5 +1,8 @@
 // pages/me/me.js
 import { routerFiliter} from '../../utils/util'
+import {
+  getMemberDetail,getUserCode,is_show
+} from '../../api/api'
 Page({
 
   /**
@@ -10,6 +13,13 @@ Page({
     nickName: '',
     avatarUrl: '',
     member_id: '',
+    credit: '',
+    show:false,
+    kefuurl: '',
+    isShow: 1,
+  },
+  onClickHide(){
+    this.setData({show:false})
   },
   toVisiting() {
     routerFiliter(`../persdata/persdata?id=${this.data.member_id}&fromme=yes`)
@@ -25,6 +35,19 @@ Page({
       url: '../login/login',
     })
   },
+  tokefu(){
+    getUserCode().then(res=>{
+      this.setData({show:true,kefuurl:res.data})
+    })
+  },
+  toconfirm(){
+    wx.setClipboardData({
+      data: this.data.kefuurl.name
+    })
+  },
+  tofenxiao(){
+    routerFiliter('./fenxiao/fenxiao')
+  },
   towinCheck() {
     routerFiliter('./winCheck/wincheck')
   },
@@ -37,11 +60,11 @@ Page({
   toLocation() {
     routerFiliter('../mall/location/location')
   },
-  toBlog(){
-    routerFiliter(`../blog/blogList/list?from=me`)
+  towescom(){
+    routerFiliter(`../wescom/wescomList/list?from=me`)
   },
   toVip(){
-    routerFiliter('../vipuser/vipuser')
+    routerFiliter('../user/user')
   },
   outLogin(){
     let that = this
@@ -76,7 +99,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
     
   },
 
@@ -85,6 +108,12 @@ Page({
    */
   onShow: function () {
     let that = this
+    is_show().then(res=>{
+      this.setData({
+        isShow : res.data.show
+      })
+      // console.log(res)
+    })
     wx.getStorage({
       key: 'nickName',
       success (res) {
@@ -113,9 +142,13 @@ Page({
     wx.getStorage({
       key: 'token',
       success (res) {
-        if(res.data){
+        if(res.data != ''){
           that.setData({
             isLogin:true
+          })
+        }else {
+          that.setData({
+            isLogin:false
           })
         }
       },
@@ -129,11 +162,19 @@ Page({
           that.setData({
             member_id:res.data
           })
+          getMemberDetail({
+            member_id: res.data
+          }).then(res=>{
+            that.setData({
+              credit:res.data.detail.details.credit
+            })
+          })
         }
       },
       fail(error) {
       }
     }) 
+    
   },
 
   /**

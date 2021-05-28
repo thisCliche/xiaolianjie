@@ -1,0 +1,34 @@
+<!--pages/wescom/sendwescom/send.wxml-->
+<view>
+    <w-header title="发送帖子" isBack="1" bind:childBackUp="backUp"></w-header>
+    <!--pages/add/add.wxml-->
+    <van-notify  id="van-notify" />
+<van-cell-group>
+    <van-field
+    model:value="{{ title }}"
+    placeholder="请输入标题"
+    border="{{ false }}"
+  />
+  
+  <van-field
+    model:value="{{ content }}"
+    type="textarea"
+    placeholder="请输入留言"
+    autosize="{{ {minHeight: 100} }}"
+    maxlength="620"
+    show-word-limit
+    border="{{ false }}"
+  />
+</van-cell-group>
+<van-uploader file-list="{{ fileList }}" max-count="9" 
+    bind:after-read="afterRead"
+    bind:delete="delete"
+    max-size="2000000"
+    bind:oversize="overFllowSize"
+    bind:click-preview="clickPreview" />
+<view style="margin: 32rpx 64rpx;">
+  <van-button round block type="info" bind:click="submit" color="#fe909d">提交</van-button>
+</view>
+
+
+</view>

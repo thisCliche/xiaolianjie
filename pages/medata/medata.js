@@ -1,6 +1,6 @@
 // pages/medata/medata.js
 import {
-  changeMate,getRange,changemedata,getMeDate
+  changeMate,getRange,changemedata,getMeDate,is_show
 } from '../../api/api'
 const app = getApp()
 import areaList from "../../utils/areaList";
@@ -12,7 +12,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    isShow: 1,
     minDate: new Date(1980, 0, 1).getTime(),
     maxDate: new Date().getTime(),
     currentDate: new Date().getTime(),
@@ -350,6 +350,11 @@ uploadFile(filePath){
    */
   onShow: function () {
     let that =this
+    is_show().then(res=>{
+      this.setData({
+        isShow: res.data.show
+      })
+    })
     getRange().then(res=>{
       console.log(res)
       this.setData({

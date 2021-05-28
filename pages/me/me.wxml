@@ -11,7 +11,10 @@
     </view>
 
     <view wx:if="{{!isLogin}}" class="username" bindtap="toLogin">请点击登录</view>
-    <view wx:else class="username" bindtap="outLogin">{{nickName}}</view>
+    <view wx:else class="username" bindtap="outLogin">
+      <view>{{nickName}}</view>
+      <view style="margin-top:10rpx;">我的积分：{{credit}}</view>
+    </view>
 
     <view bindtap="toVisiting" class="visiting">单身名片</view>
   </view>
@@ -26,13 +29,13 @@
           <view style="margin-left:20rpx;font-size:30rpx" class="van-cell-text">个人信息</view>
         </view>
       </van-cell>
-      <van-cell is-link bindtap="toVip">
+      <van-cell is-link bindtap="toVip" wx:if="{{isShow!=0}}">
         <view slot="title" style="display:flex;align-items: center;">
           <image style="width:38rpx;height:38rpx;" slot="right-icon" src="../../icon/kt.png"></image>
-          <view style="margin-left:20rpx;font-size:30rpx" class="van-cell-text">开通VIP</view>
+          <view style="margin-left:20rpx;font-size:30rpx" class="van-cell-text">成为会员</view>
         </view>
       </van-cell>
-      <van-cell is-link bindtap="toBlog">
+      <van-cell is-link bindtap="towescom" wx:if="{{isShow!=0}}">
         <view slot="title" style="display:flex;align-items: center;">
           <image style="width:38rpx;height:38rpx;" slot="right-icon" src="../../icon/wode.png"></image>
           <view style="margin-left:20rpx;font-size:30rpx" class="van-cell-text">我的帖子</view>
@@ -44,13 +47,13 @@
           <view style="margin-left:20rpx;font-size:30rpx" class="van-cell-text">中奖记录</view>
         </view>
       </van-cell>
-      <van-cell is-link bindtap="toMessage">
+      <van-cell is-link bindtap="toMessage" wx:if="{{isShow!=0}}">
         <view slot="title" style="display:flex;align-items: center;">
           <image style="width:38rpx;height:38rpx;" slot="right-icon" src="../../icon/yonghu.png"></image>
           <view style="margin-left:20rpx;font-size:30rpx" class="van-cell-text">用户留言</view>
         </view>
       </van-cell>
-      <van-cell is-link>
+      <van-cell is-link bindtap="tokefu">
         <view slot="title" style="display:flex;align-items: center;">
           <image style="width:38rpx;height:38rpx;" slot="right-icon" src="../../icon/kefu.png"></image>
           <view style="margin-left:20rpx;font-size:30rpx" class="van-cell-text">客服中心</view>
@@ -74,8 +77,30 @@
           <view style="margin-left:20rpx;font-size:30rpx" class="van-cell-text">积分明细</view>
         </view>
       </van-cell>
+      <van-cell is-link bindtap="tofenxiao" wx:if="{{isShow!=0}}">
+        <view slot="title" style="display:flex;align-items: center;">
+          <image style="width:38rpx;height:38rpx;" slot="right-icon" src="../../icon/fenxiao.png"></image>
+          <view style="margin-left:20rpx;font-size:30rpx" class="van-cell-text">申请红娘</view>
+        </view>
+      </van-cell>
     </van-cell-group>
     </view>
   </view>
   </view>
+  <!-- <van-overlay show="{{ show }}" bind:click="onClickHide">
+  
+</van-overlay> -->
+<van-dialog
+  use-slot
+  title="客服微信"
+  show="{{ show }}"
+  show-cancel-button
+  bind:confirm="toconfirm"
+  bind:close="onClickHide"
+>
+<view class="kefuUrl">
+    <image show-menu-by-longpress src="{{kefuurl.image}}"></image>
+    <view style="margin-bottom:20rpx;">点击确定复制微信号</view>
+  </view>
+</van-dialog>
 </view>

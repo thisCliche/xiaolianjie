@@ -1,0 +1,36 @@
+/* pages/littlegame/activityList/activityList.wxss */
+page{
+  height: 100%;
+}
+.activity{
+  background: #eee;
+  height: 100%;
+}
+.conduct{
+  
+}
+.wrapper{
+  padding: 25rpx 20rpx;
+
+}
+.content{
+  padding: 10rpx 25rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.title{
+  font-size:32rpx;
+  margin-bottom: 10rpx;
+}
+.time{
+  font-size: 28rpx;
+  color: #999;
+}
+.past{
+  padding: 30rpx 20rpx;
+  background: #fff;
+  box-shadow: 1px 3px 3px 2px #ddd;
+  border-radius: 10rpx;
+  margin-top: 20rpx;
+}

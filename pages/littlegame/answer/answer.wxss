@@ -1,4 +1,7 @@
 /* pages/me/me.wxss */
+page{
+  height: 100%;
+}
 .top{
     display: flex;
     justify-content: center;

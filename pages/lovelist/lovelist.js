@@ -2,7 +2,7 @@
 const app = getApp()
 import areaList from "../../utils/areaList";
 import {
-  getUserList,getRange
+  getUserList,getRange,memberDetail,is_show
 } from '../../api/api'
 let {
   areaList: areaListNew
@@ -20,7 +20,8 @@ Page({
       age: '',
       edu: '',
       page: 1,
-      pagesize: 7
+      pagesize: 7,
+      isShow: 1,
     },
     isNoMore: false,
     district: false,
@@ -168,9 +169,31 @@ Page({
   },
   toDetail(e) {
     let id = e.currentTarget.dataset.id
-    wx.navigateTo({
-      url: '/pages/persdata/persdata?id=' + id,
+    memberDetail().then(res=>{
+      if(res.data.auth == 3) {
+        wx.showToast({
+          title: '请重新认证',
+          icon:'error'
+        })
+        setTimeout(_=>{
+          wx.navigateTo({
+            url: '/pages/user/user',
+          })
+        },500)
+        return
+      }else if(res.data.auth == 2){
+        return wx.showToast({
+          title: '认证中..',
+          icon:'error'
+        })
+      }
+      else{
+        wx.navigateTo({
+          url: '/pages/persdata/persdata?id=' + id,
+        })
+      }
     })
+    
   },
   /**
    * 生命周期函数--监听页面加载
@@ -226,7 +249,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    is_show().then(res=>{
+      this.setData({
+        isShow : res.data.show
+      })
+    })
   },
 
   /**

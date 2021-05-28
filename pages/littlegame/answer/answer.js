@@ -38,6 +38,17 @@ Page({
       },
       async suban(){
        let res = await sendAnswerRecord({success_num:this.data.answer,number:this.data.total})
+       if(res.msg == '操作成功') {
+         wx.showToast({
+           title: '提交成功',
+         })
+         setTimeout(_=>{
+            wx.navigateBack({
+              delta: 1,
+            })
+         },500)
+       }
+       console.log(res)
       },
       confirmAn(e){
         if(this.data.currenList.currenAn) return

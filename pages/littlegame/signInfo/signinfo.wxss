@@ -1,0 +1,15 @@
+/* pages/littlegame/signInfo/signinfo.wxss */
+.form{
+  padding: 30rpx 20rpx;
+}
+.title{
+  padding: 30rpx 0 20rpx;
+  font-size: 34rpx;
+  font-weight: 700;
+}
+.radioStyle{
+  margin: 10rpx 0;
+}
+.btn{
+  width: 100%;
+}

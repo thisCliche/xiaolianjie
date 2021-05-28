@@ -1,83 +1,103 @@
 {
-    "usingComponents": {
-        "van-button": "@vant/weapp/button/index",
-        "van-cell": "@vant/weapp/cell/index",
-        "van-cell-group": "@vant/weapp/cell-group/index",
-        "van-nav-bar": "@vant/weapp/nav-bar/index",
-        "van-icon": "@vant/weapp/icon/index",
-        "van-field": "@vant/weapp/field/index",
-        "van-radio": "@vant/weapp/radio/index",
-        "van-radio-group": "@vant/weapp/radio-group/index",
-        "van-picker": "@vant/weapp/picker/index",
-        "van-calendar": "@vant/weapp/calendar/index",
-        "van-popup": "@vant/weapp/popup/index",
-        "van-area": "@vant/weapp/area/index",
-        "van-action-sheet": "@vant/weapp/action-sheet/index",
-        "van-divider": "@vant/weapp/divider/index",
-        "van-uploader": "@vant/weapp/uploader/index",
-        "van-overlay": "@vant/weapp/overlay/index",
-        "van-datetime-picker": "@vant/weapp/datetime-picker/index",
-        "van-checkbox": "@vant/weapp/checkbox/index",
-        "van-notify": "@vant/weapp/notify/index",
-        "van-image": "@vant/weapp/image/index",
-        "w-header": "./components/header/header",
-        "van-dropdown-menu": "@vant/weapp/dropdown-menu/index",
-        "van-dropdown-item": "@vant/weapp/dropdown-item/index",
-        "van-empty": "@vant/weapp/empty/index"
-    },
-    "pages": [
-        "pages/index/index",
-        "pages/login/login",
-        "pages/me/me",
-        "pages/medata/medata",
-        "pages/persdata/persdata",
-        "pages/lovelist/lovelist",
-        "pages/message/message",
-        "pages/vipuser/vipuser",
-        "pages/newlists/newlist/newlist",
-        "pages/newlists/detail/detail",
-        "pages/littlegame/answer/answer",
-        "pages/littlegame/turntable/turntable",
-        "pages/littlegame/randomLove/random",
-        "pages/mall/location/location",
-        "pages/mall/locationAdd/locationAdd",
-        "pages/blog/sendBlog/send",
-        "pages/blog/blogList/list",
-        "pages/blog/blogDetail/detial",
-        "pages/me/winCheck/wincheck",
-        "pages/littlegame/list/list",
-        "pages/mall/mallList/mall",
-        "pages/mall/order/order",
-        "pages/mall/orderDetail/orderdetail",
-        "pages/mall/mallDetail/malldetail",
-        "pages/mall/orderconfirm/confirm",
-        "pages/me/jifen/jifen"
-    ],
-    "tabBar": {
-        "borderStyle": "white",
-        "position": "bottom",
-        "color": "#646566",
-        "selectedColor": "#d81e07",
-        "list": [
-            {
-                "pagePath": "pages/index/index",
-                "text": "首页",
-                "iconPath": "icon/tabbar/home.png",
-                "selectedIconPath": "icon/tabbar/home1.png"
-            },
-            {
-                "pagePath": "pages/me/me",
-                "text": "我的",
-                "iconPath": "icon/tabbar/personal.png",
-                "selectedIconPath": "icon/tabbar/personal1.png"
-            }
-        ]
-    },
-    "window": {
-        "navigationBarBackgroundColor": "#fff",
-        "navigationBarTitleText": "Weixin",
-        "navigationBarTextStyle": "black",
-        "backgroundTextStyle": "dark"
-    },
-    "sitemapLocation": "sitemap.json"
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-nav-bar": "@vant/weapp/nav-bar/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-radio": "@vant/weapp/radio/index",
+    "van-radio-group": "@vant/weapp/radio-group/index",
+    "van-picker": "@vant/weapp/picker/index",
+    "van-calendar": "@vant/weapp/calendar/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-area": "@vant/weapp/area/index",
+    "van-action-sheet": "@vant/weapp/action-sheet/index",
+    "van-divider": "@vant/weapp/divider/index",
+    "van-uploader": "@vant/weapp/uploader/index",
+    "van-overlay": "@vant/weapp/overlay/index",
+    "van-datetime-picker": "@vant/weapp/datetime-picker/index",
+    "van-checkbox": "@vant/weapp/checkbox/index",
+    "van-notify": "@vant/weapp/notify/index",
+    "van-image": "@vant/weapp/image/index",
+    "w-header": "./components/header/header",
+    "van-dropdown-menu": "@vant/weapp/dropdown-menu/index",
+    "van-dropdown-item": "@vant/weapp/dropdown-item/index",
+    "van-empty": "@vant/weapp/empty/index",
+    "van-dialog": "@vant/weapp/dialog/index"
+  },
+  "pages": [
+    "pages/index/index",
+    "pages/login/login",
+    "pages/me/me",
+    "pages/medata/medata",
+    "pages/persdata/persdata",
+    "pages/lovelist/lovelist",
+    "pages/message/message",
+    "pages/user/user",
+    "pages/newlists/newlist/newlist",
+    "pages/newlists/detail/detail",
+    "pages/littlegame/answer/answer",
+    "pages/littlegame/turntable/turntable",
+    "pages/me/Sunflower/sunflower",
+    "pages/mall/location/location",
+    "pages/mall/locationAdd/locationAdd",
+    "pages/me/winCheck/wincheck",
+    "pages/littlegame/list/list",
+    "pages/mall/mallList/mall",
+    "pages/mall/order/order",
+    "pages/mall/orderDetail/orderdetail",
+    "pages/mall/mallDetail/malldetail",
+    "pages/mall/orderconfirm/confirm",
+    "pages/me/jifen/jifen",
+    "pages/mall/pickAddress/pickaddress",
+    "pages/littlegame/activityReginst/reginst",
+    "pages/littlegame/activityList/activityList",
+    "pages/littlegame/signInfo/signinfo",
+    "pages/me/fenxiao/fenxiao",
+    "pages/wescom/sendwescom/send",
+    "pages/wescom/wescomDetail/detial",
+    "pages/wescom/sendDetail/detial",
+    "pages/wescom/wescomList/list",
+    "pages/littlegame/poster/poster"
+  ],
+  "tabBar": {
+    "borderStyle": "white",
+    "position": "bottom",
+    "color": "#646566",
+    "selectedColor": "#d81e07",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "icon/tabbar/home.png",
+        "selectedIconPath": "icon/tabbar/home1.png"
+      },
+      {
+        "pagePath": "pages/newlists/newlist/newlist",
+        "text": "文章",
+        "iconPath": "icon/tabbar/wenzhang.png",
+        "selectedIconPath": "icon/tabbar/wenzhang1.png"
+      },
+      {
+        "pagePath": "pages/littlegame/activityList/activityList",
+        "text": "活动",
+        "iconPath": "icon/tabbar/activty.png",
+        "selectedIconPath": "icon/tabbar/activty1.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我的",
+        "iconPath": "icon/tabbar/personal.png",
+        "selectedIconPath": "icon/tabbar/personal1.png"
+      }
+    ]
+  },
+  "window": {
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "black",
+    "backgroundTextStyle": "dark"
+  },
+  "sitemapLocation": "sitemap.json"
 }

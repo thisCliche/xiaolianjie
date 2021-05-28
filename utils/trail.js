@@ -1,5 +1,5 @@
 import{} from './util'
-import {deleteorder,cancelorder} from '../api/api'
+import {deleteorder,cancelorder,confirmorder} from '../api/api'
 const app = getApp()
 
 var cart_count = -1

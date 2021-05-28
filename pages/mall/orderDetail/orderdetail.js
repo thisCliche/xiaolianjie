@@ -101,6 +101,7 @@ Page({
         let id = data.id, status = data.status
 
         trail.orderAction(data.action, id, status, () => {
+            
             if(data.action=='delete'){
                 wx.navigateBack({
                     

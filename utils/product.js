@@ -1,6 +1,6 @@
-const util = require("util.js");
-const html = require("HtmlToNodes.js");
-const trail = require("trail.js");
+const util = require("./util.js");
+const html = require("./HtmlToNodes.js");
+const trail = require("./trail.js");
 
 class Product
 {

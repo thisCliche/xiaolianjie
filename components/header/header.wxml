@@ -4,7 +4,7 @@
       <view style="height:{{statusBarHeight}}px"></view>
       <view class="fixtop" style="position:fixed;top:{{statusBarHeight}}px;left:0;z-index:99">
         <view class="index-top-title">
-            <van-icon wx:if="{{isBack == 1}}" style="margin-left:40rpx;" name="arrow-left" bindtap="backUp" />
+            <van-icon wx:if="{{isBack == 1}}" style="padding:20rpx 40rpx 20rpx 20rpx;" name="arrow-left" bindtap="backUp" />
             <text wx:else> </text>
           <text style="{{isBack == 1?'margin-left:-60rpx;': ''}}">{{title}}</text>
           <text> </text>

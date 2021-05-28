@@ -1,5 +1,5 @@
 // pages/newlists/newlist/newlist.js
-import {timestampToTime} from '../../../utils/util'
+import {timestampToTime,routerFiliter} from '../../../utils/util'
 import {getNewList} from '../../../api/api.js'
 Page({
 
@@ -37,9 +37,12 @@ Page({
     },
     gotoDetail(e){
         let id = e.currentTarget.dataset.id
-            wx.navigateTo({
-                url: '/pages/newlists/detail/detail?id=' + id,
-            })
+        let url = '/pages/newlists/detail/detail?id=' + id
+        routerFiliter(url)
+        // let id = e.currentTarget.dataset.id
+        //     wx.navigateTo({
+        //         url: '/pages/newlists/detail/detail?id=' + id,
+        //     })
     },
     /**
      * 生命周期函数--监听页面加载
