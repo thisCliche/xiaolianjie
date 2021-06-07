@@ -10,7 +10,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        securyheight: app.globalData.statusBarHeight + 200,
+        securyheight: app.globalData.statusBarHeight + 90,
         triggered: false,
         option1: [{
             text: '全部商品',
@@ -38,7 +38,7 @@ Page({
         price: 1,
         sale: 1,
         page: 1,
-        pagesize: 4,
+        pagesize: 8,
         total_page: 0,
         lists: [],
         nomore: false
@@ -133,7 +133,7 @@ Page({
             price: 1,
             sale: 1,
             page: 1,
-            pagesize: 4,
+            pagesize: 8,
         }
         this.getMallList(query)
     },

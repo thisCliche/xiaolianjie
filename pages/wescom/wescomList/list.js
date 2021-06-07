@@ -16,7 +16,7 @@ Page({
       // 当前页码
       page: 1,
       // 当前每页条数
-      pagesize: 7
+      pagesize: 10
     },
     total_page: 0,
     nomore: false
@@ -149,7 +149,7 @@ wx.navigateTo({
   onRefresh: function () {
     let queryInfo = {
       page: 1,
-      pagesize: 7
+      pagesize: 10
     }
     this.setData({
       queryInfo

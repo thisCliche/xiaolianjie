@@ -1,103 +1,21 @@
 // / pages/haibao/haibao.js
-
+import {getWeixinConfig} from '../../../api/api'
+let app = getApp()
 Page({
  
   /**
    * 页面的初始数据
    */
   data: {
-    evalatImage:'',
-    bgBanner:'',
+    backgroundImage:'',
+    expression:'',
     imagePath:"",
     maskHidden:false,
-    qrcode_image:''
-  },
- 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
- 
-  },
- 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
- 
-  },
- 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    var  that = this;
-    wx.getImageInfo({
-      src: "https://img.xiaojiayun.top/ceshitu.jpg",
-      success(res) {
-        console.log("人物:" + res.path);
-        that.setData({
-          evalatImage: res.path
-        })
-      }
-    })
-    wx.getImageInfo({
-      src: "https://img.xiaojiayun.top/biaoqing2.png",
-      success(res) {
-        console.log("表情:" + res.path);
-        that.setData({
-          bgBanner: res.path
-        })
-      }
-    })
-    that.qrcode_image();
-    wx.getImageInfo({
-      src: that.data.qrcode_image,
-      success(res) {
-        console.log("二维码:" + res.path);
-        that.setData({
-          qrcode_image: res.path
-        })
-      }
-    })
-  },
- 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
- 
-  },
- 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
- 
-  },
- 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
- 
-  },
- 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
- 
-  },
- 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
- 
+    qrcode_image:'',
+    appsecret: '',
   },
   //点击生成海报
-  formSubmit: function (e) {
+  generatePoster: function (e) {
     var that = this;
     wx.showToast({
       title: '海报生成中...',
@@ -105,27 +23,19 @@ Page({
       duration: 1000
     });
     that.createNewImg();
-    setTimeout(function () {
-      wx.hideToast()
-      that.setData({
-        maskHidden: true
-      });
-    }, 1000);
   },
   //将canvas转换为图片保存到本地，然后将图片路径传给image图片的src
   createNewImg: function () {
     var that = this;
     var context = wx.createCanvasContext('mycanvas');
-    context.clearRect(0, 0, 750, 1200);
     context.setFillStyle("#fff")
-    context.fillRect(0, 0, 750, 1200)
     context.save();
  
-    var path = that.data.evalatImage;
+    var path = that.data.backgroundImage;
     context.drawImage(path, 0, 0, 750, 1200);
  
  
-    var path1 = that.data.bgBanner;  // 表情
+    var path1 = that.data.expression;  // 表情
     var path2 = that.data.qrcode_image;  // 二维码
 
     context.drawImage(path1, 451, 475, 270, 232);
@@ -147,17 +57,12 @@ Page({
  
     context.beginPath();
     context.arc(224, 878, 142, 0, 2 * Math.PI);
-    // context.setStrokeStyle("#ffe200");
     context.clip(); //裁剪上面的圆形
     context.drawImage(path2, 82, 736);
     context.restore();
     context.closePath();
- 
     context.save(); //保存之前的画布设置
-   
     context.draw(true);//true表示保留之前绘制内容
- 
- 
     //将生成好的图片保存到本地，需要延迟一会，绘制期间耗时
     setTimeout(function () {
       wx.canvasToTempFilePath({
@@ -165,14 +70,46 @@ Page({
         success: function (res) {
           var tempFilePath = res.tempFilePath;
           that.setData({
-            imagePath: tempFilePath
+            imagePath: tempFilePath,
+            maskHidden: true
           });
+          wx.hideToast()
         },
         fail: function (res) {
           console.log(res);
         }
       });
     }, 1000);
+  },
+  // 获取图片方法
+  getImageInfo(src){
+    return new Promise((resolve)=>{
+      wx.getImageInfo({
+        src: src,
+        success(res){
+          resolve(res.path)
+        }
+      })
+    })
+  },
+  // 获取必要图片
+  getImage(){
+    getWeixinConfig({wxid:app.globalData.wxid}).then(res=>{
+      this.setData({
+        appsecret: res.data.appsecret
+      })
+    })
+    this.getImageInfo("https://img.xiaojiayun.top/ceshitu.jpg").then(backgroundImage=>{
+      this.setData({
+        backgroundImage
+      })
+    })
+    this.getImageInfo("https://img.xiaojiayun.top/biaoqing1.png").then(expression=>{
+      this.setData({
+        expression
+      })
+    })
+    this.qrcode_image();
   },
   //文本换行
   dealWords(options) {
@@ -235,7 +172,7 @@ Page({
       data: {
         grant_type: 'client_credential',
         appid: 'wx9940f281257909e1', //不能缺少
-        secret: 'd82b1f704709946b04e46bf88332e655' //不能缺少  // 不可写死在小程序里面
+        secret:  that.data.appsecret
       },
       success: function (res) {
         wx.request({
@@ -262,5 +199,63 @@ Page({
         })
       }
     })
-  }
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+ 
+  },
+ 
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+ 
+  },
+ 
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    this.getImage()
+    
+  },
+ 
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+ 
+  },
+ 
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+ 
+  },
+ 
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+ 
+  },
+ 
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+ 
+  },
+ 
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+ 
+  },
+  
+  
 })

@@ -8,6 +8,7 @@
     </view>
      <!--  -->
     <view class="descri van-multi-ellipsis--l3">
-      <text>{{note.content}}</text>
+      <!-- <text>{{note.content}}</text> -->
+      <rich-text nodes="{{note.content}}"></rich-text>
     </view>
   </view>

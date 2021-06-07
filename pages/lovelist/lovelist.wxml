@@ -35,10 +35,10 @@
         <view style="margin-bottom:16rpx;" data-idx="{{index}}" bindtap="eduSele" data-sex="{{item.name}}" class="contentItem {{item.active == 1 ?'activecontentItem':''}}" wx:key="index" wx:for="{{edu}}">{{item.name}}</view>
       </view>
       <van-divider hairline />
-      <view style="display: flex;justify-content: space-between;">
+      <view style="display: flex;justify-content: space-between;" bindtap="showPopDistrict">
         <text class="title">居住地</text>
         <view bindtap="showPopDistrict" style="display: flex;justify-content: space-between;align-items:center;">
-          <text>{{form.district == '' ? '请选择': form.district}}</text>
+          <text>{{form.address_pro == '' ? '请选择': form.address_pro}}</text>
           <van-icon style="margin-right:20rpx" name="arrow" />
         </view>
       </view>

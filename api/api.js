@@ -28,16 +28,6 @@ const request = (options) => {
                 }
               }
             })
-            // let refresh = wx.getStorageSync('refreshToken')
-            // getToken({
-            //   refresh_token: refresh
-            // }).then(res => {
-            //   if (res.msg == '刷新失败') return wx.navigateTo({
-            //     url: '/pages/login/login',
-            //   })
-            //   wx.setStorageSync('token',res.data.token)
-            //   wx.setStorage('refreshToken',res.data.refresh_token)
-            // })
           }
           else if (request.data) {
             resolve(request.data)
@@ -61,7 +51,7 @@ const request = (options) => {
           'token': token
         },
         success(request) {
-          if (request.data.code == 102) {
+          if (request.data.code == 102 || request.data.code == 103) {
             wx.setStorageSync('token','')
             wx.showModal({
               title: '提示',
@@ -552,5 +542,14 @@ export function is_show() {
   return request({
     url: 'index/is_show',
     method: 'post',
+  })
+}
+
+// 获得秘钥
+export function getWeixinConfig(data) {
+  return request({
+    url: 'index/getWeixinConfig',
+    method: 'post',
+    data
   })
 }

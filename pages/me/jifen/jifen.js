@@ -32,7 +32,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        pointdetail({page:1,pagesize:50}).then(res=>{
+        pointdetail({page:1,pagesize:100}).then(res=>{
             console.log(res)
           this.setData({
             list: res.data

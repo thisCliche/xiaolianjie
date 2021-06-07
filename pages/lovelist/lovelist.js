@@ -20,8 +20,9 @@ Page({
       age: '',
       edu: '',
       page: 1,
-      pagesize: 7,
+      pagesize: 8,
       isShow: 1,
+      address_pro: '',
     },
     isNoMore: false,
     district: false,
@@ -159,6 +160,12 @@ Page({
       listColumn: res.data.list,
       total: res.data.total
     })
+    if(res.data.list.length == 0){
+      wx.showToast({
+        title: '暂无结果',
+        icon:'error'
+      })
+    }
   },
   classification() {
     this.setData({

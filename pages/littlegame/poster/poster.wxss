@@ -26,7 +26,7 @@ page{ background:#fff;}
 }
 .shengcheng{
   width: 80%;
-  height: 80%;
+  height: 964rpx;
   position: fixed;
   top: 50rpx;
   left: 50%;
@@ -41,7 +41,7 @@ page{ background:#fff;}
   line-height: 80rpx;
   text-align: center;
   position: fixed;
-  bottom: 50rpx;
+  bottom: 5%;
   left: 10%;
   background: #ffb2c2;
   color: #fff;

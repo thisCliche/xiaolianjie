@@ -1,6 +1,6 @@
 <!--pages/haibao/haibao.wxml-->
  
-<button bindtap="formSubmit">点击生成海报</button>
+<button bindtap="generatePoster">点击生成海报</button>
  
 <view class='imagePathBox' hidden="{{maskHidden == false}}">
     <image src="{{imagePath}}" class='shengcheng' ></image>

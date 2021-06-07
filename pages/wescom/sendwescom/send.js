@@ -66,9 +66,9 @@ Page({
     console.log(res)
     if( res != '添加成功！' ) return Notify({safeAreaInsetTop:true, type: 'danger', message: '创建失败！' });
     Notify({safeAreaInsetTop:true, type: 'success', message: '发布成功！' });
-    setTimeout(_=> wx.switchTab({
-        url: '../../index/index',
-      }),500)
+    setTimeout(_=> wx.navigateBack({
+      delta: 1,
+    }),500)
   },
 
   /**
