@@ -3,6 +3,18 @@ import {profilemember} from './api/api'
 const util = require("./utils/util.js");
 App({
   onLaunch() {
+    // wx.loadFontFace({
+    //     global:true,
+    //     scopes: ['webview', 'native'],
+    //     family: 'songti',
+    //     source:`url("https://anhuixingdian.oss-cn-hangzhou.aliyuncs.com/ttf/SourceHanSerifCN-Bold-2.otf")`,
+    //     success(res) {
+    //       console.log(res.status)
+    //     },
+    //     fail: function(res) {
+    //       console.log(res)
+    //     },
+    //   });
     // 展示本地存储能力
     const logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())

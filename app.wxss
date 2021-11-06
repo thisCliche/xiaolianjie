@@ -49,6 +49,7 @@ page{
 .display_A_C {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
 }
 
 /* 弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴结束边界。（靠下对齐） */

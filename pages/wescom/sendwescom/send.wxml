@@ -29,6 +29,4 @@
 <view style="margin: 32rpx 64rpx;">
   <van-button round block type="info" bind:click="submit" color="#fe909d">提交</van-button>
 </view>
-
-
 </view>

@@ -20,7 +20,10 @@
   </view>
   <view class="appWrap">
     <view class="app">
-    <text style="font-size: 30rpx;font-weight:700;">我的应用</text>
+    <!-- <text style="font-size: 30rpx;font-weight:700;">我的应用</text> -->
+    <view class="imgWrap">
+      <image src="/icon/newCutter/img2.png"></image>
+    </view>
     <view style="margin-top:20rpx;">
       <van-cell-group>
       <van-cell is-link bindtap="toGeren">

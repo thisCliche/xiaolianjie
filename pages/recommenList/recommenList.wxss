@@ -1,0 +1,17 @@
+.inputFrame{
+  padding: 16rpx 44rpx;
+  background: #fff;
+  border-radius: 10rpx;
+}
+.inputFrame image{
+  width: 31rpx;
+  height: 27rpx;
+  margin-right: 10rpx;
+}
+page{
+  height: 100%;
+  background: #f0f1f3;
+}
+.displayWall{
+  padding: 40rpx 20rpx;
+}

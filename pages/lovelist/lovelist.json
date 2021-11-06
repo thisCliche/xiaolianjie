@@ -1,7 +1,8 @@
 {
   "usingComponents": {
-    "w-love": "../../components/love/love"
+    "w-love":"/components/love/love"
   },
-  "navigationStyle": "custom",
+  "navigationBarTitleText": "今日推荐",
+  "navigationBarBackgroundColor": "#f84466",
   "onReachBottomDistance": 50
 }

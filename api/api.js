@@ -553,3 +553,18 @@ export function getWeixinConfig(data) {
     data
   })
 }
+// 
+export function anniversary() {
+  return request({
+    url: 'member/activity_anniversary',
+    method: 'post',
+  })
+}
+// api/member/anniversary_join_record
+export function joinRecord(data) {
+  return request({
+    url: 'member/anniversary_join_record',
+    method: 'post',
+    data
+  })
+}

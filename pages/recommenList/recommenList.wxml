@@ -1,0 +1,28 @@
+<!--pages/recommenList/recommenList.wxml-->
+<view class="recommenList">
+  <van-tabs active="{{ active }}" bind:change="onChange">
+    <van-tab title="好男生">
+      <van-dropdown-menu>
+        <van-dropdown-item value="{{ value1 }}" title="年龄" options="{{ option1 }}" />
+        <van-dropdown-item value="{{ value2 }}" title="身高" options="{{ option2 }}" />
+        <van-dropdown-item value="{{ value2 }}" title="学历" options="{{ option2 }}" />
+        <van-dropdown-item value="{{ value2 }}" title="收入" options="{{ option2 }}" />
+        <van-dropdown-item value="{{ value2 }}" title="居住地" options="{{ option2 }}" />
+      </van-dropdown-menu>
+      <view class="tabContent">
+        <recom-item></recom-item>
+        <recom-item></recom-item>
+      </view>
+    </van-tab>
+    <van-tab title="好女生">内容 2</van-tab>
+    <van-tab title="幸福展示墙">
+      <view class="displayWall">
+        <view class="inputFrame">
+          <image src="/icon/newCutter/img5.png"></image>
+          <text>留下你的分享吧...</text>
+        </view>
+        <disply-wall></disply-wall>
+      </view>
+    </van-tab>
+  </van-tabs>
+</view>

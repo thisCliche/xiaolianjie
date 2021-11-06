@@ -9,7 +9,7 @@ Page({
    */
   data: {
     isShow: 0,
-    indicatorDots: false,
+    indicatorDots: true,
     autoplay: true,
     interval: 3000,
     duration: 800,
@@ -24,6 +24,13 @@ Page({
     recommend: [],
     activity: [],
     article: [],
+    active: 0,
+  },
+  onChange(event) {
+   
+  },
+  tomenu1(e){
+    routerFiliter(e.currentTarget.dataset.url)
   },
   gotoDetail(e){
     let id = e.currentTarget.dataset.id
@@ -42,9 +49,7 @@ Page({
     })
   },
   tohuigu() {
-    wx.switchTab({
-      url: '/pages/littlegame/activityList/activityList',
-    })
+    routerFiliter('../littlegame/poster/poster')
   },
   toDetial(e){
     let id = e.currentTarget.dataset.id
@@ -53,6 +58,7 @@ Page({
   },
   togame(){
     routerFiliter('../littlegame/list/list')
+    // routerFiliter('../littlegame/poster/poster')
   },
   tomall() {
     routerFiliter('../mall/mallList/mall')
@@ -65,7 +71,6 @@ Page({
   },
   swiperChange(e) {
     let current = e.detail.current;
-    // console.log(current, '轮播图')
     let that = this;
     that.setData({
       swiperCurrent: current,
@@ -101,8 +106,6 @@ Page({
         activity: res.data.four_advs,
         article,
       })
-      console.log(2)
-    
   },
   tonewList() {
     wx.switchTab({
@@ -138,7 +141,6 @@ Page({
         isShow: res.data.show
       })
       // this.getHomeInof()
-      console.log(1)
   },
 
   /**

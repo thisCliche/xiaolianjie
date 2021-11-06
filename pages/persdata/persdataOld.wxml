@@ -1,0 +1,42 @@
+<!--pages/persdata/persdata.wxml-->
+<view>
+  <view class="index-top">
+      <view class="index-top-one" style="height:{{statusBarHeight}}px;position:fixed;top:0;left:0;z-index:111"></view>
+      <view class="fixtop" style="position:fixed;top:{{statusBarHeight}}px;left:0;z-index:111">
+        <view class="index-top-title">
+          <van-icon style="margin-left:40rpx;" name="arrow-left" bindtap="backUp" />
+          <text style="margin-left:-60rpx;"></text>
+          <text> </text>
+        </view>
+      </view>
+    </view>
+    <view class="topBg">
+      <image src="{{bg}}" mode="aspectFill" style="filter: blur(2px);"></image>
+      <view class="avatar">
+        <image src="{{avatar}}"></image>
+      </view>
+      <view class="persTitle">
+        <image wx:if="{{isVip}}" style="width:36rpx;height:33rpx;" src="../../icon/vip.png"></image>
+        <text style="font-size:30rpx; color:#fff;margin-left:15rpx;">{{nick}}</text>
+        <text  wx:if="{{isVip}}" class="sign">VIP会员</text>
+      </view>
+    </view>
+    <view class="persDetail">
+      <view class="persmodel">
+        <text style="font-size: 30rpx;font-weight: 700;">个人资料</text>
+        <view class="tagList">
+          <text class="tag" wx:for="{{perdata}}" wx:key="index">{{item}}</text>
+        </view>
+      </view>
+      <view class="persmodel" wx:if="{{isShow!=0}}">
+        <text style="font-size: 30rpx;font-weight: 700;">择偶要求</text>
+        <view class="tagList">
+          <text class="tag" wx:for="{{demand}}" wx:key="index">{{item}}</text>
+        </view>
+      </view>
+      <view class="leavingMessage" wx:if="{{!isme&&isShow!=0}}">
+        <input class="messageInput" type="text" placeholder="给我留言吧~" bindinput="inputConten" value='{{leaveMessage}}'/>
+        <van-button type="default" round bind:click="toLeaveMeass" >给我留言</van-button>
+      </view>
+    </view>
+</view>

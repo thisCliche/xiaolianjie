@@ -1,0 +1,41 @@
+/* components/recomItem/recomItem.wxss */
+.tabContentItem{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx;
+  border-bottom: #f0f1f3 4rpx solid;
+}
+.Rfirst{
+  display: flex;
+  align-items: center;
+  margin: 8rpx 0;
+}
+.Rfirst text{
+  font-size: 32rpx;
+}
+.Rthird{
+  margin: 8rpx 0;
+}
+.avatar image{
+  width: 144rpx;
+  height: 124rpx;
+}
+.tabContentItemR{
+  flex: 1;
+  margin-left: 20rpx;
+}
+.tabContentItemR .sexIcon{
+  width: 24rpx;
+  height: 24rpx;
+  margin: 0 10rpx;
+}
+.is_auth{
+  text-align: center;
+  color: #fa8d00;
+  font-size: 26rpx;
+}
+.is_auth image{
+  width: 22rpx;
+  height: 22rpx;
+}

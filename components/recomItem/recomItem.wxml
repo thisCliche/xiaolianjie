@@ -1,0 +1,18 @@
+<!--components/recomItem/recomItem.wxml-->
+<view class="tabContentItem">
+  <view class="avatar">
+    <image src="/icon/newCutter/avatar.png"></image>
+  </view>
+  <view class="tabContentItemR">
+    <view class="Rfirst"><text>编号21321</text>
+      <image class="sexIcon" src="/icon/newCutter/img3.png"></image>
+      <view class="is_auth">
+        <image src="/icon/newCutter/renzheng.png"></image> 实名认证
+      </view>
+    </view>
+    <view class="Rscend">24岁 | 183cm | 本科 | 10万-20万</view>
+    <view class="Rthird">
+      <view class="RthirdL">事业单位在编| 社保单位 | 合肥 | 未婚</view>
+    </view>
+  </view>
+</view>

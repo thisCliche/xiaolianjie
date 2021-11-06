@@ -24,7 +24,12 @@
     "van-dropdown-menu": "@vant/weapp/dropdown-menu/index",
     "van-dropdown-item": "@vant/weapp/dropdown-item/index",
     "van-empty": "@vant/weapp/empty/index",
-    "van-dialog": "@vant/weapp/dialog/index"
+    "van-loading": "@vant/weapp/loading/index",
+    "van-dialog": "@vant/weapp/dialog/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-row": "@vant/weapp/row/index",
+    "van-col": "@vant/weapp/col/index"
   },
   "pages": [
     "pages/index/index",
@@ -55,48 +60,49 @@
     "pages/littlegame/activityList/activityList",
     "pages/littlegame/signInfo/signinfo",
     "pages/me/fenxiao/fenxiao",
-    "pages/wescom/sendwescom/send",
-    "pages/wescom/wescomDetail/detial",
-    "pages/wescom/sendDetail/detial",
     "pages/wescom/wescomList/list",
-    "pages/littlegame/poster/poster"
+    "pages/wescom/wescomDetail/detial",
+    "pages/wescom/sendwescom/send",
+    "pages/littlegame/poster/poster",
+    "pages/recommenList/recommenList",
+    "pages/journey/journey"
   ],
   "tabBar": {
     "borderStyle": "white",
     "position": "bottom",
     "color": "#646566",
-    "selectedColor": "#d81e07",
+    "selectedColor": "#f84466",
     "list": [
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "iconPath": "icon/tabbar/home.png",
-        "selectedIconPath": "icon/tabbar/home1.png"
+        "iconPath": "icon/newCutter/home.png",
+        "selectedIconPath": "icon/newCutter/home_a.png"
+      },
+      {
+        "pagePath": "pages/lovelist/lovelist",
+        "text": "今日推荐",
+        "iconPath": "icon/newCutter/proposal.png",
+        "selectedIconPath": "icon/newCutter/proposal_a.png"
       },
       {
         "pagePath": "pages/newlists/newlist/newlist",
         "text": "文章",
-        "iconPath": "icon/tabbar/wenzhang.png",
-        "selectedIconPath": "icon/tabbar/wenzhang1.png"
-      },
-      {
-        "pagePath": "pages/littlegame/activityList/activityList",
-        "text": "活动",
-        "iconPath": "icon/tabbar/activty.png",
-        "selectedIconPath": "icon/tabbar/activty1.png"
+        "iconPath": "icon/newCutter/article.png",
+        "selectedIconPath": "icon/newCutter/article_a.png"
       },
       {
         "pagePath": "pages/me/me",
         "text": "我的",
-        "iconPath": "icon/tabbar/personal.png",
-        "selectedIconPath": "icon/tabbar/personal1.png"
+        "iconPath": "icon/newCutter/persenal.png",
+        "selectedIconPath": "icon/newCutter/persenal_a.png"
       }
     ]
   },
   "window": {
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#f84466",
+    "navigationBarTitleText": "小恋姐",
+    "navigationBarTextStyle": "white",
     "backgroundTextStyle": "dark"
   },
   "sitemapLocation": "sitemap.json"

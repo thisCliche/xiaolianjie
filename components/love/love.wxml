@@ -1,15 +1,14 @@
 <!--components/love/love.wxml-->
-<view class="loveColumn">
-  <view class="columnLeft">
-    <image class="img" style="width:170rpx;height:170rpx;border-radius:50%;" src="{{itemColumn.avatar}}"></image>
-    <view class="coumnLR">
-      <view style="font-size:26rpx;margin:12rpx 0;">{{itemColumn.nickname}}</view>
-      <view class="tag">
-        <view class="tagAge" wx:if="{{itemColumn.birthday!=''}}">{{itemColumn.birthday}}岁</view>
-        <view class="tagLocation" wx:if="{{itemColumn.mcouty!=null}}"><van-icon name="location-o" /><view style="width:6rpx;"></view><text>{{itemColumn.mcouty}}</text></view>
-      </view>
-      <view style="color:#7f7f7f;margin-top:20rpx;">{{itemColumn.height}}cm · {{itemColumn.education==null?'':itemColumn.education}} </view>
+<!-- <view class="loveColumn">
+</view> -->
+  <view class="loveItem" data-loveid="{{itemColumn.id}}" bindtap="toDetial">
+    <image class="avatar" src="{{itemColumn.avatar}}"></image>
+    <view class="name">{{itemColumn.nickname}}</view>
+    <view class="is_auth"><image src="/icon/newCutter/renzheng.png"></image> 实名认证</view>
+    <view class="infoWrap">
+      <view class="info">{{itemColumn.birthday}}岁</view>
+      <view class="info">{{itemColumn.height}}cm</view>
     </view>
+    <view class="mcouty">{{itemColumn.mcouty}}</view>
   </view>
-  <view class="btn" data-loveid="{{itemColumn.id}}" bindtap="toDetial">看TA资料</view>
-</view>
+

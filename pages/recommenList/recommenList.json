@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "recom-item": "/components/recomItem/recomItem",
+    "disply-wall": "/components/displayWall/displayWall"
+  },
+  "navigationBarTitleText": "男才女貌"
+}

@@ -13,8 +13,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/me/me",
-          "pathName": "pages/me/me",
+          "name": "pages",
+          "pathName": "pages/recommenList/recommenList",
           "query": "",
           "scene": null
         },

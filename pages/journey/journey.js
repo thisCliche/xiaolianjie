@@ -1,4 +1,4 @@
-// pages/wescom/wescomDetail/detail.js
+// pages/journey/journey.js
 Page({
 
   /**

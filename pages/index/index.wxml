@@ -1,136 +1,36 @@
 <!--index.wxml-->
-<scroll-view scroll-y style="height: 100vh;">
-  <view class="main">
-    <view class="index-top">
-      <view class="index-top-one" style="height:{{statusBarHeight}}px;position:fixed;top:0;left:0;z-index:111"></view>
-      <view style="height:{{statusBarHeight}}px"></view>
-      <view class="index-top-two">
-        <view class="fixtop" style="position:fixed;top:{{statusBarHeight}}px;left:0;z-index:111">
-          <view class="index-top-title">
-            首页
-          </view>
-        </view>
-        <view style="height:85rpx;"></view>
-        <view class='index-top-swiper'>
-          <view class='swiper-box'>
-            <swiper indicator-dots="{{indicatorDots}}" circular autoplay="{{true}}" interval="{{interval}}"
-              duration="{{duration}}" bindchange="swiperChange">
-              <block wx:for="{{bannerList}}" wx:key="index" data-item="{{item}}">
-                <swiper-item>
-                  <image src="{{item.image}}" class="slide-image" data-item='{{item}}' />
-                </swiper-item>
-              </block>
-            </swiper>
-          </view>
-        </view>
-      </view>
-    </view>
-    <view class="menu">
-      <view class="column" bindtap="togame">
-        <image src="../../icon/game.png"></image>
-        <!-- <view>小游戏</view> -->
-      </view>
-      <view wx:if="{{isShow !=0}}" class="column" bindtap="toTieZi">
-        <image src="../../icon/dongtai.png"></image>
-        <!-- <view>发帖子</view> -->
-      </view>
-      <view class="column" bindtap="tomall">
-        <image src="../../icon/mall.png"></image>
-        <!-- <view>积分兑换</view> -->
-      </view>
-    </view>
-    <view class="menu1">
-      <view class="column" bindtap="tomeiwen">
-        <image src="../../icon/meiwen.png"></image>
-      </view>
-      <view class="column" bindtap="tohuigu">
-        <image src="../../icon/huodong.png"></image>
-      </view>
-      <view class="column" bindtap="tohuigu">
-        <image src="../../icon/huigu.png"></image>
-      </view>
-    </view>
-    <view class='index-top-swiper1' wx:if="{{bannerList1.length != 0}}">
-      <view class='swiper-box1'>
-        <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}"
-          duration="{{duration}}" bindchange="swiperChange">
-          <block wx:for="{{bannerList1}}" wx:key="index" data-item="{{item}}">
-            <swiper-item>
-              <image src="{{item.image}}" class="slide-image1" data-item='{{item}}' />
-            </swiper-item>
-          </block>
-        </swiper>
-        <view class="dots">
-          <block wx:for="{{bannerList1}}" wx:key="index">
-            <view class="dot{{index == swiperCurrent ? 'active' : ''}}"></view>
-          </block>
-        </view>
-      </view>
+<view class="main">
+  <view class="swiperWrap">
+    <view class="swiperBg"></view>
+    <view class='swiper-box'>
+      <swiper indicator-dots circular autoplay interval="{{interval}}" duration="{{duration}}"
+        indicator-color="rgba(0, 0, 0, 0.3)" indicator-active-color="#ffffff">
+        <block wx:for="{{bannerList}}" wx:key="*this">
+          <swiper-item>
+            <image src="{{item.image}}" class="slide-image" />
+          </swiper-item>
+        </block>
+      </swiper>
     </view>
     
-    <view class="index-jghd" wx:if="{{recommend.length != 0}}">
-      <view class="display_J_B display_A_C" style="margin:50rpx 0 30rpx 0">
-        <view class="display_J_S display_A_C">
-          <view style="width: 11rpx;height: 11rpx;background-color: #d6697e;border-radius: 5rpx;margin:0 7rpx 0 34rpx">
-          </view>
-          <view style="font-size:30rpx;color:#000">为你推荐</view>
-        </view>
-        <view class="display_J_S  display_A_C index-mdd-gd" bindtap="toLoveList">
-          <view>全部</view>
-          <image src="/icon/jt.png"></image>
-        </view>
-      </view>
-      <view class="index-jghd-mk display_J_B display_A_C" >
-
-        <view wx:for="{{recommend}}" wx:key="index" data-id="{{item.id}}" bindtap="toDetial">
-          <image mode="aspectFill" style="width:100%;height:100%;" src="{{item.life_image}}"></image>
-          <text>{{item.nickname}} {{item.birthday}}岁</text>
-        </view>
-
-      </view>
-
-      <view class="banner3" wx:if="{{activity.length!=0}}">
-        <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}"
-          duration="{{duration}}" bindchange="swiperChange">
-          <block wx:for="{{activity}}" wx:key="index" data-item="{{item}}">
-            <swiper-item>
-              <image bindtap="toActivity" src="{{item.image}}" class="slide-image2" data-item='{{item}}' />
-            </swiper-item>
-          </block>
-      </swiper>
-      </view>
-
-    </view>
-     <view class="index-jghd">
-      <view class="display_J_B display_A_C" style="margin:50rpx 0 30rpx 0">
-        <view class="display_J_S display_A_C">
-          <view style="width: 11rpx;height: 11rpx;background-color: #d6697e;border-radius: 5rpx;margin:0 7rpx 0 34rpx">
-          </view>
-          <view style="font-size:30rpx;color:#000">情感美文</view>
-        </view>
-        <view class="display_J_S  display_A_C index-mdd-gd" bindtap="tonewList">
-          <view>全部</view>
-          <image src="/icon/jt.png"></image>
-        </view>
-      </view>
-      
-      <view class="newList">
-        <view class="newColumn" wx:for="{{article}}" wx:key="index" data-id="{{item.id}}" bindtap="gotoDetail">
-          <view class="newColumnR">
-            <image style="height:150rpx;border-radius:10rpx;" src="{{item.cover}}"></image>
-          </view>
-          <view class="newColumnL">
-            <view class="title GStitleOne">{{item.title}}</view>
-            <view class="dec GStitleOne">{{item.description}}</view>
-            <view class="newColumnLB">
-              <view><image style="width:24rpx;height:24rpx;margin-right:6rpx;" src="../../icon/yanjing.png"></image> {{item.views}}</view>
-              <view><image style="width:24rpx;height:24rpx;margin-right:6rpx;" src="../../icon/rili.png"></image> {{item.create_time}}</view>
-            </view>
-          </view>
-          
-          <van-divider />
-        </view>
-      </view>
-    </view> 
   </view>
-</scroll-view>
+
+  <view class="banner1">
+    <image src="{{bannerList1[0].image}}"></image>
+  </view>
+
+  <view class="menu">
+    <view class="menuItem" bindtap="tomenu1" data-url="/pages/recommenList/recommenList">
+      <image src="/icon/img2.png"></image>
+    </view>
+    <view class="menuItem" bindtap="tomenu1" data-url="/pages/journey/journey">
+      <image src="/icon/img3.png"></image>
+    </view>
+    <view class="menuItem">
+      <image src="/icon/img4.png"></image>
+    </view>
+    <view class="menuItem">
+      <image src="/icon/img5.png"></image>
+    </view>
+  </view>
+</view>

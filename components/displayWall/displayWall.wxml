@@ -1,0 +1,35 @@
+<!--components/displayWall/displayWall.wxml-->
+<view class="wallItem">
+  <view class="wallFirst">
+    <view class="wallFirstL">
+      <image class="avatar" src="/icon/newCutter/avatar.png"></image>
+      <view class="wallFirstLL">
+        <view class="nick">昵称</view>
+        <view class="is_auth">
+          <image src="/icon/newCutter/renzheng.png"></image> 实名认证
+        </view>
+      </view>
+    </view>
+    <view class="wallFirstR">2021.01.01</view>
+  </view>
+  <view class="wallSecond">
+    <van-row>
+      <van-col span="6">
+        <image src="/icon/newCutter/img1.png"></image>
+      </van-col>
+      <van-col span="6">
+        <image src="/icon/newCutter/img1.png"></image>
+      </van-col>
+      <van-col span="6">
+        <image src="/icon/newCutter/img1.png"></image>
+      </van-col>
+      <van-col span="6">
+        <image src="/icon/newCutter/img1.png"></image>
+      </van-col>
+    </van-row>
+  </view>
+  <view class="third">
+    <image src="/icon/newCutter/like.png"></image>
+    10
+  </view>
+</view>

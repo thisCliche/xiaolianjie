@@ -23,6 +23,7 @@ Page({
       pagesize: 8,
       isShow: 1,
       address_pro: '',
+      isLogin:true
     },
     isNoMore: false,
     district: false,

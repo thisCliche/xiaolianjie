@@ -1,6 +1,10 @@
 // pages/medata/medata.js
 import {
-  changeMate,getRange,changemedata,getMeDate,is_show
+  changeMate,
+  getRange,
+  changemedata,
+  getMeDate,
+  is_show
 } from '../../api/api'
 const app = getApp()
 import areaList from "../../utils/areaList";
@@ -16,6 +20,7 @@ Page({
     minDate: new Date(1980, 0, 1).getTime(),
     maxDate: new Date().getTime(),
     currentDate: new Date().getTime(),
+    fileList: [],
     token: '',
     member_id: '',
     curActive: 1,
@@ -57,12 +62,12 @@ Page({
 
     heightColumns: ['156cm', '157cm', '158cm', '159cm', '160cm'],
     weightColumns: ['56Kg', '57Kg', '58Kg', '59Kg', '60Kg'],
-    educationalColumns: ['专科', '本科', '硕士','博士'],
+    educationalColumns: ['专科', '本科', '硕士', '博士'],
     marriageColumns: ['未婚', '离异', '丧偶'],
     areaList: areaListNew,
     form: {
       name: '',
-      life_image: '',
+      life_image: [],
       birthday: '',
       height: '',
       weight: '',
@@ -70,63 +75,107 @@ Page({
       educational: '',
       marriage: '',
       sex: '1',
+      autograph: ''
     },
     fileList: [],
   },
-  handleInputChange(e){
-    let targetData = e.currentTarget.dataset.model; 
-    let currentValue = e.detail; 
+  deleteImg(e){
+    const fileList = this.data.fileList;
+    fileList.splice(e.detail.index,1)
+    this.setData({ fileList });
+  },
+  handleInputChange(e) {
+    let targetData = e.currentTarget.dataset.model;
+    let currentValue = e.detail;
     this.setData({
-      [`form.${targetData}`] : currentValue
+      [`form.${targetData}`]: currentValue
     })
   },
-  uploadImage(){
-    wx.chooseImage({
-     count: 1, // 最多可以选择的图片张数，默认9
-     sizeType: ['original', 'compressed'], // original 原图，compressed 压缩图，默认二者都有
-     sourceType: ['album', 'camera'], // album 从相册选图，camera 使用相机，默认二者都有
-     success: (res) => {
-      var tempFilesSize = res.tempFiles[0].size;  //获取图片的大小，单位B
-      console.log(tempFilesSize)
-      if(tempFilesSize <= 2000000){   //图片小于或者等于2M时 可以执行获取图片
-        const { errMsg, tempFilePaths, tempFiles } = res;
-        tempFilePaths.forEach((filePath, index) => {
-          if (errMsg === 'chooseImage:ok') {
-            console.log(filePath)
-            this.uploadFile(filePath);
-          }
-        });
-      }else{    
-          wx.showToast({
-              title:'图片不大于2M!', 
-          })
-      }
-     },
-   });
-},
-//uploadFile
-uploadFile(filePath){
-  let that = this
+  afterRead(event) {
+    let that = this
+    const { file } = event.detail;
+    // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
     wx.uploadFile({
-     url: 'https://flxcx.ahxingdian.com/api/index/upload_image',//这里是后台服务器的请求地址
-     filePath: filePath,//图片url
-     name: 'file',
-     header: { "Content-Type": "multipart/form-data" },
-     formData: {},//如果上传图片api有其他的参数，可以在这里添加
-     success: (res) => {
-       let newRes = JSON.parse(res.data)
-      //上传服务器成功之后可以对url处理，例如图片预览，长按删除等功能
-      that.setData({
-          ['form.life_image']: newRes.data.url
-         })
-     },
-     fail: (error) => {
-       console.log(error);
-     },
-   });
-},
-  
-  overAfterRead(){
+      url: 'https://flxcx.ahxingdian.com/api/index/upload_image', // 仅为示例，非真实的接口地址
+      filePath: file.url,
+      name: 'file',
+      header: {
+        "Content-Type": "multipart/form-data"
+      },
+      success(res) {
+        // 上传完成需要更新 fileList
+        const { fileList = [] } = that.data;
+        fileList.push({ ...file, url: JSON.parse(res.data).data.url });
+        that.setData({ fileList });
+
+        let newRes = JSON.parse(res.data)
+        let life_image = that.data.form.life_image
+        life_image.push(newRes.data.url)
+        //上传服务器成功之后可以对url处理，例如图片预览，长按删除等功能
+        that.setData({
+          ['form.life_image']: life_image
+        })
+      },
+      fail: (error) => {
+        console.log(error);
+      },
+    });
+  },
+  uploadImage() {
+    wx.chooseImage({
+      count: 1, // 最多可以选择的图片张数，默认9
+      sizeType: ['original', 'compressed'], // original 原图，compressed 压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // album 从相册选图，camera 使用相机，默认二者都有
+      success: (res) => {
+        var tempFilesSize = res.tempFiles[0].size; //获取图片的大小，单位B
+        console.log(tempFilesSize)
+        if (tempFilesSize <= 2000000) { //图片小于或者等于2M时 可以执行获取图片
+          const {
+            errMsg,
+            tempFilePaths,
+            tempFiles
+          } = res;
+          tempFilePaths.forEach((filePath, index) => {
+            if (errMsg === 'chooseImage:ok') {
+              console.log(filePath)
+              this.uploadFile(filePath);
+            }
+          });
+        } else {
+          wx.showToast({
+            title: '图片不大于2M!',
+          })
+        }
+      },
+    });
+  },
+  //uploadFile
+  uploadFile(filePath) {
+    let that = this
+    wx.uploadFile({
+      url: 'https://flxcx.ahxingdian.com/api/index/upload_image', //这里是后台服务器的请求地址
+      filePath: filePath, //图片url
+      name: 'file',
+      header: {
+        "Content-Type": "multipart/form-data"
+      },
+      formData: {}, //如果上传图片api有其他的参数，可以在这里添加
+      success: (res) => {
+        let newRes = JSON.parse(res.data)
+        let life_image = that.data.form.life_image
+        life_image.push(newRes.data.url)
+        //上传服务器成功之后可以对url处理，例如图片预览，长按删除等功能
+        that.setData({
+          ['form.life_image']: life_image
+        })
+      },
+      fail: (error) => {
+        console.log(error);
+      },
+    });
+  },
+
+  overAfterRead() {
     wx.showToast({
       title: '文件请小于5MB',
     })
@@ -136,7 +185,7 @@ uploadFile(filePath){
       delta: 1,
     })
   },
-  upLifePho(){
+  upLifePho() {
 
   },
   onChangeage(event) {
@@ -291,8 +340,10 @@ uploadFile(filePath){
     return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
   },
   async submedata() {
-    let {form} = this.data
-    let data={
+    let {
+      form
+    } = this.data
+    let data = {
       name: form.name,
       token: this.data.token,
       member_id: this.data.member_id,
@@ -303,17 +354,20 @@ uploadFile(filePath){
       address_pro: form.district,
       education: form.educational,
       marriage: form.marriage,
-      life_image:form.life_image
+      life_image: form.life_image,
+      autograph: form.autograph
     }
     let res = await changemedata(data)
-    if(res.data.res) {
+    if (res.data.res) {
       wx.showToast({
         title: '修改成功！',
       })
     }
   },
   async subMate() {
-    let {form1sub} = this.data
+    let {
+      form1sub
+    } = this.data
     let subForm = {
       select_age: form1sub.agerange,
       token: this.data.token,
@@ -323,9 +377,9 @@ uploadFile(filePath){
       select_edu: form1sub.edu,
       select_mary: form1sub.marrange
     }
-    
+
     let res = await changeMate(subForm)
-    if(res.msg == '操作成功') {
+    if (res.msg == '操作成功') {
       wx.showToast({
         title: '修改成功',
       })
@@ -349,13 +403,13 @@ uploadFile(filePath){
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    let that =this
-    is_show().then(res=>{
+    let that = this
+    is_show().then(res => {
       this.setData({
         isShow: res.data.show
       })
     })
-    getRange().then(res=>{
+    getRange().then(res => {
       console.log(res)
       this.setData({
         agerangeColumn: res.data.age,
@@ -367,38 +421,41 @@ uploadFile(filePath){
     })
     wx.getStorage({
       key: 'member_id',
-      success(res){
+      success(res) {
         that.setData({
-          member_id:res.data
+          member_id: res.data
         })
       }
     })
     wx.getStorage({
       key: 'token',
-      success(res){
+      success(res) {
         that.setData({
-          token:res.data
+          token: res.data
         })
       }
     })
 
     // 获取个人信息
-    getMeDate({token: this.data.token}).then(res=>{
+    getMeDate({
+      token: this.data.token
+    }).then(res => {
       this.setData({
         ["form.name"]: res.data.detail.name,
-        ["form.life_image"]: res.data.detail.details.life_image,
+        // ["form.life_image"]: res.data.detail.details.life_image,
         ["form.birthday"]: res.data.detail.birth,
         ["form.height"]: res.data.detail.details.height,
         ["form.weight"]: res.data.detail.weigh,
         ["form.district"]: `${res.data.detail.province},${res.data.detail.city},${res.data.detail.county}`,
         ["form.educational"]: res.data.detail.education,
         ["form.marriage"]: res.data.detail.marriage,
-        ["form.sex"]: res.data.detail.gender+'',
-        ["form1.agerange"]:res.data.detail.select_age_text,
-        ["form1.heightrange"]:res.data.detail.select_height_text,
-        ["form1.salary"]:res.data.detail.select_salary_text,
-        ["form1.edu"]:res.data.detail.select_edu_text,
-        ["form1.marrange"]:res.data.detail.select_mary_text,
+        ["form.sex"]: res.data.detail.gender + '',
+        ["form1.agerange"]: res.data.detail.select_age_text,
+        ["form1.heightrange"]: res.data.detail.select_height_text,
+        ["form1.salary"]: res.data.detail.select_salary_text,
+        ["form1.edu"]: res.data.detail.select_edu_text,
+        ["form1.marrange"]: res.data.detail.select_mary_text,
+        ["form.autograph"]: res.data.detail.autograph,
       })
     })
   },

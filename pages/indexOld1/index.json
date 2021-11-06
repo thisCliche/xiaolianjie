@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "w-love": "../../components/love/love"
+  },
+  "navigationBarTitleText":"新增留言",
+  "navigationStyle": "custom"
+}

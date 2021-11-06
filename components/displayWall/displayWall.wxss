@@ -1,0 +1,55 @@
+/* components/displayWall/displayWall.wxss */
+.wallSecond image{
+  width: 140rpx;
+  height: 140rpx;
+}
+.wallItem{
+  background: #fff;
+  margin-top: 20rpx;
+  padding: 20rpx;
+}
+.wallFirst{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.wallFirstL{
+  display: flex;
+  align-items: center;
+}
+.wallFirstL .avatar{
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+}
+.wallFirstLL{
+  display: flex;
+  align-items: center;
+}
+.wallFirstLL .nick{
+  font-size: 30rpx;
+  margin: 0 20rpx;
+}
+.is_auth{
+  text-align: center;
+  color: #fa8d00;
+  font-size: 26rpx;
+}
+.is_auth image{
+  width: 22rpx;
+  height: 22rpx;
+}
+.wallSecond{
+  margin-top: 40rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 4rpx solid #f0f1f3;
+}
+.third{
+  margin-top: 14rpx;
+  text-align: right;
+  margin-right: 40rpx;
+}
+.third image{
+width: 32rpx;
+height: 30rpx;
+}

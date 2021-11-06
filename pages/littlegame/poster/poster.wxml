@@ -1,12 +1,30 @@
 <!--pages/haibao/haibao.wxml-->
- 
-<button bindtap="generatePoster">点击生成海报</button>
- 
+<view class="poster">
+    <view class="posterMain">
+        <van-cell-group>
+            <van-cell title="职业" value="{{curRole}}" is-link bind:click="showPopup" />
+            <van-field placeholder-style="color:rgba(255,255,255,0.5);" label-class="labelClass" label="姓名" model:value="{{name}}" placeholder="请输入姓名"></van-field>
+            <van-field  placeholder-style="color:rgba(255,255,255,0.5);" label-class="labelClass" label="党龄" model:value="{{age}}" placeholder="请输入党龄"></van-field>
+        </van-cell-group>
+        <view class="btn" >
+            <van-button style="background:#fff;color:#bb0001;margin:0 auto;" block bind:click="generatePoster">点击生成海报</van-button>
+        </view>
+    </view>
+</view>
+
+<van-popup show="{{ show }}" bind:close="onClose" round closeable position="bottom" custom-style="height: 300px;">
+    <van-picker columns="{{ columns }}" bind:change="onChange" />
+</van-popup>
 <view class='imagePathBox' hidden="{{maskHidden == false}}">
-    <image src="{{imagePath}}" class='shengcheng' ></image>
+    <image src="{{imagePath}}" class='shengcheng'></image>
     <button class='baocun' bindtap='baocun'>点击保存至相册,分享到朋友圈</button>
 </view>
-<view hidden="{{maskHidden == false}}" class="mask"></view> 
+<view hidden="{{maskHidden == false}}" class="mask"></view>
 <view class="canvas-box">
-    <canvas style="width:750px;height:1200px;position:fixed;top:9999px" canvas-id="mycanvas" />
-</view>  
+    <canvas style="width:750px;height:1236px;position:fixed;top:9999px" canvas-id="mycanvas" />
+</view>
+<van-overlay show="{{ loadingShow }}">
+    <view class="loadingWrapper">
+        <van-loading size="24px" vertical>载入中...</van-loading>
+    </view>
+</van-overlay>

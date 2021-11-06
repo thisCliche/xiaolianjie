@@ -4,7 +4,7 @@
   "enablePullDownRefresh": true,
   "onReachBottomDistance": 50,
   "navigationBarTitleText": "文章",
-  "navigationBarBackgroundColor": "#ffb2c2",
+  "navigationBarBackgroundColor": "#f84466",
   "backgroundColor": "#eeeeee",
   "navigationBarTextStyle": "white"
 }
